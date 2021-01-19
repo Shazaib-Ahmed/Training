@@ -14,11 +14,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button b1,b2,b3,b4;
+        Button b1,b2,b3,b4,b5;
         b1=findViewById(R.id.frame_layout);
         b2=findViewById(R.id.relative_layout);
         b3=findViewById(R.id.linear_layout);
         b4=findViewById(R.id.calculator_ui);
+        b5=findViewById(R.id.user_info_form);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CalculatorUI.class);
+                startActivity(intent);
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UserInfoForm.class);
                 startActivity(intent);
             }
         });

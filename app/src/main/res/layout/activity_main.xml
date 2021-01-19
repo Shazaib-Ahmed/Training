@@ -41,6 +41,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
        />
+    <Button
+        android:id="@+id/user_info_form"
+        android:text="B5-User Info Form"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
 
 
 

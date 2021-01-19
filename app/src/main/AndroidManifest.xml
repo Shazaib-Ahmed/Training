@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".CalculatorUI"
-            android:theme="@style/Theme.AppCompat.Light"></activity>
+        <activity android:name=".ShowUserInfo"></activity>
+        <activity android:name=".UserInfoForm" />
+        <activity
+            android:name=".CalculatorUI"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".PracticeLinearLayout" />
         <activity android:name=".PracticeRelativeLayout" />
         <activity android:name=".PracticeFrameLayout" />
