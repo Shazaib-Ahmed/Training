@@ -10,5 +10,6 @@ public class CalculatorUI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_u_i);
+        setTitle("Calculator");
     }
 }
