@@ -13,6 +13,8 @@
     android:text=""
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="50dp"
     />
     <TextView
         android:id="@+id/user_age"
@@ -54,6 +56,29 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         />
+    <LinearLayout
+        android:id="@+id/l_layout"
+        android:layout_below="@id/user_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="30dp">
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Edit"/>
+        <Button
+            android:id="@+id/done_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Done"/>
+    </LinearLayout>
 
 
 </RelativeLayout>

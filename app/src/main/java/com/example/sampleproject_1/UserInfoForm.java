@@ -3,22 +3,32 @@ package com.example.sampleproject_1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class UserInfoForm extends AppCompatActivity {
+    EditText firstName,lastName,age,mobileNumber,address,gender;
+    Button submitInfo;
+    String SHARED_PREFS ="sharedPrefs";
+    String FIRST_NAME ="firstName";
+    String LAST_NAME ="lastNAme";
+    String U_AGE ="userAge";
+    String MOBILE_NUMBER ="mobilNumber";
+    String ADDRESS ="ADDRESS";
+    String GENDER ="gender";
 
+    String FN,LN,AGE,MOB,ADD,GEN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_form);
         setTitle("Info Form");
-        EditText firstName,lastName,age,mobileNumber,address,gender;
-        Button submitInfo;
 
         firstName=findViewById(R.id.first_name);
         lastName=findViewById(R.id.last_name);
@@ -74,8 +84,7 @@ public class UserInfoForm extends AppCompatActivity {
                     intent.putExtra("keyGender",Gender);
                     startActivity(intent);
 
-
-
+                    saveData();
 
                     firstName.setText("");
                     lastName.setText("");
@@ -85,7 +94,46 @@ public class UserInfoForm extends AppCompatActivity {
                     gender.setText("");
                 }
             }
-        });
 
+
+
+        });
+        loadData();
+        updateViews();
+
+    }
+    public void saveData()
+    {
+
+        SharedPreferences sharedPreferences =getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor =sharedPreferences.edit();
+        editor.putString(FIRST_NAME,firstName.getText().toString());
+        editor.putString(LAST_NAME,lastName.getText().toString());
+        editor.putString(U_AGE,age.getText().toString());
+        editor.putString(MOBILE_NUMBER,mobileNumber.getText().toString());
+        editor.putString(ADDRESS,address.getText().toString());
+        editor.putString(GENDER,gender.getText().toString());
+        editor.apply();
+        Toast.makeText(this, "Data Saved Successfully", Toast.LENGTH_SHORT).show();
+    }
+    public void loadData()
+    {
+        SharedPreferences sharedPreferences =getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        FN =sharedPreferences.getString(FIRST_NAME,"");
+        LN =sharedPreferences.getString(LAST_NAME,"");
+        AGE =sharedPreferences.getString(U_AGE,"");
+        MOB =sharedPreferences.getString(MOBILE_NUMBER,"");
+        ADD =sharedPreferences.getString(ADDRESS,"");
+        GEN =sharedPreferences.getString(GENDER,"");
+    }
+    public void updateViews()
+    {
+        firstName.setText(FN);
+        lastName.setText(LN);
+        age.setText(AGE);
+        mobileNumber.setText(MOB);
+        address.setText(ADD);
+        gender.setText(GEN);
+        
     }
 }

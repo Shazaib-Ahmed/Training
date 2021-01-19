@@ -2,7 +2,10 @@ package com.example.sampleproject_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ShowUserInfo extends AppCompatActivity {
@@ -32,6 +35,28 @@ public class ShowUserInfo extends AppCompatActivity {
         userMobileNumber.setText("Mobile Number -- "+UMobile);
         userAddress.setText("Address -- "+UAdd);
         userGender.setText("Gender -- "+UGender);
+
+        Button editButton,doneButton;
+        editButton =findViewById(R.id.edit_button);
+        doneButton=findViewById(R.id.done_button);
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i =new Intent(ShowUserInfo.this,UserInfoForm.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                finish();
+                startActivity(i);
+            }
+        });
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                finishAffinity();
+            }
+        });
 
 
     }
