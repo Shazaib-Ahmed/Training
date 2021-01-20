@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sampleproject_1">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -9,8 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".WaterIntakeAct"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".JsonPlaceHolderApi"></activity>
+        <activity
+            android:name=".WaterIntakeAct"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".ShowUserInfo" />
         <activity android:name=".UserInfoForm" />
         <activity

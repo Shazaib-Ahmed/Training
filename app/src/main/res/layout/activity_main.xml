@@ -57,6 +57,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
+    <Button
+        android:id="@+id/json_place_holder"
+        android:text="B7-Json PlaceHolder Api"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
 
 
 </LinearLayout>
