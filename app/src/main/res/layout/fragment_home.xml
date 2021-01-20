@@ -98,6 +98,7 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/linear2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -159,5 +160,51 @@
         </RelativeLayout>
 
     </LinearLayout>
+<LinearLayout
+    android:layout_below="@+id/linear2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/borderdesign"
+    android:layout_margin="20dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+<ListView
+    android:id="@+id/time_intake_water_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:layout_margin="20dp"
+    android:textColor="@color/black"
+    android:textSize="15dp"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+        <ListView
+            android:id="@+id/litre_intake_water_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_margin="20dp"
+            android:textAlignment="textEnd"
+            android:textSize="15dp"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
 </RelativeLayout>
