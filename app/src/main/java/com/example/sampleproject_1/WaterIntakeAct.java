@@ -8,13 +8,13 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 public class WaterIntakeAct extends AppCompatActivity {
-
+    ViewPager simpleViewPager;
+    TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_intake);
-        ViewPager simpleViewPager;
-        TabLayout tabLayout;
+
         simpleViewPager =findViewById(R.id.simpleViewPager);
         tabLayout =findViewById(R.id.simpleTabLayout);
 

@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment;
 public class HomeFragment extends Fragment
 {
     Button addWater;
-
+    ProgressBar progressBar;
+    TextView progressText;
+    int progress=0;
     public HomeFragment()
     {
     }
@@ -23,10 +25,9 @@ public class HomeFragment extends Fragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    int progress=0;
 
-    ProgressBar progressBar;
-    TextView progressText;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,6 +54,6 @@ return v;
 private void updateProgressBar()
 {
     progressBar.setProgress(progress);
-
+    progressText.setText(""+progress+"%");
 }
 }

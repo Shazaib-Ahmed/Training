@@ -11,6 +11,7 @@ class PagerAdapter extends FragmentPagerAdapter {
 
     public PagerAdapter(FragmentManager supportFragmentManager, int tabCount) {
         super(supportFragmentManager);
+
     }
 
     @NonNull
@@ -18,11 +19,9 @@ class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                HomeFragment tab1 = new HomeFragment();
-                return tab1;
+                return new HomeFragment();
             case 1:
-                HistoryFragment tab2 = new HistoryFragment();
-                return tab2;
+                return new HistoryFragment();
             default:
                 return null;
         }
