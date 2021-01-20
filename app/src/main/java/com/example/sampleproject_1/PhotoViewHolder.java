@@ -14,11 +14,11 @@ class PhotoViewHolder extends RecyclerView.ViewHolder {
 
                 super(itemView);
 
-                url=itemView.findViewById(R.id.url);
+               // url=itemView.findViewById(R.id.url);
                 thumbnailUrl=itemView.findViewById(R.id.thumbnailUrl);
                 albumId=itemView.findViewById(R.id.album_id);
                 idd=itemView.findViewById(R.id.idd);
-                thumbnailUrl=itemView.findViewById(R.id.thumbnailUrl);
+                title=itemView.findViewById(R.id.title);
 
             }
         }

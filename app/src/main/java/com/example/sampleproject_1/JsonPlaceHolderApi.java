@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +39,7 @@ public class JsonPlaceHolderApi extends AppCompatActivity {
         context=this;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         progressDialog=new ProgressDialog(this);
-        setTitle("Json Placeholder" +
-                "");
+        setTitle("Json Placeholder");
 
         progressDialog.setTitle("Loading ..");
         progressDialog.setMessage("Please Wait");
@@ -65,26 +65,19 @@ public class JsonPlaceHolderApi extends AppCompatActivity {
         call.enqueue(new Callback<List<PhotoModelClass>>() {
             @Override
             public void onResponse(Call<List<PhotoModelClass>> call, Response<List<PhotoModelClass>> response) {
-                if (!response.isSuccessful())
-                {
-                    data=new ArrayList<>(response.body());
-                    return;
-                }
+
                 List<PhotoModelClass> photoModelClasses =response.body();
-                for (PhotoModelClass photoModelClass : photoModelClasses)
-                {
+                progressDialog.dismiss();
                     photosAdapter=new PhotosAdapter(context,photoModelClasses);
                     recyclerView.setAdapter(photosAdapter);
-
-                    progressDialog.dismiss();
-                }
 
             }
 
 
-
             @Override
             public void onFailure(Call<List<PhotoModelClass>> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(JsonPlaceHolderApi.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
