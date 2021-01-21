@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,24 +25,30 @@ public class JsonPlaceHolderApi extends AppCompatActivity {
     ProgressDialog progressDialog;
     TextView textResult;
     JsonPlaceHolderApiInterface jsonPlaceHolderApiInterface;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,rvEndPoints;
     PhotosAdapter photosAdapter;
-    ArrayList<PhotoModelClass> data= new ArrayList<>();
+    EndPointAdapter endPointAdapter;
     Context context;
+    String data[] = {"hello","hey"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_json_place_holder_api);
 
-        recyclerView=findViewById(R.id.rv_result);
-        textResult=findViewById(R.id.text_result);
+        //recyclerView=findViewById(R.id.rv_result);
+        rvEndPoints=findViewById(R.id.rv_endpoints);
+        //textResult=findViewById(R.id.text_result);
         context=this;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        rvEndPoints.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        endPointAdapter=new EndPointAdapter(dataQueue(),JsonPlaceHolderApi.this);
+        rvEndPoints.setAdapter(endPointAdapter);
         progressDialog=new ProgressDialog(this);
         setTitle("Json Placeholder");
 
-        progressDialog.setTitle("Loading ..");
+       /* progressDialog.setTitle("Loading ..");
         progressDialog.setMessage("Please Wait");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
@@ -51,10 +58,11 @@ public class JsonPlaceHolderApi extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        jsonPlaceHolderApiInterface = retrofit.create(JsonPlaceHolderApiInterface.class);
+        jsonPlaceHolderApiInterface = retrofit.create(JsonPlaceHolderApiInterface.class);*/
 
         //getPosts1();
-        getPhotos1();
+        //getPhotos1();
+
 
     }
 
@@ -114,6 +122,33 @@ public class JsonPlaceHolderApi extends AppCompatActivity {
                textResult.setText(t.getMessage());
             }
         });
+    }
+
+    public ArrayList<EndPointModel> dataQueue()
+    {
+        ArrayList<EndPointModel> holder =new ArrayList<>();
+
+        EndPointModel ob1 = new EndPointModel();
+        ob1.setEndpointText("Post");
+        holder.add(ob1);
+
+        EndPointModel ob2 = new EndPointModel();
+        ob2.setEndpointText("Photos");
+        holder.add(ob2);
+
+        EndPointModel ob3 = new EndPointModel();
+        ob3.setEndpointText("Comments");
+        holder.add(ob3);
+
+        EndPointModel ob4 = new EndPointModel();
+        ob4.setEndpointText("Album");
+        holder.add(ob4);
+
+        EndPointModel ob5 = new EndPointModel();
+        ob5.setEndpointText("Album12345678");
+        holder.add(ob5);
+
+        return holder;
     }
 
 }

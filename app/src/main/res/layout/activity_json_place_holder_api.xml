@@ -6,21 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".JsonPlaceHolderApi"
     android:padding="15dp">
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/text_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    </androidx.core.widget.NestedScrollView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_result"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="#000"
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_endpoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="50dp"
         />
+
+<FrameLayout
+    android:id="@+id/frame_layout123"
+    android:layout_below="@id/rv_endpoints"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:textColor="#000"
+    android:layout_alignParentBottom="true"/>
+
+ <!--<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_result"
+        android:layout_below="@id/rv_endpoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:layout_alignParentBottom="true"
+
+        />-->
 
 
 
