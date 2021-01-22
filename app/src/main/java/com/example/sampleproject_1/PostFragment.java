@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -23,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PhotosFragment extends Fragment
+public class PostFragment extends Fragment
 {
 
     ProgressDialog progressDialog;
@@ -31,9 +32,10 @@ public class PhotosFragment extends Fragment
     RecyclerView recyclerView;
     PhotosAdapter photosAdapter;
     Context context;
+    TextView textResult;
 
 
-    public PhotosFragment()
+    public PostFragment()
     {
     }
 
@@ -41,7 +43,7 @@ public class PhotosFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_photos, container, false);
+        View view= inflater.inflate(R.layout.fragment_post, container, false);
 
         return view;
     }
@@ -51,10 +53,12 @@ public class PhotosFragment extends Fragment
         super.onViewCreated(view, savedInstanceState);
 
         context=view.getContext().getApplicationContext();
-        recyclerView =view.findViewById(R.id.rv_result22);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        textResult =view.findViewById(R.id.textResult);
+
+
 
         progressDialog = ProgressDialog.show(getActivity(), "Loading...", "Please wait...", true);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -62,7 +66,7 @@ public class PhotosFragment extends Fragment
 
         jsonPlaceHolderApiInterface = retrofit.create(JsonPlaceHolderApiInterface.class);
 
-        getPhotos1();
+        getPosts1();
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,27 +76,36 @@ public class PhotosFragment extends Fragment
 
     }
 
-    private void getPhotos1()
-    {
-        Call<List<PhotoModelClass>> call =jsonPlaceHolderApiInterface.getPhotos();
+    private void getPosts1() {
+        Call<List<PostModelClass>> call =jsonPlaceHolderApiInterface.getPosts();
 
-        call.enqueue(new Callback<List<PhotoModelClass>>() {
+        call.enqueue(new Callback<List<PostModelClass>>() {
             @Override
-            public void onResponse(Call<List<PhotoModelClass>> call, Response<List<PhotoModelClass>> response) {
+            public void onResponse(Call<List<PostModelClass>> call, Response<List<PostModelClass>> response) {
+                if (!response.isSuccessful())
+                {
+                    textResult.setText("Code: "+response.code());
+                    return;
+                }
+                List<PostModelClass> postModelClasses =response.body();
+                for (PostModelClass postModelClass : postModelClasses)
+                {
+                    String content ="";
+                    content +="ID: "+ postModelClass.getId() +"\n";
+                    content +="User ID: "+ postModelClass.getUserId() +"\n";
+                    content +="Title: "+ postModelClass.getTitle() +"\n";
+                    content +="Text: "+ postModelClass.getText() +"\n"+"\n";
 
-                List<PhotoModelClass> photoModelClasses =response.body();
-              progressDialog.dismiss();
-                photosAdapter=new PhotosAdapter(context,photoModelClasses);
-                recyclerView.setAdapter(photosAdapter);
+                    textResult.append(content);
+                    progressDialog.dismiss();
+                }
 
             }
 
-
             @Override
-            public void onFailure(Call<List<PhotoModelClass>> call, Throwable t) {
-               progressDialog.dismiss();
-                Toast.makeText(context, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
-
+            public void onFailure(Call<List<PostModelClass>> call, Throwable t) {
+                progressDialog.dismiss();
+                textResult.setText(t.getMessage());
             }
         });
     }

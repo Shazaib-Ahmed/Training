@@ -1,5 +1,6 @@
 package com.example.sampleproject_1;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,17 +23,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PhotosFragment extends Fragment
+public class AlbumFragment extends Fragment
 {
 
-    ProgressDialog progressDialog;
     JsonPlaceHolderApiInterface jsonPlaceHolderApiInterface;
     RecyclerView recyclerView;
-    PhotosAdapter photosAdapter;
+    AlbumAdapter albumAdapter;
     Context context;
+    ProgressDialog progressDialog;
 
 
-    public PhotosFragment()
+    public AlbumFragment()
     {
     }
 
@@ -41,7 +41,7 @@ public class PhotosFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_photos, container, false);
+        View view= inflater.inflate(R.layout.fragment_albums, container, false);
 
         return view;
     }
@@ -51,10 +51,12 @@ public class PhotosFragment extends Fragment
         super.onViewCreated(view, savedInstanceState);
 
         context=view.getContext().getApplicationContext();
-        recyclerView =view.findViewById(R.id.rv_result22);
+        recyclerView =view.findViewById(R.id.rv_albums);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         progressDialog = ProgressDialog.show(getActivity(), "Loading...", "Please wait...", true);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -62,7 +64,7 @@ public class PhotosFragment extends Fragment
 
         jsonPlaceHolderApiInterface = retrofit.create(JsonPlaceHolderApiInterface.class);
 
-        getPhotos1();
+        getAlbum();
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,30 +74,29 @@ public class PhotosFragment extends Fragment
 
     }
 
-    private void getPhotos1()
+    private void getAlbum()
     {
-        Call<List<PhotoModelClass>> call =jsonPlaceHolderApiInterface.getPhotos();
+        Call<List<AlbumModelClass>> call =jsonPlaceHolderApiInterface.getAlbums();
 
-        call.enqueue(new Callback<List<PhotoModelClass>>() {
+        call.enqueue(new Callback<List<AlbumModelClass>>() {
             @Override
-            public void onResponse(Call<List<PhotoModelClass>> call, Response<List<PhotoModelClass>> response) {
+            public void onResponse(Call<List<AlbumModelClass>> call, Response<List<AlbumModelClass>> response) {
 
-                List<PhotoModelClass> photoModelClasses =response.body();
-              progressDialog.dismiss();
-                photosAdapter=new PhotosAdapter(context,photoModelClasses);
-                recyclerView.setAdapter(photosAdapter);
+                List<AlbumModelClass> albumModelClasses =response.body();
+                progressDialog.dismiss();
+                albumAdapter=new AlbumAdapter(context,albumModelClasses);
+                recyclerView.setAdapter(albumAdapter);
 
             }
 
 
             @Override
-            public void onFailure(Call<List<PhotoModelClass>> call, Throwable t) {
-               progressDialog.dismiss();
+            public void onFailure(Call<List<AlbumModelClass>> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(context, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
     }
-
 
 }

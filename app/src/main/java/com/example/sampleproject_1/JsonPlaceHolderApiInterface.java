@@ -14,4 +14,10 @@ public interface JsonPlaceHolderApiInterface
         @GET("photos")
         Call<List<PhotoModelClass>> getPhotos();
 
+        @GET("comments")
+        Call<List<CommentModelClass>> getComments();
+
+        @GET("albums")
+        Call<List<AlbumModelClass>> getAlbums();
+
 }

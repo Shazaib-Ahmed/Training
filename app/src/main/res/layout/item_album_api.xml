@@ -15,48 +15,33 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="20dp">
             <TextView
-                android:id="@+id/album_id"
+                android:id="@+id/userID_album"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="Album ID : "
+                android:text="Post ID : "
                 android:textAlignment="textStart"
                 />
-        <TextView
-            android:id="@+id/idd"
-            android:layout_below="@+id/album_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="ID"
-            android:textAlignment="textStart"/>
-
             <TextView
-                android:id="@+id/title"
-                android:layout_below="@+id/idd"
+                android:id="@+id/ID_album"
+                android:layout_below="@+id/userID_album"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="Title"
+                android:text="ID"
                 android:textAlignment="textStart"/>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/title_album"
+                android:layout_below="@+id/ID_album"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="title"
+                android:textAlignment="textStart"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-        <ImageView
-            android:id="@+id/thumbnailUrl"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:layout_weight="1"
-            android:layout_centerInParent="true"
-            android:layout_margin="20dp"
-            />
+
 
 
         </RelativeLayout>

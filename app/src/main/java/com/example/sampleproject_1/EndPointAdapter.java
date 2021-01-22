@@ -1,8 +1,5 @@
 package com.example.sampleproject_1;
 
-
-import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 
-import androidx.fragment.app.Fragment;
+
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,14 +45,30 @@ class EndPointAdapter extends RecyclerView.Adapter<ViewHolderApiEnds> {
             @Override
             public void onClick(View v)
             {
+                if (holder.endPointText.getText()=="Post")
+                {
+                    jsonPlaceHolderApi.updateFragmentForPost();
+                }
+                else if (holder.endPointText.getText()=="Photos")
+                {
+                    jsonPlaceHolderApi.updateFragmentForPhotos();
 
-                Toast.makeText(jsonPlaceHolderApi, "Endpoints", Toast.LENGTH_SHORT).show();
+                }
+                else if (holder.endPointText.getText()=="Comments")
+                {
+                 jsonPlaceHolderApi.updateFragmentForComments();
+                }
+                else if (holder.endPointText.getText()=="Album")
+                {
+                    jsonPlaceHolderApi.updateFragmentForAlbums();
+                }
 
-                //JsonPlaceHolderApi activity = (JsonPlaceHolderApi)v.getContext();
-                Fragment fragment =new Fragment();
-                jsonPlaceHolderApi.getSupportFragmentManager()
-                        .beginTransaction().replace(R.id.frame_layout123,fragment)
-                        .commit();
+
+
+
+
+
+
             }
         });
     }
