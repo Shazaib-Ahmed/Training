@@ -24,6 +24,6 @@ public interface UserInfoDao {
     @Query("DELETE FROM user_info")
     void deleteAllNotes();
 
-    @Query("SELECT * FROM user_info ORDER BY id DESC")
+    @Query("SELECT * FROM user_info ORDER BY id ASC")
     LiveData<List<UserInfo>> getAllUserInfo();
 }

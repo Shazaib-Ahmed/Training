@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".RoomDatabaseExample"></activity>
+        <activity android:name=".AddUserInfo"
+            android:parentActivityName=".RoomDatabaseExample"></activity>
+        <activity android:name=".RoomDatabaseExample" />
         <activity android:name=".JsonPlaceHolderApi" />
         <activity
             android:name=".WaterIntakeAct"

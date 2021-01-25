@@ -47,7 +47,9 @@ public abstract class UserInfoDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
             userInfoDao.insert(new UserInfo("John",20,"abc@gmail.com",987654321));
             userInfoDao.insert(new UserInfo("Paul",21,"xyz@gmail.com",9000000));
-            userInfoDao.insert(new UserInfo("Ashley",23,"pqr@gmail.com",9999999));
+            userInfoDao.delete(new UserInfo("Ashley",23,"pqr@gmail.com",9999999));
+            userInfoDao.insert(new UserInfo("Joh",25,"mno@gmail.com",9876321));
+
             return null;
         }
     }
