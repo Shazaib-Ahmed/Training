@@ -65,6 +65,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
+    <Button
+        android:id="@+id/room_database_example"
+        android:text="B8-Room Library Example"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
 
 
 </LinearLayout>
