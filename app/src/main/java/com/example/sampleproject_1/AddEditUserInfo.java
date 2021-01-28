@@ -6,15 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
+
 
 public class AddEditUserInfo extends AppCompatActivity {
     public static final String EXTRA_ID = "com.example.sampleproject_1.EXTRA_ID";
@@ -44,8 +44,9 @@ public class AddEditUserInfo extends AppCompatActivity {
             setTitle("Edit Note");
             editTextName.setText(intent.getStringExtra(EXTRA_NAME));
             editTextAge.setText("" + intent.getIntExtra(EXTRA_AGE, 0));
-            editTextEmail.setText("" + intent.getStringExtra(EXTRA_EMAIL));
-            editTextMobileNumber.setText("" + intent.getIntExtra(EXTRA_MOBILE, 01));
+            editTextEmail.setText(intent.getStringExtra(EXTRA_EMAIL));
+            editTextMobileNumber.setText(intent.getStringExtra(EXTRA_MOBILE));
+
         } else {
 
             setTitle("Add User Info");

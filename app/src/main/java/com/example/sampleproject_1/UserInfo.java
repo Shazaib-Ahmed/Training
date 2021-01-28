@@ -16,9 +16,9 @@ public class UserInfo {
 
     private String email;
 
-    private int mobileNumber;
+    private String mobileNumber;
 
-    public UserInfo(String name, int age, String email, int mobileNumber) {
+    public UserInfo(String name, int age, String email, String mobileNumber) {
         this.name = name;
         this.age = age;
         this.email = email;
@@ -45,7 +45,7 @@ public class UserInfo {
         return email;
     }
 
-    public int getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 

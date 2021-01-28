@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -94,7 +95,7 @@ public class RoomDatabaseExample extends AppCompatActivity {
             String name = data.getStringExtra(AddEditUserInfo.EXTRA_NAME);
             int age = data.getIntExtra(AddEditUserInfo.EXTRA_AGE, 0);
             String email = data.getStringExtra(AddEditUserInfo.EXTRA_EMAIL);
-            int mobileNumber = data.getIntExtra(AddEditUserInfo.EXTRA_MOBILE, 01);
+            String mobileNumber = data.getStringExtra(AddEditUserInfo.EXTRA_MOBILE);
 
             UserInfo userInfo = new UserInfo(name, age, email, mobileNumber);
             userInfoViewModel.insert(userInfo);
@@ -111,7 +112,7 @@ public class RoomDatabaseExample extends AppCompatActivity {
             String name = data.getStringExtra(AddEditUserInfo.EXTRA_NAME);
             int age = data.getIntExtra(AddEditUserInfo.EXTRA_AGE, 0);
             String email = data.getStringExtra(AddEditUserInfo.EXTRA_EMAIL);
-            int mobileNumber = data.getIntExtra(AddEditUserInfo.EXTRA_MOBILE, 01);
+            String mobileNumber = data.getStringExtra(AddEditUserInfo.EXTRA_MOBILE);
 
             UserInfo userInfo =new UserInfo(name,age,email,mobileNumber);
             userInfo.setId(id);

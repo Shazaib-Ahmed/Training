@@ -9,7 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {UserInfo.class},version = 1)
+@Database(entities = {UserInfo.class},version = 2)
 public abstract class UserInfoDatabase extends RoomDatabase {
 
     private static UserInfoDatabase instance;
@@ -45,10 +45,7 @@ public abstract class UserInfoDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            userInfoDao.insert(new UserInfo("John",20,"abc@gmail.com",987654321));
-            userInfoDao.insert(new UserInfo("Paul",21,"xyz@gmail.com",9000000));
-            userInfoDao.delete(new UserInfo("Ashley",23,"pqr@gmail.com",9999999));
-            userInfoDao.insert(new UserInfo("Joh",25,"mno@gmail.com",9876321));
+
 
             return null;
         }
