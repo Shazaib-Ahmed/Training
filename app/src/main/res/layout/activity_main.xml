@@ -73,6 +73,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
+    <Button
+        android:id="@+id/notification_example"
+        android:text="B9-Notification Example"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
 
 
 </LinearLayout>
