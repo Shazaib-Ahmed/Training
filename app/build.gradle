@@ -37,13 +37,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    //implementation "androidx.lifecycle:lifecycle-viewmodel:$room_version"
-    //implementation "androidx.lifecycle:lifecycle-livedata:$room_version"
-
-
-
-
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -55,6 +48,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
 
     implementation "android.arch.work:work-runtime:2.5.0"
+
 
 
 }

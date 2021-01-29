@@ -7,7 +7,6 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
-import androidx.work.ListenableWorker;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -34,6 +33,6 @@ public class UploadTask extends Worker {
                 .setContentIntent(pendingIntent);
         NotificationManager manager =(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(1,notification.build());
-        return Worker.Result.success();
+        return Result.success();
     }
 }
