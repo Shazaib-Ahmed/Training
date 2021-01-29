@@ -8,22 +8,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editText_title"
-        android:layout_width="match_parent"
-        android:hint="Title"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/editText_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Message"/>
     <Button
-        android:id="@+id/button_send_notification"
+        android:id="@+id/button_schedule_notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Notification"
-        android:onClick="sendOnChannel"/>
+        android:text="Schedule Notification"
+        android:onClick="scheduleChannel"/>
+    <Button
+        android:id="@+id/button_cancel_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel Notification"
+        android:onClick="cancelNotification"/>
+
 
 
 

@@ -23,7 +23,7 @@ public class NotificationApplication extends Application {
                     "Channel",
                     NotificationManager.IMPORTANCE_HIGH
             );
-            notificationChannel.setDescription("This is testing channel");
+            notificationChannel.setDescription("This is testing channel(AndroidTesting)");
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(notificationChannel);
         }
