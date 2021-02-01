@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WaterReminder.IntroductionPage"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_body_weight"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        android:layout_centerInParent="true"
+        android:textColor="@color/waterIntake"
+        android:padding="15dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/didotold"/>
+
+    <RelativeLayout
+        android:id="@+id/bottomContinueButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableEnd="@drawable/ic_navigate_next"
+            android:background="@drawable/yellowbuttondesign"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:text="Continue"
+            android:textColor="@color/waterIntake"
+            android:textSize="16dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:onClick="sendToUserDetailsPage"
+            />
+    </RelativeLayout>
+</RelativeLayout>
