@@ -7,30 +7,62 @@
     android:background="@color/white"
     tools:context=".WaterReminder.UserDetailsPage">
 
-    <RelativeLayout
+    <!--<LinearLayout
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tabColor">
+        android:layout_alignParentTop="true"
+        android:background="@color/tabColor"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:drawableStart="@drawable/ic_baseline_arrow_back" />
-    </RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_arrow_back"
+            android:padding="15dp"
+            android:onClick="sendBack"/>
+
+        <include
+            android:id="@+id/main_page_toolbar"
+            layout="@layout/app_bar_layout"></include>
+    </LinearLayout>-->
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/titleBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ><LinearLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/tabColor"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_arrow_back"
+            android:padding="10dp"
+            android:onClick="sendToPreviousActivity"
+            />
+    <include
+        android:id="@+id/main_page_toolbar"
+        layout="@layout/app_bar_layout"/>
+    </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/textViewGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleBar"
+        android:layout_below="@+id/titleBar1"
         android:layout_centerInParent="true"
         android:layout_margin="15dp"
+        android:fontFamily="@font/baloo"
         android:text="Gender"
         android:textColor="@color/waterIntake"
-        android:textSize="25dp"
-        android:fontFamily="@font/baloo"/>
+        android:textSize="25dp" />
 
     <LinearLayout
         android:id="@+id/genderLinearLayout"
@@ -38,31 +70,35 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewGender"
         android:layout_margin="0dp"
+        android:background="#D5E0E1"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="1">
+        android:weightSum="2">
 
-    <ImageView
-        android:id="@+id/imageMale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/drinkwater" />
-</RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-        <ImageView
-            android:id="@+id/imageFemale"
+
+            <ImageView
+                android:id="@+id/imageMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/drinkwater" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/drinkwater" /></RelativeLayout>
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imageFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/drinkwater" />
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -70,8 +106,7 @@
         android:id="@+id/genderRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/genderLinearLayout"
-        android:layout_margin="0dp">
+        android:layout_below="@+id/genderLinearLayout">
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -84,23 +119,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Male"
-                android:textColor="@color/black"
                 android:buttonTint="@color/tabColor"
                 android:checked="true"
-                android:layout_marginStart="50dp"
-
-                />
+                android:gravity="center"
+                android:text="Male"
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/femaleOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Female"
-                android:textColor="@color/black"
                 android:buttonTint="@color/tabColor"
-                android:layout_marginStart="50dp"/>
+                android:gravity="center"
+                android:text="Female"
+                android:textColor="@color/black" />
 
         </RadioGroup>
 
@@ -113,22 +146,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/genderRelativeLayout"
         android:layout_margin="10dp">
+
         <TextView
             android:id="@+id/textViewWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/baloo"
             android:text="Weight"
             android:textColor="@color/tabColor"
-            android:textSize="20dp"
-            android:fontFamily="@font/baloo"/>
+            android:textSize="20dp" />
+
         <ImageView
             android:id="@+id/imageWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewWeight"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/meter"
-            android:layout_below="@+id/textViewWeight"/>
+            android:src="@drawable/meter" />
 
         <TextView
             android:id="@+id/textViewWeightInKg"
@@ -137,9 +172,9 @@
             android:layout_below="@+id/imageWeight"
             android:layout_centerInParent="true"
             android:text="70 Kg"
-            android:textStyle="bold"
             android:textColor="@color/waterIntake"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <SeekBar
             android:id="@+id/weightSeekBar"
@@ -147,86 +182,95 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewWeightInKg"
             android:layout_margin="5dp"
+            android:background="@color/tabColor"
             android:progress="50"
             android:progressTint="@color/white"
-            android:thumbTint="@color/white"
-            android:background="@color/tabColor"/>
+            android:thumbTint="@color/white" />
 
     </RelativeLayout>
+
     <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/bottomContinueButtonRelativeLayout"
         android:layout_below="@+id/relativeLayoutWeightInKg"
         android:layout_margin="0dp"
-        android:layout_above="@id/bottomContinueButtonRelativeLayout">
+        android:background="#D5E0E1">
+
         <LinearLayout
             android:id="@+id/wakeUpTexView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:weightSum="2">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/baloo"
                 android:text="Bed Time"
                 android:textAlignment="center"
-                android:textColor="@color/waterIntake"
-                android:fontFamily="@font/baloo"/>
+                android:textColor="@color/waterIntake" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/baloo"
                 android:text="Wakeup Time"
                 android:textAlignment="center"
-                android:textColor="@color/waterIntake"
-                android:fontFamily="@font/baloo"/>
+                android:textColor="@color/waterIntake" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_below="@+id/wakeUpTexView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2"
-            >
+            android:layout_below="@+id/wakeUpTexView"
+            android:weightSum="2">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/drinkwater"
                 android:layout_weight="1"
-                />
+                android:src="@drawable/drinkwater" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/drinkwater"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:src="@drawable/drinkwater" />
 
         </LinearLayout>
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/bottomContinueButtonRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        >
+
+        android:background="#D5E0E1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:drawableEnd="@drawable/ic_navigate_next"
+            android:layout_margin="20dp"
             android:background="@drawable/yellowbuttondesign"
+            android:drawableEnd="@drawable/ic_navigate_next"
+            android:gravity="center"
+            android:onClick="sendToHomePage"
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
             android:paddingRight="5dp"
             android:paddingBottom="5dp"
             android:text="Continue"
             android:textColor="@color/waterIntake"
-            android:textSize="16dp"
-            android:gravity="center"
-            android:layout_alignParentEnd="true"
-            />
+            android:textSize="16dp" />
     </RelativeLayout>
 </RelativeLayout>

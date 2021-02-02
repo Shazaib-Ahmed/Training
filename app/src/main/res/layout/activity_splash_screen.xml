@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".WaterReminder.SplashScreen"
     android:background="@color/tabColor">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Water Reminder"
+        android:textSize="40dp"
+        tools:ignore="MissingConstraints"
+        android:fontFamily="@font/baloo"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/bodyWeight"/>
     <ImageView
+        android:id="@+id/bodyWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_body_weight"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Water Reminder"
-        android:textSize="40dp"
-        tools:ignore="MissingConstraints"
-        android:gravity="center_horizontal|center_vertical"
-        android:fontFamily="@font/baloo"/>
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>

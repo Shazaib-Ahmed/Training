@@ -12,12 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".WaterReminder.IntroductionPage"
+        <activity android:name=".WaterReminder.HomePage"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity
+            android:name=".WaterReminder.IntroductionPage"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".WaterReminder.UserDetailsPage"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-             />
+            android:parentActivityName=".WaterReminder.IntroductionPage"
+            />
         <activity
             android:name=".WaterReminder.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">

@@ -1,7 +1,9 @@
 package com.example.sampleproject_1.WaterReminder;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -21,6 +23,9 @@ TextView textViewWeightInKg;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details_page);
+
+
+
         maleOption=findViewById(R.id.maleOption);
         femaleOption=findViewById(R.id.femaleOption);
 seekBar=findViewById(R.id.weightSeekBar);
@@ -46,5 +51,12 @@ seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     }
 
 
+    public void sendToHomePage(View view) {
+        Intent intent =new Intent(UserDetailsPage.this,HomePage.class);
+        startActivity(intent);
+    }
 
+    public void sendToPreviousActivity(View view) {
+        onBackPressed();
+    }
 }
