@@ -10,9 +10,10 @@ import java.util.List;
 public interface DataAccessObjectWaterReminder {
 
     @Insert
-    void insert(EntityWaterReminder entityWaterReminder);
+    void insertUserDetail(EntityWaterReminder entityWaterReminder);
 
     @Query("SELECT * from water_reminder_users_details")
-    List<EntityWaterReminder> getAllDetails();
+    public List<EntityWaterReminder> getGetAllUsers();
+
 
 }

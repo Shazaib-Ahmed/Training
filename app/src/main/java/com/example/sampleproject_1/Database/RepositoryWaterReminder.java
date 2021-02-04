@@ -1,18 +1,13 @@
+/*
 package com.example.sampleproject_1.Database;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
-import androidx.lifecycle.LiveData;
-
-import com.example.sampleproject_1.UserInfo;
-import com.example.sampleproject_1.UserInfoDao;
-
 import java.util.List;
 
 public class RepositoryWaterReminder {
     private DataAccessObjectWaterReminder dataAccessObjectWaterReminder;
-    private List<EntityWaterReminder> allUserDetails;
 
     public RepositoryWaterReminder(Application application) {
         DatabaseWaterReminder databaseWaterReminder = DatabaseWaterReminder.getInstance(application);
@@ -22,10 +17,10 @@ public class RepositoryWaterReminder {
     public void insert(EntityWaterReminder entityWaterReminder) {
         new RepositoryWaterReminder.InsertUserInfoAsyncTask(dataAccessObjectWaterReminder).execute(entityWaterReminder);
     }
-
-    public List<EntityWaterReminder> getAllUserInfo () {
-        return allUserDetails;
+    public void getUserGender() {
+        new RepositoryWaterReminder.getUserGenderInfoAsyncTask(dataAccessObjectWaterReminder).execute();
     }
+
 
     private static class InsertUserInfoAsyncTask extends AsyncTask<EntityWaterReminder, Void, Void> {
         private DataAccessObjectWaterReminder dataAccessObjectWaterReminder;
@@ -40,5 +35,20 @@ public class RepositoryWaterReminder {
             return null;
         }
     }
+
+    private static class getUserGenderInfoAsyncTask extends AsyncTask<EntityWaterReminder, Void, Void> {
+        private DataAccessObjectWaterReminder dataAccessObjectWaterReminder;
+
+        private getUserGenderInfoAsyncTask(DataAccessObjectWaterReminder dataAccessObjectWaterReminder) {
+            this.dataAccessObjectWaterReminder = dataAccessObjectWaterReminder;
+        }
+
+        @Override
+        protected Void doInBackground(EntityWaterReminder... entityWaterReminders) {
+            return null;
+        }
+    }
+
 }
 
+*/

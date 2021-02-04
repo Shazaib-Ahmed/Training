@@ -9,9 +9,11 @@ import androidx.room.RoomDatabase;
 @Database(entities = {EntityWaterReminder.class},version = 3)
 public abstract class DatabaseWaterReminder extends RoomDatabase {
 
-    private static DatabaseWaterReminder instance;
+    private static final String dbName = "database_water_reminder";
 
-    public abstract DataAccessObjectWaterReminder dataAccessObjectWaterReminder();
+    private static DatabaseWaterReminder userDatabase;
+
+   public abstract DataAccessObjectWaterReminder dataAccessObjectWaterReminder();
 
   /* public static DatabaseWaterReminder getInstance(final Context context){
         if (instance==null)
@@ -24,13 +26,12 @@ public abstract class DatabaseWaterReminder extends RoomDatabase {
     }*/
 
 
-    public static synchronized DatabaseWaterReminder getInstance(Context context){
-        if (instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                    DatabaseWaterReminder.class,"database_water_reminder")
+    public static synchronized DatabaseWaterReminder getUserDatabase(Context context){
+        if (userDatabase == null){
+            userDatabase = Room.databaseBuilder(context,DatabaseWaterReminder.class,dbName)
                     .fallbackToDestructiveMigration()
                     .build();
         }
-        return instance;
+        return userDatabase;
     }
 }

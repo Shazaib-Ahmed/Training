@@ -1,3 +1,4 @@
+/*
 package com.example.sampleproject_1.Database;
 
 import android.app.Application;
@@ -12,13 +13,13 @@ import java.util.List;
 
 public class ViewModelWaterReminder extends AndroidViewModel {
     private RepositoryWaterReminder repository;
-    private List<UserInfo> allUserInfo;
+    private List<EntityWaterReminder> getGender;
 
 
     public ViewModelWaterReminder(@NonNull Application application) {
         super(application);
         repository = new RepositoryWaterReminder(application);
-        allUserInfo =repository.getAllUserInfo();
+       repository.getUserGender();
     }
 
     public void insert(EntityWaterReminder entityWaterReminder) {
@@ -26,3 +27,4 @@ public class ViewModelWaterReminder extends AndroidViewModel {
     }
 
 }
+*/
