@@ -146,6 +146,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/genderRelativeLayout"
         android:layout_margin="10dp">
+        <EditText
+            android:id="@+id/weightEditText"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:hint="weight"
+            android:textColorHint="#606060"
+            android:textColor="@color/black"
+            />
 
         <TextView
             android:id="@+id/textViewWeight"
@@ -183,7 +191,7 @@
             android:layout_below="@+id/textViewWeightInKg"
             android:layout_margin="5dp"
             android:background="@color/tabColor"
-            android:progress="50"
+            android:progress="00"
             android:progressTint="@color/white"
             android:thumbTint="@color/white" />
 
@@ -256,6 +264,7 @@
         android:background="#D5E0E1">
 
         <TextView
+            android:id="@+id/bottomContinueButtonUserDetailsPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

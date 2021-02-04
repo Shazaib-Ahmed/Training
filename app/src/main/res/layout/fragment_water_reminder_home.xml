@@ -71,8 +71,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Water Intake"
                 android:fontFamily="@font/baloo"
+                android:text="Water Intake"
                 android:textAlignment="center"
                 android:textColor="@color/waterIntake"
                 android:textSize="20dp"
@@ -88,15 +88,15 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/yellowbuttondesign"
+                    android:fontFamily="@font/baloo"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="15dp"
                     android:paddingBottom="5dp"
                     android:text="Add Water"
                     android:textColor="@color/waterIntake"
-                    android:textSize="12dp"
-                    android:fontFamily="@font/baloo"/>
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -105,15 +105,15 @@
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:background="@drawable/yellowbuttondesign"
+                    android:fontFamily="@font/baloo"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="15dp"
                     android:paddingBottom="5dp"
                     android:text="1500/2000 ml"
                     android:textColor="@color/waterIntake"
-                    android:textSize="12dp"
-                    android:fontFamily="@font/baloo"/>
+                    android:textSize="12dp" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -137,8 +137,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="Suggested Water"
                 android:fontFamily="@font/baloo"
+                android:text="Suggested Water"
                 android:textColor="#3F51B5"
                 android:textSize="15dp" />
 
@@ -148,8 +148,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/suggested_water"
                 android:layout_centerHorizontal="true"
-                android:text="Intake Per Day"
                 android:fontFamily="@font/baloo"
+                android:text="Intake Per Day"
                 android:textColor="#FFC107"
                 android:textSize="12dp" />
 
@@ -162,12 +162,13 @@
                 android:background="@drawable/meter" />
 
             <TextView
+                android:id="@+id/userWeightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/weight_meter"
                 android:layout_centerHorizontal="true"
-                android:text="65 Kg"
                 android:fontFamily="@font/baloo"
+                android:text="65 Kg"
                 android:textColor="#3F51B5"
                 android:textSize="15dp" />
         </RelativeLayout>
@@ -184,7 +185,7 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/drinkwater" />
 
-            <TextView
+          <!--  <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageViewDrinkWater"
@@ -193,7 +194,18 @@
                 android:text="5 L"
                 android:textColor="@color/yellowButtonColor"
                 android:textSize="15dp"
-                />
+                android:visibility="gone"/>-->
+            <TextView
+                android:id="@+id/genderTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageViewDrinkWater"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/baloo"
+                android:text="5 L"
+                android:textColor="@color/yellowButtonColor"
+                android:textSize="15dp" />
+
 
         </RelativeLayout>
 
