@@ -16,12 +16,14 @@ public class RepositoryWaterReminder {
     public void insert(EntityWaterReminder entityWaterReminder) {
         new RepositoryWaterReminder.InsertUserInfoAsyncTask(dataAccessObjectWaterReminder).execute(entityWaterReminder);
     }
+
     public void getUserGender() {
         new RepositoryWaterReminder.getUserGenderInfoAsyncTask(dataAccessObjectWaterReminder).execute();
     }
 
 
     private static class InsertUserInfoAsyncTask extends AsyncTask<EntityWaterReminder, Void, Void> {
+
         private DataAccessObjectWaterReminder dataAccessObjectWaterReminder;
 
         private InsertUserInfoAsyncTask(DataAccessObjectWaterReminder dataAccessObjectWaterReminder) {

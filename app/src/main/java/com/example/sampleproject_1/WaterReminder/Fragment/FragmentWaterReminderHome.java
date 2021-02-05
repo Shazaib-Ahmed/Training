@@ -41,11 +41,11 @@ public class FragmentWaterReminderHome extends Fragment {
         String getWeight =userDetailsPage.sendUserWeight();
         String getGenderr =userDetailsPage.sendUserGender();*/
 
-        EntityWaterReminder entityWaterReminder =new EntityWaterReminder();
+      /*  EntityWaterReminder entityWaterReminder =new EntityWaterReminder();
         String getWeight = entityWaterReminder.getGender();
         String getGenderr =entityWaterReminder.getWeight();
         userWeight.setText(getWeight + "kg");
-        userGender.setText(getGenderr + "MF");
+        userGender.setText(getGenderr + "MF");*/
         return v;
     }
 

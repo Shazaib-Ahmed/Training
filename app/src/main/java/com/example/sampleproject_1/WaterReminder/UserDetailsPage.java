@@ -61,17 +61,20 @@ public class UserDetailsPage extends AppCompatActivity {
         continueTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EntityWaterReminder entityWaterReminder = new EntityWaterReminder();
-                entityWaterReminder.setWeight(weightEditText.getText().toString());
-                entityWaterReminder.setGender(genderEditText.getText().toString());
+                String weightUSER = weightEditText.getText().toString();
+                String genderUSER = genderEditText.getText().toString();
+                EntityWaterReminder entityWaterReminder = new EntityWaterReminder(weightUSER,genderUSER,"DD","DD");
+
+                /*entityWaterReminder.setWeight(weightEditText.getText().toString());
+                entityWaterReminder.setGender(genderEditText.getText().toString());*/
 
                 if (validateInput(entityWaterReminder)) {
                     DatabaseWaterReminder databaseWaterReminder = DatabaseWaterReminder.getInstance(getApplicationContext());
                     DataAccessObjectWaterReminder dataAccessObjectWaterReminder = databaseWaterReminder.dataAccessObjectWaterReminder();
                     dataAccessObjectWaterReminder.insertUserDetail(entityWaterReminder);
 
-                                    String weightUSER = entityWaterReminder.getWeight();
-                                    String genderUSER = entityWaterReminder.getGender();
+                                    /*String weightUSER1 = entityWaterReminder.getWeight();
+                                    String genderUSER2 = entityWaterReminder.getGender();*/
 
 
                                     Intent intent = new Intent(UserDetailsPage.this, HomePage.class);

@@ -22,7 +22,7 @@ public class EntityWaterReminder {
     @ColumnInfo(name = "wakeUpTime")
     private String wakeUpTime;
 
-    public EntityWaterReminder() {
+    public EntityWaterReminder(String gender,String weight,String bedTime,String wakeUpTime) {
         this.gender = gender;
         this.weight = weight;
         this.bedTime = bedTime;
