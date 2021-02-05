@@ -11,11 +11,11 @@ public abstract class DatabaseWaterReminder extends RoomDatabase {
 
     private static final String dbName = "database_water_reminder";
 
-    private static DatabaseWaterReminder userDatabase;
+    private static DatabaseWaterReminder instance;
 
    public abstract DataAccessObjectWaterReminder dataAccessObjectWaterReminder();
 
-  /* public static DatabaseWaterReminder getInstance(final Context context){
+   public static DatabaseWaterReminder getInstance(final Context context){
         if (instance==null)
         {
             synchronized (DatabaseWaterReminder.class){
@@ -23,15 +23,15 @@ public abstract class DatabaseWaterReminder extends RoomDatabase {
             }
         }
         return instance;
-    }*/
+    }
 
 
-    public static synchronized DatabaseWaterReminder getUserDatabase(Context context){
+/*    public static synchronized DatabaseWaterReminder getUserDatabase(Context context){
         if (userDatabase == null){
             userDatabase = Room.databaseBuilder(context,DatabaseWaterReminder.class,dbName)
                     .fallbackToDestructiveMigration()
                     .build();
         }
         return userDatabase;
-    }
+    }*/
 }

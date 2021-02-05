@@ -1,4 +1,3 @@
-/*
 package com.example.sampleproject_1.Database;
 
 import android.app.Application;
@@ -31,7 +30,7 @@ public class RepositoryWaterReminder {
 
         @Override
         protected Void doInBackground(EntityWaterReminder... entityWaterReminders) {
-            dataAccessObjectWaterReminder.insert(entityWaterReminders[0]);
+            dataAccessObjectWaterReminder.insertUserDetail(entityWaterReminders[0]);
             return null;
         }
     }
@@ -51,4 +50,3 @@ public class RepositoryWaterReminder {
 
 }
 
-*/

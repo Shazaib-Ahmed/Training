@@ -2,6 +2,7 @@ package com.example.sampleproject_1.WaterReminder;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.sampleproject_1.Database.DataAccessObjectWaterReminder;
 import com.example.sampleproject_1.Database.DatabaseWaterReminder;
 import com.example.sampleproject_1.Database.EntityWaterReminder;
+import com.example.sampleproject_1.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.R;
 import com.example.sampleproject_1.WaterReminder.Fragment.FragmentWaterReminderHome;
 
@@ -30,11 +32,11 @@ public class UserDetailsPage extends AppCompatActivity {
     SeekBar seekBar;
     TextView textViewWeightInKg;
     TextView continueTextView;
-    EditText weightEditText;
+    EditText weightEditText,genderEditText;
     String buttonOption = "DEMO";
-    // ViewModelWaterReminder viewModelWaterReminder;
 
-    //private ViewModelWaterReminder viewModelWaterReminder;
+
+    private ViewModelWaterReminder viewModelWaterReminder;
     private RadioButton getMaleOption, getFemaleOption;
 
 
@@ -45,34 +47,29 @@ public class UserDetailsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details_page);
 
-        //viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
+        viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
         InitialisationFields();
         SeekBarListener();
 
 
-        if (getMaleOption.isChecked()) {
+       /* if (getMaleOption.isChecked()) {
             buttonOption = "MALE";
         } else if (getFemaleOption.isChecked()) {
             buttonOption = "FEMALE";
-        }
+        }*/
 
         continueTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EntityWaterReminder entityWaterReminder = new EntityWaterReminder();
                 entityWaterReminder.setWeight(weightEditText.getText().toString());
-                entityWaterReminder.setGender(buttonOption);
+                entityWaterReminder.setGender(genderEditText.getText().toString());
 
                 if (validateInput(entityWaterReminder)) {
-                    DatabaseWaterReminder databaseWaterReminder = DatabaseWaterReminder.getUserDatabase(getApplicationContext());
+                    DatabaseWaterReminder databaseWaterReminder = DatabaseWaterReminder.getInstance(getApplicationContext());
                     DataAccessObjectWaterReminder dataAccessObjectWaterReminder = databaseWaterReminder.dataAccessObjectWaterReminder();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            dataAccessObjectWaterReminder.insertUserDetail(entityWaterReminder);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
+                    dataAccessObjectWaterReminder.insertUserDetail(entityWaterReminder);
+
                                     String weightUSER = entityWaterReminder.getWeight();
                                     String genderUSER = entityWaterReminder.getGender();
 
@@ -87,10 +84,7 @@ public class UserDetailsPage extends AppCompatActivity {
                                     startActivity(intent);
 
                                     Toast.makeText(UserDetailsPage.this, "Operation Successful", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    }).start();
+
                 } else {
                     Toast.makeText(UserDetailsPage.this, "Fill All Fields", Toast.LENGTH_SHORT).show();
                 }
@@ -180,6 +174,7 @@ public class UserDetailsPage extends AppCompatActivity {
         getFemaleOption = findViewById(R.id.femaleOption);
         continueTextView = findViewById(R.id.bottomContinueButtonUserDetailsPage);
         weightEditText = findViewById(R.id.weightEditText);
+        genderEditText =findViewById(R.id.genderEditTExt);
     }
 
     public String sendUserWeight() {
