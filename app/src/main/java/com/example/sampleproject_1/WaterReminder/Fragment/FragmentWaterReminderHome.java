@@ -1,18 +1,27 @@
 package com.example.sampleproject_1.WaterReminder.Fragment;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.room.Index;
 import androidx.room.Room;
 
 import com.example.sampleproject_1.Database.DatabaseWaterReminder;
 import com.example.sampleproject_1.Database.EntityWaterReminder;
+import com.example.sampleproject_1.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.R;
 import com.example.sampleproject_1.WaterReminder.UserDetailsPage;
 
@@ -21,7 +30,8 @@ import java.util.List;
 
 public class FragmentWaterReminderHome extends Fragment {
     TextView userWeight, userGender;
-
+    private List<EntityWaterReminder> entityWaterReminders =new ArrayList<>();
+    private ViewModelWaterReminder viewModelWaterReminder;
     public FragmentWaterReminderHome() {
 
     }
@@ -35,27 +45,48 @@ public class FragmentWaterReminderHome extends Fragment {
 
 
 
-        //setArguments();
 
-       /* UserDetailsPage userDetailsPage = (UserDetailsPage) getActivity();
-        String getWeight =userDetailsPage.sendUserWeight();
-        String getGenderr =userDetailsPage.sendUserGender();*/
-
-      /*  EntityWaterReminder entityWaterReminder =new EntityWaterReminder();
-        String getWeight = entityWaterReminder.getGender();
-        String getGenderr =entityWaterReminder.getWeight();
-        userWeight.setText(getWeight + "kg");
-        userGender.setText(getGenderr + "MF");*/
         return v;
     }
 
-    public void setArguments() {
+    public void setUser(List<EntityWaterReminder> entityWaterReminders){
+        this.entityWaterReminders =entityWaterReminders;
+    }
 
-            String userWeightKG = getArguments().getString("weightUserInKiloGram");
-            String userGEN = getArguments().getString("genderUser");
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-            userWeight.setText(userWeightKG + "kg");
-            userGender.setText(userGEN + "MF");
+
+        viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
+
+        viewModelWaterReminder.getAllNotes().observe(getActivity(), new Observer<List<EntityWaterReminder>>() {
+            @Override
+            public void onChanged(List<EntityWaterReminder> entityWaterReminders) {
+                int weight = entityWaterReminders.get().getWeight();
+                String gender = entityWaterReminders.get().getGender();
+
+                EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender,weight,"","");
+                entityWaterReminder.getWeight();
+
+                userWeight.setText(weight+"");
+                userGender.setText(gender);
+
+
+            }
+        });
+    }
+    public class SharedViewModel extends ViewModel{
+        private final MutableLiveData<ClipData.Item> selected =new MutableLiveData<>();
+
+        public void select (ClipData.Item item)
+        {
+            selected.setValue(item);
+        }
+        public LiveData<ClipData.Item> getSelected(){
+            return selected;
+        }
+
 
     }
 }

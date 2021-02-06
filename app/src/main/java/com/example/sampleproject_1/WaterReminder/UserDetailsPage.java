@@ -1,7 +1,9 @@
 package com.example.sampleproject_1.WaterReminder;
 
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -13,12 +15,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sampleproject_1.Database.DataAccessObjectWaterReminder;
-import com.example.sampleproject_1.Database.DatabaseWaterReminder;
 import com.example.sampleproject_1.Database.EntityWaterReminder;
 import com.example.sampleproject_1.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.R;
-import com.example.sampleproject_1.WaterReminder.Fragment.FragmentWaterReminderHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,111 +31,58 @@ public class UserDetailsPage extends AppCompatActivity {
     SeekBar seekBar;
     TextView textViewWeightInKg;
     TextView continueTextView;
-    EditText weightEditText,genderEditText;
+    EditText weightEditText, genderEditText;
     String buttonOption = "DEMO";
+    private List<EntityWaterReminder> entityWaterReminders = new ArrayList<>();
 
 
     private ViewModelWaterReminder viewModelWaterReminder;
     private RadioButton getMaleOption, getFemaleOption;
 
 
-    private List<EntityWaterReminder> entityWaterReminders = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details_page);
-
-        viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
         InitialisationFields();
         SeekBarListener();
 
+        viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
 
-       /* if (getMaleOption.isChecked()) {
-            buttonOption = "MALE";
-        } else if (getFemaleOption.isChecked()) {
-            buttonOption = "FEMALE";
-        }*/
+        viewModelWaterReminder.getAllNotes().observe(this, new Observer<List<EntityWaterReminder>>() {
+            @Override
+            public void onChanged(List<EntityWaterReminder> entityWaterReminders) {
+                
+            }
+        });
 
         continueTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String weightUSER = weightEditText.getText().toString();
-                String genderUSER = genderEditText.getText().toString();
-                EntityWaterReminder entityWaterReminder = new EntityWaterReminder(weightUSER,genderUSER,"DD","DD");
-
-                /*entityWaterReminder.setWeight(weightEditText.getText().toString());
-                entityWaterReminder.setGender(genderEditText.getText().toString());*/
-
-                if (validateInput(entityWaterReminder)) {
-                    DatabaseWaterReminder databaseWaterReminder = DatabaseWaterReminder.getInstance(getApplicationContext());
-                    DataAccessObjectWaterReminder dataAccessObjectWaterReminder = databaseWaterReminder.dataAccessObjectWaterReminder();
-                    dataAccessObjectWaterReminder.insertUserDetail(entityWaterReminder);
-
-                                    /*String weightUSER1 = entityWaterReminder.getWeight();
-                                    String genderUSER2 = entityWaterReminder.getGender();*/
-
-
-                                    Intent intent = new Intent(UserDetailsPage.this, HomePage.class);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("weightUserInKiloGram", weightUSER);
-                                    bundle.putString("genderUser", genderUSER);
-                                    FragmentWaterReminderHome fragmentWaterReminderHome = new FragmentWaterReminderHome();
-                                    fragmentWaterReminderHome.setArguments(bundle);
-                                    intent.putExtras(bundle);
-                                    startActivity(intent);
-
-                                    Toast.makeText(UserDetailsPage.this, "Operation Successful", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(UserDetailsPage.this, "Fill All Fields", Toast.LENGTH_SHORT).show();
-                }
-
-
-                /*.putExtra("weight_user",weightUSER)
-                .putExtra("gender_user",genderUSER));*/
-
-                // saveUserDetails();
-               /* String weightInKiloGram = weightEditText.getText().toString();
-                if (buttonOption.trim().isEmpty() || weightInKiloGram.trim().isEmpty()) {
-                    Toast.makeText(UserDetailsPage.this, "Please enter all details", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-              *//*  entityWaterReminder.setGender(buttonOption);
-                entityWaterReminder.setWeight(weightInKiloGram);*//*
-                Intent intent = new Intent(UserDetailsPage.this, HomePage.class);
-                EntityWaterReminder entityWaterReminder = new EntityWaterReminder(weightInKiloGram, buttonOption, "", "");
-                viewModelWaterReminder.insert(entityWaterReminder);
-                startActivity(intent);*/
-                //DatabaseWaterReminder.getInstance(getApplicationContext()).dataAccessObjectWaterReminder().insert(entityWaterReminder);
+                saveUserInfo();
             }
         });
     }
 
-    private boolean validateInput(EntityWaterReminder entityWaterReminder) {
-        if (entityWaterReminder.getWeight().isEmpty() || entityWaterReminder.getGender().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
-    /*private void saveUserDetails() {
-        String weighttt = weightEditText.getText().toString();
+    private void saveUserInfo() {
+        int weight = Integer.parseInt(weightEditText.getText().toString());
+        String gender = genderEditText.getText().toString();
 
-        if (buttonOption.trim().isEmpty() || weighttt.trim().isEmpty()) {
-            Toast.makeText(this, "Please Enter All Details", Toast.LENGTH_SHORT).show();
+        if (weight <20 || gender.trim().isEmpty())
+        {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        EntityWaterReminder entityWaterReminder = new EntityWaterReminder();
+        Intent data = new Intent(UserDetailsPage.this,HomePage.class);
+        data.putExtra(EXTRA_WEIGHT,weight);
+        data.putExtra(EXTRA_GENDER,gender);
+        setResult(RESULT_OK,data);
+        startActivityForResult(data,1);
+        finish();
 
-        entityWaterReminder.setWeight(weighttt);
-        entityWaterReminder.setGender(buttonOption);
 
-        DatabaseWaterReminder.getInstance(getApplicationContext()).dataAccessObjectWaterReminder().insert(entityWaterReminder);
-        Intent intent = new Intent(UserDetailsPage.this, HomePage.class);
-        startActivity(intent);
-        finishAffinity();
-    }*/
+    }
 
     private void SeekBarListener() {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -177,16 +123,24 @@ public class UserDetailsPage extends AppCompatActivity {
         getFemaleOption = findViewById(R.id.femaleOption);
         continueTextView = findViewById(R.id.bottomContinueButtonUserDetailsPage);
         weightEditText = findViewById(R.id.weightEditText);
-        genderEditText =findViewById(R.id.genderEditTExt);
-    }
-
-    public String sendUserWeight() {
-        return weightEditText.getText().toString();
-    }
-
-    public String sendUserGender() {
-        return buttonOption;
+        genderEditText = findViewById(R.id.genderEditTExt);
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK){
+            int weight = data.getIntExtra(UserDetailsPage.EXTRA_WEIGHT,21);
+            String gender = data.getStringExtra(UserDetailsPage.EXTRA_GENDER);
+
+            EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender,weight,"BEDTIME","WAKEUPTIME");
+            viewModelWaterReminder.insert(entityWaterReminder);
+            Toast.makeText(this, "WELCOME", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, ". . . . .", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

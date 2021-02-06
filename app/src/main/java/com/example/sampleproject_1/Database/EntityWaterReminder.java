@@ -10,63 +10,42 @@ public class EntityWaterReminder {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "gender")
     private String gender;
 
-    @ColumnInfo(name = "weight")
-    private String weight;
+    private int weight;
 
-    @ColumnInfo(name = "bedTime")
     private String bedTime;
 
-    @ColumnInfo(name = "wakeUpTime")
     private String wakeUpTime;
 
-    public EntityWaterReminder(String gender,String weight,String bedTime,String wakeUpTime) {
+    public EntityWaterReminder(String gender, int weight, String bedTime, String wakeUpTime) {
         this.gender = gender;
         this.weight = weight;
         this.bedTime = bedTime;
         this.wakeUpTime = wakeUpTime;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getWeight() {
+    public int getWeight() {
         return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
     }
 
     public String getBedTime() {
         return bedTime;
     }
 
-    public void setBedTime(String bedTime) {
-        this.bedTime = bedTime;
-    }
-
     public String getWakeUpTime() {
         return wakeUpTime;
     }
-
-    public void setWakeUpTime(String wakeUpTime) {
-        this.wakeUpTime = wakeUpTime;
-    }
-
 }

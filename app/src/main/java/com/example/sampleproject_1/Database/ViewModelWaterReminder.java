@@ -11,17 +11,22 @@ import java.util.List;
 
 public class ViewModelWaterReminder extends AndroidViewModel {
     private RepositoryWaterReminder repository;
-    private List<EntityWaterReminder> getGender;
+    private LiveData<List<EntityWaterReminder>> allNotes;
 
 
     public ViewModelWaterReminder(@NonNull Application application) {
         super(application);
         repository = new RepositoryWaterReminder(application);
-       repository.getUserGender();
+        allNotes = repository.getAllUsers();
     }
 
     public void insert(EntityWaterReminder entityWaterReminder) {
         repository.insert(entityWaterReminder);
     }
+
+    public LiveData<List<EntityWaterReminder>> getAllNotes() {
+        return allNotes;
+    }
+
 
 }
