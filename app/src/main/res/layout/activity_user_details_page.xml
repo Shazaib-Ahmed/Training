@@ -30,26 +30,28 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/titleBar1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ><LinearLayout
-        android:id="@+id/titleBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/tabColor"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_arrow_back"
-            android:padding="10dp"
-            android:onClick="sendToPreviousActivity"
-            />
-    <include
-        android:id="@+id/main_page_toolbar"
-        layout="@layout/app_bar_layout"/>
-    </LinearLayout>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/tabColor"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="sendToPreviousActivity"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_arrow_back" />
+
+            <include
+                android:id="@+id/main_page_toolbar"
+                layout="@layout/app_bar_layout" />
+        </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
@@ -112,8 +114,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:weightSum="2">
 
             <RadioButton
                 android:id="@+id/maleOption"
@@ -137,12 +139,15 @@
                 android:textColor="@color/black" />
 
         </RadioGroup>
-<EditText
-    android:id="@+id/genderEditTExt"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Gender"
-    android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/genderEditTExt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gender"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="#494949" />
 
     </RelativeLayout>
 
@@ -152,14 +157,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/genderRelativeLayout"
         android:layout_margin="10dp">
-        <EditText
-            android:id="@+id/weightEditText"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:hint="weight"
-            android:textColorHint="#606060"
-            android:textColor="@color/black"
-            />
 
         <TextView
             android:id="@+id/textViewWeight"
@@ -179,14 +176,16 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/meter" />
 
-        <TextView
-            android:id="@+id/textViewWeightInKg"
+        <EditText
+            android:id="@+id/weightEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageWeight"
             android:layout_centerInParent="true"
-            android:text="70 Kg"
+            android:hint="Enter Weight"
+            android:inputType="number"
             android:textColor="@color/waterIntake"
+            android:textColorHint="#656565"
             android:textSize="15dp"
             android:textStyle="bold" />
 
@@ -194,7 +193,7 @@
             android:id="@+id/weightSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewWeightInKg"
+            android:layout_below="@+id/weightEditText"
             android:layout_margin="5dp"
             android:background="@color/tabColor"
             android:progress="00"
@@ -245,17 +244,32 @@
             android:layout_below="@+id/wakeUpTexView"
             android:weightSum="2">
 
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/drinkwater" />
 
-            <TimePicker
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/timePickerWakeTV"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/drinkwater" />
+                android:gravity="center"
+                android:src="@drawable/drinkwater"
+                android:text="Select Time"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/timePickerBedTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:src="@drawable/drinkwater"
+                android:text="Select Time"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -266,7 +280,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-
         android:background="#D5E0E1">
 
         <TextView

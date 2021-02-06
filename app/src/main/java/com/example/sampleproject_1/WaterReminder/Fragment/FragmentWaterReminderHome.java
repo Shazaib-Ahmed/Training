@@ -63,14 +63,15 @@ public class FragmentWaterReminderHome extends Fragment {
         viewModelWaterReminder.getAllNotes().observe(getActivity(), new Observer<List<EntityWaterReminder>>() {
             @Override
             public void onChanged(List<EntityWaterReminder> entityWaterReminders) {
-                int weight = entityWaterReminders.get().getWeight();
+              /*  int weight = entityWaterReminders.get().getWeight();
                 String gender = entityWaterReminders.get().getGender();
+                String bedTime = entityWaterReminders.get().getBedTime();
+                String wakeUpTime = entityWaterReminders.get().getWakeUpTime();
 
-                EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender,weight,"","");
-                entityWaterReminder.getWeight();
+                EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender,weight,bedTime,wakeUpTime);
 
                 userWeight.setText(weight+"");
-                userGender.setText(gender);
+                userGender.setText(gender);*/
 
 
             }

@@ -1,25 +1,28 @@
 package com.example.sampleproject_1.WaterReminder;
 
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.sampleproject_1.Database.EntityWaterReminder;
 import com.example.sampleproject_1.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.R;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserDetailsPage extends AppCompatActivity {
@@ -27,17 +30,21 @@ public class UserDetailsPage extends AppCompatActivity {
             "com.example.sampleproject_1.WaterReminder.EXTRA_GENDER";
     public static final String EXTRA_WEIGHT =
             "com.example.sampleproject_1.WaterReminder.EXTRA_WEIGHT";
+    public static final String EXTRA_BEDTIME =
+            "com.example.sampleproject_1.WaterReminder.EXTRA_BEDTIME";
+    public static final String EXTRA_WAKEUPTIME =
+            "com.example.sampleproject_1.WaterReminder.EXTRA_WAKEUPTIME";
 
-    SeekBar seekBar;
-    TextView textViewWeightInKg;
+
     TextView continueTextView;
     EditText weightEditText, genderEditText;
-    String buttonOption = "DEMO";
+    TextView timePickerBedTV, timePickerWakeTV;
     private List<EntityWaterReminder> entityWaterReminders = new ArrayList<>();
 
 
     private ViewModelWaterReminder viewModelWaterReminder;
     private RadioButton getMaleOption, getFemaleOption;
+    private int hourPick, minutePick;
 
 
     @Override
@@ -45,14 +52,77 @@ public class UserDetailsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details_page);
         InitialisationFields();
-        SeekBarListener();
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
 
         viewModelWaterReminder.getAllNotes().observe(this, new Observer<List<EntityWaterReminder>>() {
             @Override
             public void onChanged(List<EntityWaterReminder> entityWaterReminders) {
-                
+
+            }
+        });
+
+        timePickerBedTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(UserDetailsPage.this,
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                hourPick = hourOfDay;
+                                minutePick = minute;
+
+                                String time = hourPick + ":" + minutePick;
+                               /* Calendar calendar = Calendar.getInstance();
+
+                                calendar.set(0,0,0,hourPick,minutePick);*/
+                                SimpleDateFormat f24hours = new SimpleDateFormat("HH:mm");
+
+                                try {
+                                    Date date = f24hours.parse(time);
+                                    SimpleDateFormat f12hours = new SimpleDateFormat("hh:mm aa");
+                                    timePickerBedTV.setText(f12hours.format(date));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, 12, 0, false
+                );
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.updateTime(hourPick, minutePick);
+                timePickerDialog.show();
+            }
+        });
+
+        timePickerWakeTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(UserDetailsPage.this,
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                hourPick = hourOfDay;
+                                minutePick = minute;
+
+                                String time = hourPick + ":" + minutePick;
+
+                                SimpleDateFormat f24hours = new SimpleDateFormat("HH:mm");
+
+                                try {
+                                    Date date = f24hours.parse(time);
+                                    SimpleDateFormat f12hours = new SimpleDateFormat("hh:mm aa");
+                                    timePickerWakeTV.setText(f12hours.format(date));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, 12, 0, false
+                );
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.updateTime(hourPick, minutePick);
+                timePickerDialog.show();
             }
         });
 
@@ -65,45 +135,30 @@ public class UserDetailsPage extends AppCompatActivity {
     }
 
     private void saveUserInfo() {
-        int weight = Integer.parseInt(weightEditText.getText().toString());
-        String gender = genderEditText.getText().toString();
 
-        if (weight <20 || gender.trim().isEmpty())
-        {
+
+        if (genderEditText.getText().toString().isEmpty() || weightEditText.getText().toString().isEmpty() ) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Intent data = new Intent(UserDetailsPage.this,HomePage.class);
-        data.putExtra(EXTRA_WEIGHT,weight);
-        data.putExtra(EXTRA_GENDER,gender);
-        setResult(RESULT_OK,data);
-        startActivityForResult(data,1);
+        int weight = Integer.parseInt(weightEditText.getText().toString());
+        String gender = genderEditText.getText().toString();
+        String timeBed = timePickerBedTV.getText().toString();
+        String timeWake = timePickerBedTV.getText().toString();
+
+        EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender, weight, timeBed, timeWake);
+        viewModelWaterReminder.insert(entityWaterReminder);
+
+        Intent data = new Intent(UserDetailsPage.this, HomePage.class);
+        data.putExtra(EXTRA_WEIGHT, weight);
+        data.putExtra(EXTRA_GENDER, gender);
+        data.putExtra(EXTRA_BEDTIME, timeBed);
+        data.putExtra(EXTRA_WAKEUPTIME, timeWake);
+        startActivity(data);
         finish();
-
-
     }
 
-    private void SeekBarListener() {
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int i = progress * 500 / 500;
-                textViewWeightInKg.setText("" + i + " Kg");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-    }
 
     public void sendToHomePage(View view) {
         Intent intent = new Intent(UserDetailsPage.this, HomePage.class);
@@ -117,30 +172,12 @@ public class UserDetailsPage extends AppCompatActivity {
     private void InitialisationFields() {
         getMaleOption = findViewById(R.id.maleOption);
         getFemaleOption = findViewById(R.id.femaleOption);
-        seekBar = findViewById(R.id.weightSeekBar);
-        textViewWeightInKg = findViewById(R.id.textViewWeightInKg);
         getMaleOption = findViewById(R.id.maleOption);
         getFemaleOption = findViewById(R.id.femaleOption);
         continueTextView = findViewById(R.id.bottomContinueButtonUserDetailsPage);
         weightEditText = findViewById(R.id.weightEditText);
         genderEditText = findViewById(R.id.genderEditTExt);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1 && resultCode == RESULT_OK){
-            int weight = data.getIntExtra(UserDetailsPage.EXTRA_WEIGHT,21);
-            String gender = data.getStringExtra(UserDetailsPage.EXTRA_GENDER);
-
-            EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender,weight,"BEDTIME","WAKEUPTIME");
-            viewModelWaterReminder.insert(entityWaterReminder);
-            Toast.makeText(this, "WELCOME", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, ". . . . .", Toast.LENGTH_SHORT).show();
-        }
+        timePickerBedTV = findViewById(R.id.timePickerBedTV);
+        timePickerWakeTV = findViewById(R.id.timePickerWakeTV);
     }
 }
