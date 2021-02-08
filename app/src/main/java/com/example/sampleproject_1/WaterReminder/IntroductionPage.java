@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.sampleproject_1.R;
+import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
 
 public class IntroductionPage extends AppCompatActivity {
     String SHARED_PREFS = "sharedPrefs";
@@ -20,16 +21,19 @@ public class IntroductionPage extends AppCompatActivity {
 
     public void sendToUserDetailsPage(View v) {
 
-        Intent intent = new Intent(IntroductionPage.this, UserDetailsPage.class);
-        startActivity(intent);
+       /* Intent intent = new Intent(IntroductionPage.this, UserDetailsPage.class);
+        startActivity(intent);*/
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
-        if (sharedPreferences.getBoolean(UserDetailsPage.EXTRA_FIRST_RUN_KEY, true)) {
+        if (sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY, true)) {
             startActivity(new Intent(this, UserDetailsPage.class));
 
         } else {
-            startActivity(new Intent(this, HomePage.class));
+            Intent intent = new Intent(this,HomePage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finishAffinity();
         }
         finish();
 

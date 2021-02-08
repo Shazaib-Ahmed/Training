@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.sampleproject_1.R;
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder;
+import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,30 +29,25 @@ import java.util.Date;
 import java.util.List;
 
 public class UserDetailsPage extends AppCompatActivity {
-    public static final String EXTRA_GENDER =
-            "com.example.sampleproject_1.WaterReminder.EXTRA_GENDER";
-    public static final String EXTRA_WEIGHT =
-            "com.example.sampleproject_1.WaterReminder.EXTRA_WEIGHT";
-    public static final String EXTRA_BEDTIME =
-            "com.example.sampleproject_1.WaterReminder.EXTRA_BEDTIME";
-    public static final String EXTRA_WAKEUPTIME =
-            "com.example.sampleproject_1.WaterReminder.EXTRA_WAKEUPTIME";
-    public static final String EXTRA_FIRST_RUN_KEY =
-            "com.example.sampleproject_1.WaterReminder.EXTRA_FIRST_RUN_KEY";
-    String SHARED_PREFS ="sharedPrefs";
+
+    private String sleepingTime;
+    private String wakeUptime;
+    private int weight;
+    private static int workTime = 180;
+    private SharedPreferences sharedPreferences;
+    private String gender;
 
 
     TextView continueTextView;
     EditText weightEditText, genderEditText;
     TextView timePickerBedTV, timePickerWakeTV;
     private List<EntityWaterReminder> entityWaterReminders = new ArrayList<>();
-
+    TextView timePickerBedTV1, timePickerWakeTV1;
 
     private ViewModelWaterReminder viewModelWaterReminder;
     private RadioButton getMaleOption, getFemaleOption;
     private int hourPick, minutePick;
-    private String sleepingTime;
-    private String wakeUptime;
+
 
 
     @Override
@@ -81,15 +77,13 @@ public class UserDetailsPage extends AppCompatActivity {
                                 minutePick = minute;
 
                                 sleepingTime = hourPick + ":" + minutePick;
-                               /* Calendar calendar = Calendar.getInstance();
 
-                                calendar.set(0,0,0,hourPick,minutePick);*/
                                 SimpleDateFormat f24hours = new SimpleDateFormat("HH:mm");
 
                                 try {
                                     Date date = f24hours.parse(sleepingTime);
                                     SimpleDateFormat f12hours = new SimpleDateFormat("hh:mm aa");
-                                    timePickerBedTV.setText(f12hours.format(date));
+                                    timePickerBedTV1.setText(f12hours.format(date));
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
@@ -121,7 +115,7 @@ public class UserDetailsPage extends AppCompatActivity {
                                 try {
                                     Date date = f24hours.parse(wakeUptime);
                                     SimpleDateFormat f12hours = new SimpleDateFormat("hh:mm aa");
-                                    timePickerWakeTV.setText(f12hours.format(date));
+                                    timePickerWakeTV1.setText(f12hours.format(date));
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
@@ -141,55 +135,52 @@ public class UserDetailsPage extends AppCompatActivity {
                 saveUserInfo();
             }
         });
+
+
+
     }
 
     private void saveUserInfo() {
 
-
-        if (genderEditText.getText().toString().isEmpty() || weightEditText.getText().toString().isEmpty() ) {
+        if (genderEditText.getText().toString().isEmpty() || weightEditText.getText().toString().isEmpty() || timePickerWakeTV1.getText().toString().isEmpty() || timePickerBedTV1.getText().toString().isEmpty() ) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        /*String timeBed = timePickerBedTV.getText().toString();
-        String timeWake = timePickerBedTV.getText().toString();*/
+        String timeBed = timePickerBedTV1.getText().toString();
+        String timeWake = timePickerWakeTV1.getText().toString();
 
-        int weight = Integer.parseInt(weightEditText.getText().toString());
-        String gender = genderEditText.getText().toString();
+        weight = Integer.parseInt(weightEditText.getText().toString());
+        gender = genderEditText.getText().toString();
 
-        if (weight >200 || weight<20 ) {
+        if (weight > 200 || weight < 20) {
             Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender, weight, sleepingTime, wakeUptime);
+        EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender, weight, timeBed, timeWake);
         viewModelWaterReminder.insert(entityWaterReminder);
 
         Intent data = new Intent(UserDetailsPage.this, HomePage.class);
-        data.putExtra(EXTRA_WEIGHT, weight);
-        data.putExtra(EXTRA_GENDER, gender);
-        data.putExtra(EXTRA_BEDTIME, sleepingTime);
-        data.putExtra(EXTRA_WAKEUPTIME, wakeUptime);
-        data.putExtra(EXTRA_FIRST_RUN_KEY, false);
 
-        SharedPreferences sharedPreferences =getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+
+        sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF,AppUtils.PRIVATE_MODE);
         SharedPreferences.Editor editor =sharedPreferences.edit();
-        editor.putBoolean(EXTRA_FIRST_RUN_KEY,false);
+        editor.putBoolean(AppUtils.FIRST_RUN_KEY,false);
+        editor.putString(AppUtils.WAKE_UP_TIME_KEY,timeWake);
+        editor.putString(AppUtils.SLEEPING_TIME_KEY,timeBed);
+        editor.putInt(AppUtils.WEIGHT_KEY,weight);
+        editor.putString(AppUtils.GENDER_KEY,gender);
+        editor.putInt(AppUtils.WORK_TIME_KEY,workTime);
+
+        int totalIntake = AppUtils.calculateIntake(weight,workTime);
+        editor.putInt(AppUtils.TOTAL_INTAKE,totalIntake);
+
         editor.apply();
-
         startActivity(data);
-        finish();
+        finishAffinity();
     }
 
-
-    public void sendToHomePage(View view) {
-        Intent intent = new Intent(UserDetailsPage.this, HomePage.class);
-        startActivity(intent);
-    }
-
-    public void sendToPreviousActivity(View view) {
-        onBackPressed();
-    }
 
     private void InitialisationFields() {
         getMaleOption = findViewById(R.id.maleOption);
@@ -201,5 +192,8 @@ public class UserDetailsPage extends AppCompatActivity {
         genderEditText = findViewById(R.id.genderEditTExt);
         timePickerBedTV = findViewById(R.id.timePickerBedTV);
         timePickerWakeTV = findViewById(R.id.timePickerWakeTV);
+
+        timePickerBedTV1 = findViewById(R.id.timePickerBedTV1);
+        timePickerWakeTV1 = findViewById(R.id.timePickerWakeTV1);
     }
 }

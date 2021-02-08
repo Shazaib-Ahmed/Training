@@ -17,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-
             android:layout_weight="1">
 
             <me.itangqi.waveloadingview.WaveLoadingView
@@ -26,13 +25,13 @@
                 android:layout_height="wrap_content"
                 app:wlv_borderColor="@color/tabColor"
                 app:wlv_borderWidth="4dp"
-                app:wlv_progressValue="40"
+                app:wlv_progressValue="0"
+                app:wlv_titleCenter="0 %"
                 app:wlv_round_rectangle="true"
                 app:wlv_shapeType="circle"
-                app:wlv_titleCenter="40%"
-                app:wlv_titleCenterColor="@color/tabColor"
+                app:wlv_titleCenterColor="@color/white"
                 app:wlv_titleCenterSize="45sp"
-                app:wlv_titleCenterStrokeColor="@color/white"
+                app:wlv_titleCenterStrokeColor="@color/tabColor"
                 app:wlv_titleCenterStrokeWidth="1dp"
                 app:wlv_triangle_direction="north"
                 app:wlv_waveAmplitude="60"
@@ -99,6 +98,7 @@
                     android:textSize="12dp" />
 
                 <TextView
+                    android:id="@+id/remainingWater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/add_water"
@@ -111,7 +111,7 @@
                     android:paddingTop="5dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="5dp"
-                    android:text="1500/2000 ml"
+                    android:text="Remaining water"
                     android:textColor="@color/waterIntake"
                     android:textSize="12dp" />
             </RelativeLayout>
@@ -185,16 +185,16 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/drinkwater" />
 
-          <!--  <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageViewDrinkWater"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/baloo"
-                android:text="5 L"
-                android:textColor="@color/yellowButtonColor"
-                android:textSize="15dp"
-                android:visibility="gone"/>-->
+            <!--  <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/imageViewDrinkWater"
+                  android:layout_centerHorizontal="true"
+                  android:fontFamily="@font/baloo"
+                  android:text="5 L"
+                  android:textColor="@color/yellowButtonColor"
+                  android:textSize="15dp"
+                  android:visibility="gone"/>-->
             <TextView
                 android:id="@+id/genderTV"
                 android:layout_width="wrap_content"
@@ -237,7 +237,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -254,7 +254,7 @@
                 android:textSize="15dp" />
 
 
-        </LinearLayout>
+        </LinearLayout>-->
 
 
     </LinearLayout>
