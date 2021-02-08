@@ -1,4 +1,5 @@
-package com.example.sampleproject_1.Database;
+package com.example.sampleproject_1.WaterReminder.Database;
+
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -6,7 +7,6 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
-
 
 public class RepositoryWaterReminder {
     private DataAccessObjectWaterReminder dataAccessObjectWaterReminder;

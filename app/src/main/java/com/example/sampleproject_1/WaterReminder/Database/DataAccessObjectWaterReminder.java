@@ -1,4 +1,4 @@
-package com.example.sampleproject_1.Database;
+package com.example.sampleproject_1.WaterReminder.Database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

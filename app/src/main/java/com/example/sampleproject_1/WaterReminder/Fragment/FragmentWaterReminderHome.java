@@ -13,17 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Index;
-import androidx.room.Room;
 
-import com.example.sampleproject_1.Database.DatabaseWaterReminder;
-import com.example.sampleproject_1.Database.EntityWaterReminder;
-import com.example.sampleproject_1.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.R;
-import com.example.sampleproject_1.WaterReminder.UserDetailsPage;
+import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder;
+import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder;
+
 
 import java.util.ArrayList;
 import java.util.List;

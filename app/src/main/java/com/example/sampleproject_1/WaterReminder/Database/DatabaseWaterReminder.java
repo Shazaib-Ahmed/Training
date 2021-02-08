@@ -1,11 +1,10 @@
-package com.example.sampleproject_1.Database;
+package com.example.sampleproject_1.WaterReminder.Database;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
 
 @Database(entities = {EntityWaterReminder.class}, version = 4)
 public abstract class DatabaseWaterReminder extends RoomDatabase {
