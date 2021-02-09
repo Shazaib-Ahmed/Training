@@ -8,27 +8,36 @@
         android:id="@+id/relativeLayoutHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/sortBySpinner"
+            android:text="Show : "
+            android:layout_centerVertical="true"/>
 
         <Spinner
+            android:id="@+id/sortBySpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_margin="5dp" />
+            android:spinnerMode="dropdown"
+            />
     </RelativeLayout>
 
-    <com.github.mikephil.charting.charts.LineChart
+    <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@+id/relativeLayoutHistory"
-        android:layout_margin="5dp" />
+        android:layout_margin="0dp"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/week_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/chart"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 
@@ -212,7 +221,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/week_card_view"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 
@@ -247,7 +256,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/avg_water_intake_card_view"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 
@@ -284,7 +293,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/drinking_frequency_card_view"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 

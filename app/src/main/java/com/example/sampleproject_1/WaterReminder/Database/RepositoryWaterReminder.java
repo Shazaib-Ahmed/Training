@@ -42,18 +42,6 @@ public class RepositoryWaterReminder {
         }
     }
 
-    private static class getUserGenderInfoAsyncTask extends AsyncTask<EntityWaterReminder, Void, Void> {
-        private DataAccessObjectWaterReminder dataAccessObjectWaterReminder;
-
-        private getUserGenderInfoAsyncTask(DataAccessObjectWaterReminder dataAccessObjectWaterReminder) {
-            this.dataAccessObjectWaterReminder = dataAccessObjectWaterReminder;
-        }
-
-        @Override
-        protected Void doInBackground(EntityWaterReminder... entityWaterReminders) {
-            return null;
-        }
-    }
 
 }
 

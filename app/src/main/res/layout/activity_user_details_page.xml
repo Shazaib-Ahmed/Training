@@ -7,57 +7,12 @@
     android:background="@color/white"
     tools:context=".WaterReminder.UserDetailsPage">
 
-    <!--<LinearLayout
-        android:id="@+id/titleBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/tabColor"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_arrow_back"
-            android:padding="15dp"
-            android:onClick="sendBack"/>
-
-        <include
-            android:id="@+id/main_page_toolbar"
-            layout="@layout/app_bar_layout"></include>
-    </LinearLayout>-->
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/titleBar1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/titleBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@color/tabColor"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/backButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@drawable/ic_baseline_arrow_back" />
-
-            <include
-                android:id="@+id/main_page_toolbar"
-                layout="@layout/app_bar_layout" />
-        </LinearLayout>
-    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/textViewGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleBar1"
+        android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_margin="15dp"
         android:fontFamily="@font/baloo"
@@ -140,13 +95,14 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/genderEditTExt"
+            android:id="@+id/genderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Gender"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textColorHint="#494949" />
+
 
     </RelativeLayout>
 
@@ -245,7 +201,7 @@
 
 
             <TextView
-                android:id="@+id/timePickerWakeTV1"
+                android:id="@+id/timePickerBedTV1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -259,7 +215,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/timePickerBedTV1"
+                android:id="@+id/timePickerWakeTV1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -282,7 +238,7 @@
 
 
             <TextView
-                android:id="@+id/timePickerWakeTV"
+                android:id="@+id/timePickerBedTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -295,7 +251,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/timePickerBedTV"
+                android:id="@+id/timePickerWakeTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

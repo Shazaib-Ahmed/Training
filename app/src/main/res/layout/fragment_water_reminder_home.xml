@@ -23,16 +23,16 @@
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:wlv_borderColor="@color/tabColor"
+                app:wlv_borderColor="#8D98D3"
                 app:wlv_borderWidth="4dp"
                 app:wlv_progressValue="0"
                 app:wlv_titleCenter="0 %"
                 app:wlv_round_rectangle="true"
                 app:wlv_shapeType="circle"
                 app:wlv_titleCenterColor="@color/white"
-                app:wlv_titleCenterSize="45sp"
-                app:wlv_titleCenterStrokeColor="@color/tabColor"
-                app:wlv_titleCenterStrokeWidth="1dp"
+                app:wlv_titleCenterSize="40sp"
+                app:wlv_titleCenterStrokeColor="#FF8D98D3"
+                app:wlv_titleCenterStrokeWidth="2dp"
                 app:wlv_triangle_direction="north"
                 app:wlv_waveAmplitude="60"
                 app:wlv_waveColor="@color/tabColor"
@@ -232,7 +232,8 @@
                 android:layout_margin="20dp"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                />
 
 
         </LinearLayout>

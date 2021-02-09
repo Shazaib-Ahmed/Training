@@ -1,5 +1,6 @@
 package com.example.sampleproject_1.WaterReminder;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,8 +12,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -22,13 +26,14 @@ import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserDetailsPage extends AppCompatActivity {
+public class UserDetailsPage extends AppCompatActivity  {
 
     private String sleepingTime;
     private String wakeUptime;
@@ -39,15 +44,16 @@ public class UserDetailsPage extends AppCompatActivity {
 
 
     TextView continueTextView;
-    EditText weightEditText, genderEditText;
+    EditText genderEditText;
+    EditText weightEditText;
     TextView timePickerBedTV, timePickerWakeTV;
     private List<EntityWaterReminder> entityWaterReminders = new ArrayList<>();
     TextView timePickerBedTV1, timePickerWakeTV1;
+    ActionBar actionBar;
 
     private ViewModelWaterReminder viewModelWaterReminder;
     private RadioButton getMaleOption, getFemaleOption;
     private int hourPick, minutePick;
-
 
 
     @Override
@@ -55,6 +61,12 @@ public class UserDetailsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details_page);
         InitialisationFields();
+
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Home Page");
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#3F51B5"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
 
@@ -142,7 +154,7 @@ public class UserDetailsPage extends AppCompatActivity {
 
     private void saveUserInfo() {
 
-        if (genderEditText.getText().toString().isEmpty() || weightEditText.getText().toString().isEmpty() || timePickerWakeTV1.getText().toString().isEmpty() || timePickerBedTV1.getText().toString().isEmpty() ) {
+        if (genderEditText.getText().toString().isEmpty() ||  weightEditText.getText().toString().isEmpty() || timePickerWakeTV1.getText().toString().isEmpty() || timePickerBedTV1.getText().toString().isEmpty() ) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -151,18 +163,17 @@ public class UserDetailsPage extends AppCompatActivity {
         String timeWake = timePickerWakeTV1.getText().toString();
 
         weight = Integer.parseInt(weightEditText.getText().toString());
-        gender = genderEditText.getText().toString();
+       // gender = genderEditText.getText().toString();
 
         if (weight > 200 || weight < 20) {
             Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        EntityWaterReminder entityWaterReminder = new EntityWaterReminder(gender, weight, timeBed, timeWake);
-        viewModelWaterReminder.insert(entityWaterReminder);
+        /*EntityWaterReminder entityWaterReminder = new EntityWaterReminder();
+        viewModelWaterReminder.insert(entityWaterReminder);*/
 
         Intent data = new Intent(UserDetailsPage.this, HomePage.class);
-
 
         sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF,AppUtils.PRIVATE_MODE);
         SharedPreferences.Editor editor =sharedPreferences.edit();
@@ -174,7 +185,8 @@ public class UserDetailsPage extends AppCompatActivity {
         editor.putInt(AppUtils.WORK_TIME_KEY,workTime);
 
         int totalIntake = AppUtils.calculateIntake(weight,workTime);
-        editor.putInt(AppUtils.TOTAL_INTAKE,totalIntake);
+        DecimalFormat df = new DecimalFormat("#");
+        editor.putInt(AppUtils.TOTAL_INTAKE, Integer.parseInt(df.format(totalIntake)));
 
         editor.apply();
         startActivity(data);
@@ -189,10 +201,9 @@ public class UserDetailsPage extends AppCompatActivity {
         getFemaleOption = findViewById(R.id.femaleOption);
         continueTextView = findViewById(R.id.bottomContinueButtonUserDetailsPage);
         weightEditText = findViewById(R.id.weightEditText);
-        genderEditText = findViewById(R.id.genderEditTExt);
+        genderEditText = findViewById(R.id.genderEditText);
         timePickerBedTV = findViewById(R.id.timePickerBedTV);
         timePickerWakeTV = findViewById(R.id.timePickerWakeTV);
-
         timePickerBedTV1 = findViewById(R.id.timePickerBedTV1);
         timePickerWakeTV1 = findViewById(R.id.timePickerWakeTV1);
     }

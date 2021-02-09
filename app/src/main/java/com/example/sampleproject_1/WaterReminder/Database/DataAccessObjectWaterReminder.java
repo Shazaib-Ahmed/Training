@@ -13,7 +13,7 @@ public interface DataAccessObjectWaterReminder {
     @Insert
     void insert(EntityWaterReminder entityWaterReminder);
 
-    @Query("SELECT * from water_reminder_users_details")
+    @Query("SELECT * from water_reminder_users_stats")
     LiveData<List<EntityWaterReminder>> getGetAllUsers();
 
 }

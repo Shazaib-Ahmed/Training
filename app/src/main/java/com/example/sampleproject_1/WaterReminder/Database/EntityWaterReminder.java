@@ -4,48 +4,45 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "water_reminder_users_details")
+@Entity(tableName = "water_reminder_users_stats")
 public class EntityWaterReminder {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int KEY_ID;
 
-    private String gender;
-
-    private int weight;
-
-    private String bedTime;
-
-    private String wakeUpTime;
-
-    public EntityWaterReminder(String gender, int weight, String bedTime, String wakeUpTime) {
-        this.gender = gender;
-        this.weight = weight;
-        this.bedTime = bedTime;
-        this.wakeUpTime = wakeUpTime;
+    public int getKEY_ID() {
+        return KEY_ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    private String KEY_DATE;
+
+    private int KEY_INTOOK;
+
+    public int getKEY_INTOOK() {
+        return KEY_INTOOK;
     }
 
-    public int getId() {
-        return id;
+    private int KEY_TOTAL_INTAKE;
+
+    public void setKEY_ID(int KEY_ID) {
+        this.KEY_ID = KEY_ID;
     }
 
-    public String getGender() {
-        return gender;
+    public EntityWaterReminder(String KEY_DATE, int KEY_INTOOK, int KEY_TOTAL_INTAKE) {
+        this.KEY_DATE = KEY_DATE;
+        this.KEY_INTOOK = KEY_INTOOK;
+        this.KEY_TOTAL_INTAKE = KEY_TOTAL_INTAKE;
     }
 
-    public int getWeight() {
-        return weight;
+    public String getKEY_DATE() {
+        return KEY_DATE;
     }
 
-    public String getBedTime() {
-        return bedTime;
+    public int getKEY_INTOOK(String date) {
+        return KEY_INTOOK;
     }
 
-    public String getWakeUpTime() {
-        return wakeUpTime;
+    public int getKEY_TOTAL_INTAKE() {
+        return KEY_TOTAL_INTAKE;
     }
 }
