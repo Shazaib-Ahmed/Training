@@ -11,9 +11,10 @@ import android.os.Bundle;
 
 import com.example.sampleproject_1.R;
 import com.example.sampleproject_1.WaterReminder.Adapter.TabAccessAdapter;
+import com.example.sampleproject_1.WaterReminder.Dialog.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private TabAccessAdapter tabsAccessAdapter;
@@ -36,5 +37,10 @@ public class HomePage extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.main_tabs);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void onButtonClicked(String text) {
+
     }
 }
