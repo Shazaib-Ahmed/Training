@@ -45,6 +45,7 @@ public class FragmentWaterReminderHistory extends Fragment {
     ArrayList<BarEntry> barEntries;
     ArrayList<String> labelsNames;
     private Spinner sortBySpinner;
+    float dailyPercentage = 0f;
 
 
     ArrayList<DailyWaterIntakeData> dailyWaterIntakeData = new ArrayList<>();
@@ -70,6 +71,10 @@ public class FragmentWaterReminderHistory extends Fragment {
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
         sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
+
+        entityWaterReminder = new EntityWaterReminder();
+        int dailyIntook = entityWaterReminder.getKEY_INTOOK();
+        dailyPercentage = dailyIntook*100/dailyIntook;
 
         barEntries = new ArrayList<>();
         labelsNames = new ArrayList<>();
@@ -108,8 +113,16 @@ public class FragmentWaterReminderHistory extends Fragment {
 
         return v;
     }
+    private void fillData(){
 
-    private void fillData() {
+        for (int i=1;i<=30;i++){
+
+            dailyWaterIntakeData.add(new DailyWaterIntakeData(i+"", dailyPercentage));
+        }
+
+    }
+
+    /*private void fillData() {
         dailyWaterIntakeData.add(new DailyWaterIntakeData("1", 60f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("2", 70f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("3", 50f));
@@ -140,7 +153,7 @@ public class FragmentWaterReminderHistory extends Fragment {
         dailyWaterIntakeData.add(new DailyWaterIntakeData("28", 100f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("29", 50f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("30", 60f));
-    }
+    }*/
 
 
 }

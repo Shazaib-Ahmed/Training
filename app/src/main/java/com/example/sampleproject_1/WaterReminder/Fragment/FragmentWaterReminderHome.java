@@ -50,7 +50,7 @@ public class FragmentWaterReminderHome extends Fragment implements BottomSheetDi
     WaveLoadingView waveLoadingView;
 
     public FragmentWaterReminderHome() {
-this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -98,20 +98,20 @@ this.context=context;
                     Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
                 }*/
 
-                inTook = 10*totalIntake/100;
+                inTook = 10 * totalIntake / 100;
                 totalIntook += inTook;
-                if (totalIntook < totalIntake && progress<100) {
+                if (totalIntook < totalIntake && progress < 100) {
 
                     progress += inTook * 100 / totalIntake;
                     //if (progress < 100) {
-                        //progress = ((200/totalIntake)*100);
-                        // progress=(int)((double) 200/totalIntake*100);
+                    //progress = ((200/totalIntake)*100);
+                    // progress=(int)((double) 200/totalIntake*100);
 
-                        remainingWater.setText(totalIntook + "/" + totalIntake + " ml");
-                        waveLoadingView.setProgressValue(progress);
-                        waveLoadingView.setCenterTitle(progress + " %");
-                        updateTimeChart();
-                   // }
+                    remainingWater.setText(totalIntook + "/" + totalIntake + " ml");
+                    waveLoadingView.setProgressValue(progress);
+                    waveLoadingView.setCenterTitle(progress + " %");
+                    updateTimeChart();
+                    // }
                 } else {
                     Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
                 }
@@ -143,14 +143,11 @@ this.context=context;
         itemList1.add(currentTime + "  -----  " + inTook);
         adapterTime.notifyDataSetChanged();
 
-        entityWaterReminder=new EntityWaterReminder(currentTime,inTook,totalIntake);
+        entityWaterReminder = new EntityWaterReminder(currentTime, inTook, totalIntake);
         viewModelWaterReminder.insert(entityWaterReminder);
     }
 
-
-
     private void setWaterLevel(int inTook, int totalIntake) {
-
 
         if ((inTook * 100 / totalIntake) > 140) {
             Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
@@ -172,9 +169,7 @@ this.context=context;
 
     @Override
     public void onButtonClicked(String text) {
-
     }
-
 /*
     public void addWater(int inTook){
        // inTook = 200;
@@ -198,4 +193,4 @@ this.context=context;
 
     }
 */
-    }
+}

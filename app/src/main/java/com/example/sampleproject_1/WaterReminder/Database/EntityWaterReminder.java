@@ -10,6 +10,10 @@ public class EntityWaterReminder {
     @PrimaryKey(autoGenerate = true)
     private int KEY_ID;
 
+    public EntityWaterReminder() {
+
+    }
+
     public int getKEY_ID() {
         return KEY_ID;
     }
