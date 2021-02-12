@@ -62,8 +62,6 @@ public class FragmentWaterReminderHome extends Fragment {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
     String currentTime = simpleDateFormat.format(calendar.getTime());
 
-    Gson gson;
-
     public FragmentWaterReminderHome() {
         this.context = context;
     }
@@ -95,9 +93,18 @@ public class FragmentWaterReminderHome extends Fragment {
         context = v.getContext().getApplicationContext();
 
         remainingWater.setText("Remaining Water");
+
         loadData();
 
         buildRecyclerView();
+
+        progress = sharedPreferences.getInt("PRO", 0);
+        totalIntook = sharedPreferences.getInt("TOI", 0);
+        waveLoadingView.setProgressValue(progress);
+        waveLoadingView.setCenterTitle(progress + " %");
+
+        remainingWater.setText(totalIntook + "/" + totalIntake + " ml");
+
 
         addWater.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,15 +113,13 @@ public class FragmentWaterReminderHome extends Fragment {
                 inTook = 10 * totalIntake / 100;
                 totalIntook += inTook;
                 if (totalIntook < totalIntake && progress < 100) {
-
+                    
                     setWaterLevel(inTook, totalIntake);
+
+                    adapterTime.updateData(new WaterIntake(currentTime, inTook));
 
                     saveData();
 
-                    adapterTime.updateData(new WaterIntake(currentTime, inTook));
-                    adapterTime.notifyItemInserted(itemList1.size());
-
-                    //updateTimeChart();
                 } else {
                     Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
                 }
@@ -139,7 +144,6 @@ public class FragmentWaterReminderHome extends Fragment {
         return v;
     }
 
-
     private void updateTimeChart() {
 
         adapterTime.updateData(new WaterIntake(currentTime, inTook));
@@ -149,17 +153,23 @@ public class FragmentWaterReminderHome extends Fragment {
         viewModelWaterReminder.insert(entityWaterReminder);
     }
 
-
     private void setWaterLevel(int inTook, int totalIntake) {
 
         if ((inTook * 100 / totalIntake) > 140) {
             Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
         } else {
+
+
             progress += inTook * 100 / totalIntake;
             waveLoadingView.setProgressValue(progress);
             waveLoadingView.setCenterTitle(progress + " %");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("PRO", progress);
+            editor.putInt("TOI", totalIntook);
+            editor.apply();
         }
         remainingWater.setText(totalIntook + "/" + totalIntake + " ml");
+
     }
 
 //    private void setWaterLevel(int inTook, int totalIntake) {
@@ -174,7 +184,6 @@ public class FragmentWaterReminderHome extends Fragment {
 //        }
 //        remainingWater.setText(inTook + "/" + totalIntake + " ml");
 //    }
-
 
     private void updateValues() {
         //totalIntake = sharedPreferences.getInt(AppUtils.TOTAL_INTAKE,0);
@@ -209,15 +218,18 @@ public class FragmentWaterReminderHome extends Fragment {
 */
 
     private void saveData() {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        gson = new Gson();
+        Gson gson = new Gson();
         String jsonData = gson.toJson(itemList1);
         editor.putString("myJson", jsonData);
         editor.apply();
     }
 
     private void loadData() {
-        gson = new Gson();
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
+
+        Gson gson = new Gson();
         String jsonData = sharedPreferences.getString("myJson", null);
         Type type = new TypeToken<ArrayList<WaterIntake>>() {
         }.getType();
