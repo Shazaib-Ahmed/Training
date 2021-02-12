@@ -3,6 +3,7 @@ package com.example.sampleproject_1.WaterReminder.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +14,23 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sampleproject_1.R;
+import com.example.sampleproject_1.WaterReminder.Adapter.TodayWaterIntakeAdapter;
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Dialog.BottomSheetDialog;
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
+import com.example.sampleproject_1.WaterReminder.model.WaterIntake;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,7 +38,7 @@ import java.util.List;
 
 import me.itangqi.waveloadingview.WaveLoadingView;
 
-public class FragmentWaterReminderHome extends Fragment implements BottomSheetDialog.BottomSheetListener {
+public class FragmentWaterReminderHome extends Fragment {
 
     TextView userWeight, userGender, addWater, remainingWater;
     //private List<EntityWaterReminder> entityWaterReminders = new ArrayList<>();
@@ -43,11 +52,17 @@ public class FragmentWaterReminderHome extends Fragment implements BottomSheetDi
     int totalIntook = 0;
 
 
-    ListView timeIntakeWaterList;
-    ArrayList<String> itemList1;
-    ArrayAdapter<String> adapterTime;
+    RecyclerView timeIntakeWaterListRV;
+    ArrayList<WaterIntake> itemList1;
+    TodayWaterIntakeAdapter adapterTime;
     Context context;
     WaveLoadingView waveLoadingView;
+
+    Calendar calendar = Calendar.getInstance();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+    String currentTime = simpleDateFormat.format(calendar.getTime());
+
+    Gson gson;
 
     public FragmentWaterReminderHome() {
         this.context = context;
@@ -56,6 +71,7 @@ public class FragmentWaterReminderHome extends Fragment implements BottomSheetDi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
         View v = inflater.inflate(R.layout.fragment_water_reminder_home, container, false);
         userWeight = v.findViewById(R.id.userWeightTextView);
@@ -64,59 +80,47 @@ public class FragmentWaterReminderHome extends Fragment implements BottomSheetDi
         addWater = v.findViewById(R.id.add_water);
         remainingWater = v.findViewById(R.id.remainingWater);
 
-        timeIntakeWaterList = v.findViewById(R.id.time_intake_water_list);
+        timeIntakeWaterListRV = v.findViewById(R.id.time_intake_water_list);
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
 
-        entityWaterReminder = new EntityWaterReminder(dateNow, 0, totalIntake);
-        viewModelWaterReminder.insert(entityWaterReminder);
+       /* entityWaterReminder = new EntityWaterReminder(dateNow, 0, totalIntake);
+        viewModelWaterReminder.insert(entityWaterReminder);*/
 
-        sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
         int w = sharedPreferences.getInt(AppUtils.WEIGHT_KEY, 0);
         String g = sharedPreferences.getString(AppUtils.GENDER_KEY, "");
-        totalIntake = sharedPreferences.getInt(AppUtils.TOTAL_INTAKE, 1);
+        totalIntake = sharedPreferences.getInt(AppUtils.TOTAL_INTAKE, 0);
         String wakeTime = sharedPreferences.getString(AppUtils.WAKE_UP_TIME_KEY, "");
-
-        //updateValues();
 
         context = v.getContext().getApplicationContext();
 
-        itemList1 = new ArrayList<String>();
-        adapterTime = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, itemList1);
-        timeIntakeWaterList.setAdapter(adapterTime);
-
-
         remainingWater.setText("Remaining Water");
+        loadData();
+
+        buildRecyclerView();
 
         addWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* if((inTook*100/totalIntake)<=140){
-                    setWaterLevel(inTook,totalIntake);
-                    Toast.makeText(getContext().getApplicationContext(), "Your water is saved", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
-                }*/
 
                 inTook = 10 * totalIntake / 100;
                 totalIntook += inTook;
                 if (totalIntook < totalIntake && progress < 100) {
 
-                    progress += inTook * 100 / totalIntake;
-                    //if (progress < 100) {
-                    //progress = ((200/totalIntake)*100);
-                    // progress=(int)((double) 200/totalIntake*100);
+                    setWaterLevel(inTook, totalIntake);
 
-                    remainingWater.setText(totalIntook + "/" + totalIntake + " ml");
-                    waveLoadingView.setProgressValue(progress);
-                    waveLoadingView.setCenterTitle(progress + " %");
-                    updateTimeChart();
-                    // }
+                    saveData();
+
+                    adapterTime.updateData(new WaterIntake(currentTime, inTook));
+                    adapterTime.notifyItemInserted(itemList1.size());
+
+                    //updateTimeChart();
                 } else {
                     Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
                 }
 
             }
+
         });
 
 /*
@@ -137,39 +141,49 @@ public class FragmentWaterReminderHome extends Fragment implements BottomSheetDi
 
 
     private void updateTimeChart() {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
-        String currentTime = simpleDateFormat.format(calendar.getTime());
-        itemList1.add(currentTime + "  -----  " + inTook);
-        adapterTime.notifyDataSetChanged();
+
+        adapterTime.updateData(new WaterIntake(currentTime, inTook));
+        adapterTime.notifyItemInserted(itemList1.size());
 
         entityWaterReminder = new EntityWaterReminder(currentTime, inTook, totalIntake);
         viewModelWaterReminder.insert(entityWaterReminder);
     }
+
 
     private void setWaterLevel(int inTook, int totalIntake) {
 
         if ((inTook * 100 / totalIntake) > 140) {
             Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
         } else {
-            progress = ((inTook / totalIntake) * 100);
+            progress += inTook * 100 / totalIntake;
             waveLoadingView.setProgressValue(progress);
             waveLoadingView.setCenterTitle(progress + " %");
         }
-        remainingWater.setText(inTook + "/" + totalIntake + " ml");
+        remainingWater.setText(totalIntook + "/" + totalIntake + " ml");
     }
+
+//    private void setWaterLevel(int inTook, int totalIntake) {
+//
+//        Log.e("intook",inTook+"    "+totalIntake);
+//        if (((inTook * 100) / totalIntake) > 140) {
+//            Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
+//        } else {
+//            progress = ((inTook / totalIntake) * 100);
+//            waveLoadingView.setProgressValue(progress);
+//            waveLoadingView.setCenterTitle(progress + " %");
+//        }
+//        remainingWater.setText(inTook + "/" + totalIntake + " ml");
+//    }
+
 
     private void updateValues() {
         //totalIntake = sharedPreferences.getInt(AppUtils.TOTAL_INTAKE,0);
         //entityWaterReminder =new EntityWaterReminder(dateNow,inTook,totalIntake);
         inTook = entityWaterReminder.getKEY_INTOOK(dateNow);
-        setWaterLevel(inTook, totalIntake);
+//        setWaterLevel(inTook, totalIntake);
 
     }
 
-    @Override
-    public void onButtonClicked(String text) {
-    }
 /*
     public void addWater(int inTook){
        // inTook = 200;
@@ -193,4 +207,32 @@ public class FragmentWaterReminderHome extends Fragment implements BottomSheetDi
 
     }
 */
+
+    private void saveData() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        gson = new Gson();
+        String jsonData = gson.toJson(itemList1);
+        editor.putString("myJson", jsonData);
+        editor.apply();
+    }
+
+    private void loadData() {
+        gson = new Gson();
+        String jsonData = sharedPreferences.getString("myJson", null);
+        Type type = new TypeToken<ArrayList<WaterIntake>>() {
+        }.getType();
+        itemList1 = gson.fromJson(jsonData, type);
+
+        if (itemList1 == null) {
+            itemList1 = new ArrayList<>();
+        }
+    }
+
+    private void buildRecyclerView() {
+        timeIntakeWaterListRV.setHasFixedSize(true);
+        timeIntakeWaterListRV.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
+        adapterTime = new TodayWaterIntakeAdapter(itemList1);
+        timeIntakeWaterListRV.setAdapter(adapterTime);
+    }
+
 }

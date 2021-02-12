@@ -1,7 +1,10 @@
 package com.example.sampleproject_1.WaterReminder.Utils;
 
+import com.example.sampleproject_1.WaterReminder.model.WaterIntake;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AppUtils {
@@ -16,7 +19,9 @@ public class AppUtils {
     public static String WAKE_UP_TIME_KEY = "wakeuptime";
     public static String GENDER_KEY = "gender";
 
+    public static String TIME_KEY = "time";
 
+    public static ArrayList<WaterIntake> SAVE_DAILY_DATA =new ArrayList<>();
     public static int calculateIntake(int weight, int workTime) {
         return ((weight * 100 / 3) + (workTime / 6 * 7));
     }

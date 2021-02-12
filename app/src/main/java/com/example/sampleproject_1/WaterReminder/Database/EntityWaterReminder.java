@@ -20,7 +20,19 @@ public class EntityWaterReminder {
 
     private String KEY_DATE;
 
+    public void setKEY_DATE(String KEY_DATE) {
+        this.KEY_DATE = KEY_DATE;
+    }
+
     private int KEY_INTOOK;
+
+    public void setKEY_INTOOK(int KEY_INTOOK) {
+        this.KEY_INTOOK = KEY_INTOOK;
+    }
+
+    public void setKEY_TOTAL_INTAKE(int KEY_TOTAL_INTAKE) {
+        this.KEY_TOTAL_INTAKE = KEY_TOTAL_INTAKE;
+    }
 
     public int getKEY_INTOOK() {
         return KEY_INTOOK;

@@ -74,7 +74,7 @@ public class FragmentWaterReminderHistory extends Fragment {
 
         entityWaterReminder = new EntityWaterReminder();
         int dailyIntook = entityWaterReminder.getKEY_INTOOK();
-        dailyPercentage = dailyIntook*100/dailyIntook;
+//        dailyPercentage = dailyIntook*100/dailyIntook;
 
         barEntries = new ArrayList<>();
         labelsNames = new ArrayList<>();
