@@ -70,12 +70,6 @@ public class UserDetailsPage extends AppCompatActivity  {
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
 
-        viewModelWaterReminder.getAllNotes().observe(this, new Observer<List<EntityWaterReminder>>() {
-            @Override
-            public void onChanged(List<EntityWaterReminder> entityWaterReminders) {
-
-            }
-        });
 
         timePickerBedTV.setOnClickListener(new View.OnClickListener() {
             @Override
