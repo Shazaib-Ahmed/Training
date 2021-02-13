@@ -79,7 +79,7 @@ public class FragmentWaterReminderHistory extends Fragment {
             @Override
             public void onChanged(List<Entry> entries) {
 
-                
+
                // BarDataSet barDataSet = new BarDataSet(entries, "Days");
 
             }
