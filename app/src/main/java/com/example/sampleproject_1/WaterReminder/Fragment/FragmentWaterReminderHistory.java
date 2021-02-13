@@ -51,8 +51,8 @@ public class FragmentWaterReminderHistory extends Fragment {
     private ViewModelWaterReminder viewModelWaterReminder;
 
     private BarChart barChart;
-    //ArrayList<BarEntry> barEntries;
-    //ArrayList<String> labelsNames;
+    ArrayList<BarEntry> barEntries;
+    ArrayList<String> labelsNames;
     private Spinner sortBySpinner;
 
     //ArrayList<DailyWaterIntakeData> dailyWaterIntakeData = new ArrayList<>();
@@ -74,56 +74,91 @@ public class FragmentWaterReminderHistory extends Fragment {
         //sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
-        viewModelWaterReminder.getAllData();
-        viewModelWaterReminder.getAllData().observe(this.getActivity(), new Observer<List<Entry>>() {
+//        viewModelWaterReminder.getAllData();
+        viewModelWaterReminder.getAllData().observe(this.getActivity(), new Observer<List<EntityWaterReminder>>() {
             @Override
+<<<<<<< HEAD
             public void onChanged(List<Entry> entries) {
 
 
                // BarDataSet barDataSet = new BarDataSet(entries, "Days");
+=======
+            public void onChanged(List<EntityWaterReminder> dailyWaterIntakeData) {
+
+                barEntries = new ArrayList<>();
+                labelsNames = new ArrayList<>();
+                //fillData();
+
+                for (int i = 0; i < dailyWaterIntakeData.size(); i++) {
+                    String day = dailyWaterIntakeData.get(i).getKEY_DATE();
+                    float percentage = dailyWaterIntakeData.get(i).getKEY_INTOOK();
+                    Log.e("data", day + "   " + percentage);
+                    if(day!=null) {
+                        barEntries.add(new BarEntry(i, percentage));
+                        labelsNames.add(day);
+                    }
+                }
+//                BarDataSet barDataSet = new BarDataSet(entries, "Days");
+                BarDataSet barDataSet = new BarDataSet(barEntries, "Daily Water Intake");
+                barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+                Description description = new Description();
+                description.setText("Days");
+                description.setTextSize(1f);
+
+                barChart.setDescription(description);
+                barChart.setPinchZoom(false);
+                BarData barData = new BarData(barDataSet);
+                barData.setBarWidth(0.9f);
+                barChart.setData(barData);
+
+                XAxis xAxis = barChart.getXAxis();
+                xAxis.setValueFormatter(new IndexAxisValueFormatter(labelsNames));
+
+                YAxis yAxis = barChart.getAxisLeft();
+                yAxis.mAxisMinimum = 0;
+
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setDrawGridLines(false);
+                xAxis.setDrawAxisLine(false);
+                xAxis.setGranularity(1f);
+                xAxis.setLabelCount(labelsNames.size());
+                xAxis.setLabelRotationAngle(270);
+
+                barChart.animateY(3000);
+                barChart.invalidate();
+>>>>>>> 50c4da430674f53dc384288b0ff30c2960b04b02
 
             }
         });
 
-        //barEntries = new ArrayList<>();
-        //labelsNames = new ArrayList<>();
-        //fillData();
 
-       /* for (int i = 0; i < dailyWaterIntakeData.size(); i++) {
-            String day = dailyWaterIntakeData.get(i).getDays();
-            float percentage = dailyWaterIntakeData.get(i).getPercentage();
-
-            barEntries.add(new BarEntry(i, percentage));
-            labelsNames.add(day);
-        }*/
-
-       /* BarDataSet barDataSet = new BarDataSet(barEntries, "Daily Water Intake");
-        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-        Description description = new Description();
-        description.setText("Days");
-        description.setTextSize(1f);
-
-        barChart.setDescription(description);
-        barChart.setPinchZoom(false);
-        BarData barData = new BarData(barDataSet);
-        barData.setBarWidth(0.9f);
-        barChart.setData(barData);
-
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(labelsNames));
-
-        YAxis yAxis = barChart.getAxisLeft();
-        yAxis.mAxisMinimum = 0;
-
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false);
-        xAxis.setGranularity(1f);
-        xAxis.setLabelCount(labelsNames.size());
-        xAxis.setLabelRotationAngle(270);
-
-        barChart.animateY(3000);
-        barChart.invalidate();*/
+//       BarDataSet barDataSet = new BarDataSet(barEntries, "Daily Water Intake");
+//        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+//        Description description = new Description();
+//        description.setText("Days");
+//        description.setTextSize(1f);
+//
+//        barChart.setDescription(description);
+//        barChart.setPinchZoom(false);
+//        BarData barData = new BarData(barDataSet);
+//        barData.setBarWidth(0.9f);
+//        barChart.setData(barData);
+//
+//        XAxis xAxis = barChart.getXAxis();
+//        xAxis.setValueFormatter(new IndexAxisValueFormatter(labelsNames));
+//
+//        YAxis yAxis = barChart.getAxisLeft();
+//        yAxis.mAxisMinimum = 0;
+//
+//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+//        xAxis.setDrawGridLines(false);
+//        xAxis.setDrawAxisLine(false);
+//        xAxis.setGranularity(1f);
+//        xAxis.setLabelCount(labelsNames.size());
+//        xAxis.setLabelRotationAngle(270);
+//
+//        barChart.animateY(3000);
+//        barChart.invalidate();
 
         return v;
     }
