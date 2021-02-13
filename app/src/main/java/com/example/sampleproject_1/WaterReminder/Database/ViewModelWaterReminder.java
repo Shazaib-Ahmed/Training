@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class ViewModelWaterReminder extends AndroidViewModel {
         repository.insert(entityWaterReminder);
     }
 
-    public LiveData<List<Entry>> getAllData() {
+    public LiveData<List<EntityWaterReminder>> getAllData() {
         return repository.getAllData();
     }
 
