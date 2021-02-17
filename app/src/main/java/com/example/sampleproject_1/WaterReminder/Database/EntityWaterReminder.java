@@ -26,6 +26,23 @@ public class EntityWaterReminder {
 
     private int KEY_INTOOK;
 
+    private int totalInTook_KEY;
+
+    public void setTotalInTook_KEY(int totalInTook_KEY) {
+        this.totalInTook_KEY = totalInTook_KEY;
+    }
+
+    public int getTotalInTook_KEY() {
+        return totalInTook_KEY;
+    }
+
+    public EntityWaterReminder(String KEY_DATE, int KEY_INTOOK, int totalInTook_KEY, int KEY_TOTAL_INTAKE) {
+        this.KEY_DATE = KEY_DATE;
+        this.KEY_INTOOK = KEY_INTOOK;
+        this.totalInTook_KEY = totalInTook_KEY;
+        this.KEY_TOTAL_INTAKE = KEY_TOTAL_INTAKE;
+    }
+
     public void setKEY_INTOOK(int KEY_INTOOK) {
         this.KEY_INTOOK = KEY_INTOOK;
     }
@@ -42,12 +59,6 @@ public class EntityWaterReminder {
 
     public void setKEY_ID(int KEY_ID) {
         this.KEY_ID = KEY_ID;
-    }
-
-    public EntityWaterReminder(String KEY_DATE, int KEY_INTOOK, int KEY_TOTAL_INTAKE) {
-        this.KEY_DATE = KEY_DATE;
-        this.KEY_INTOOK = KEY_INTOOK;
-        this.KEY_TOTAL_INTAKE = KEY_TOTAL_INTAKE;
     }
 
     public String getKEY_DATE() {

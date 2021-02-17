@@ -55,9 +55,9 @@ public class FragmentWaterReminderHome extends Fragment {
     private Context context;
     private WaveLoadingView waveLoadingView;
 
-    private Calendar calendar = Calendar.getInstance();
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
-    private String currentTime = simpleDateFormat.format(calendar.getTime());
+    private final Calendar calendar = Calendar.getInstance();
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+    private final String currentTime = simpleDateFormat.format(calendar.getTime());
 
     public FragmentWaterReminderHome() {
         this.context = context;
@@ -66,9 +66,11 @@ public class FragmentWaterReminderHome extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
         View v = inflater.inflate(R.layout.fragment_water_reminder_home, container, false);
+
         userWeight = v.findViewById(R.id.userWeightTextView);
         userGender = v.findViewById(R.id.genderTV);
         waveLoadingView = v.findViewById(R.id.progress_bar);
@@ -133,7 +135,7 @@ public class FragmentWaterReminderHome extends Fragment {
         adapterTime.updateData(new WaterIntake(currentTime, inTook));
         adapterTime.notifyItemInserted(saveDailyData.size());
 
-        entityWaterReminder = new EntityWaterReminder(currentTime, inTook, totalIntake);
+        entityWaterReminder = new EntityWaterReminder(currentTime, inTook, totalIntake, totalInTook);
         viewModelWaterReminder.insert(entityWaterReminder);
     }
 

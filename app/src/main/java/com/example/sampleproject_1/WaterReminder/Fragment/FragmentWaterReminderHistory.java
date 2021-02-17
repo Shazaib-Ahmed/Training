@@ -1,48 +1,31 @@
 package com.example.sampleproject_1.WaterReminder.Fragment;
 
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.service.autofill.Dataset;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bumptech.glide.load.resource.bitmap.LazyBitmapDrawableResource;
 import com.example.sampleproject_1.R;
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder;
-import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
-import com.example.sampleproject_1.WaterReminder.Utils.DailyWaterIntakeData;
-import com.example.sampleproject_1.WaterReminder.model.WaterIntake;
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,15 +57,11 @@ public class FragmentWaterReminderHistory extends Fragment {
         //sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
-//        viewModelWaterReminder.getAllData();
         viewModelWaterReminder.getAllData().observe(this.getActivity(), new Observer<List<EntityWaterReminder>>() {
             @Override
-<<<<<<< HEAD
-            public void onChanged(List<Entry> entries) {
+           /* public void onChanged(List<Entry> entries) {
+               // BarDataSet barDataSet = new BarDataSet(entries, "Days");*/
 
-
-               // BarDataSet barDataSet = new BarDataSet(entries, "Days");
-=======
             public void onChanged(List<EntityWaterReminder> dailyWaterIntakeData) {
 
                 barEntries = new ArrayList<>();
@@ -92,13 +71,16 @@ public class FragmentWaterReminderHistory extends Fragment {
                 for (int i = 0; i < dailyWaterIntakeData.size(); i++) {
                     String day = dailyWaterIntakeData.get(i).getKEY_DATE();
                     float percentage = dailyWaterIntakeData.get(i).getKEY_INTOOK();
+
                     Log.e("data", day + "   " + percentage);
-                    if(day!=null) {
+
+                    if (day != null) {
                         barEntries.add(new BarEntry(i, percentage));
                         labelsNames.add(day);
                     }
+
                 }
-//                BarDataSet barDataSet = new BarDataSet(entries, "Days");
+                // BarDataSet barDataSet = new BarDataSet(entries, "Days");
                 BarDataSet barDataSet = new BarDataSet(barEntries, "Daily Water Intake");
                 barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
                 Description description = new Description();
@@ -126,11 +108,9 @@ public class FragmentWaterReminderHistory extends Fragment {
 
                 barChart.animateY(3000);
                 barChart.invalidate();
->>>>>>> 50c4da430674f53dc384288b0ff30c2960b04b02
 
             }
         });
-
 
 //       BarDataSet barDataSet = new BarDataSet(barEntries, "Daily Water Intake");
 //        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
@@ -203,3 +183,4 @@ public class FragmentWaterReminderHistory extends Fragment {
     }*/
 
 }
+
