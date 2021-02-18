@@ -19,12 +19,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
+import com.example.sampleproject_1.Notifications.UploadTask;
 import com.example.sampleproject_1.R;
 import com.example.sampleproject_1.WaterReminder.Adapter.TodayWaterIntakeAdapter;
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Dialog.BottomSheetDialog;
+import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.TaskWorker;
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
 import com.example.sampleproject_1.WaterReminder.model.WaterIntake;
 import com.google.gson.Gson;
@@ -35,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import me.itangqi.waveloadingview.WaveLoadingView;
 
@@ -67,6 +72,8 @@ public class FragmentWaterReminderHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        scheduleNotificationChannel();
+
         sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
         View v = inflater.inflate(R.layout.fragment_water_reminder_home, container, false);
@@ -91,6 +98,7 @@ public class FragmentWaterReminderHome extends Fragment {
 
         loadData();
         buildRecyclerView();
+
 
         progress = sharedPreferences.getInt("PRO", 0);
         totalInTook = sharedPreferences.getInt("TOI", 0);
@@ -223,4 +231,13 @@ public class FragmentWaterReminderHome extends Fragment {
         timeIntakeWaterListRV.setAdapter(adapterTime);
     }
 
+    private void scheduleNotificationChannel() {
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(TaskWorker.class, 15, TimeUnit.MINUTES).build();
+        WorkManager.getInstance().enqueue(periodicWorkRequest);
+    }
+
+    private void cancelNotification() {
+        WorkManager.getInstance().cancelAllWork();
+        Toast.makeText(this.getActivity(), "Notification Canceled", Toast.LENGTH_SHORT).show();
+    }
 }
