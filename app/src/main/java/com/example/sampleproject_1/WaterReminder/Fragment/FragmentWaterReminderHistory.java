@@ -38,11 +38,6 @@ public class FragmentWaterReminderHistory extends Fragment {
     ArrayList<String> labelsNames;
     private Spinner sortBySpinner;
 
-    //ArrayList<DailyWaterIntakeData> dailyWaterIntakeData = new ArrayList<>();
-
-    //private float totalPercentage = 0f;
-    //private float totalGlasses = 0f;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,9 +47,6 @@ public class FragmentWaterReminderHistory extends Fragment {
         barChart = v.findViewById(R.id.chart);
         sortBySpinner = v.findViewById(R.id.sortBySpinner);
         setUpSpinner();
-
-
-        //sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
         viewModelWaterReminder = new ViewModelProvider(this).get(ViewModelWaterReminder.class);
         viewModelWaterReminder.getAllData().observe(this.getActivity(), new Observer<List<EntityWaterReminder>>() {
@@ -72,7 +64,7 @@ public class FragmentWaterReminderHistory extends Fragment {
                     String day = dailyWaterIntakeData.get(i).getKEY_DATE();
                     float percentage = dailyWaterIntakeData.get(i).getKEY_INTOOK();
 
-                    Log.e("data", day + "   " + percentage);
+                    Log.e("data", day + "  ===DAILY_DATA===  " + percentage);
 
                     if (day != null) {
                         barEntries.add(new BarEntry(i, percentage));

@@ -8,15 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.sampleproject_1.R;
+import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.AutoStartHelper;
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
 
 public class IntroductionPage extends AppCompatActivity {
-    String SHARED_PREFS = "sharedPrefs";
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduction_page);
+        sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
+        autoStartNotification();
+
     }
 
     public void sendToUserDetailsPage(View v) {
@@ -24,7 +29,7 @@ public class IntroductionPage extends AppCompatActivity {
        /* Intent intent = new Intent(IntroductionPage.this, UserDetailsPage.class);
         startActivity(intent);*/
 
-        SharedPreferences sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
+
 
         if (sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY, true)) {
             startActivity(new Intent(this, UserDetailsPage.class));
@@ -37,5 +42,12 @@ public class IntroductionPage extends AppCompatActivity {
         }
         finish();
 
+    }
+
+    private void autoStartNotification() {
+        String autoStart = sharedPreferences.getString("autoStart", "");
+        if (autoStart.equals("")){
+            AutoStartHelper.getInstance().getAutoStartPermission(this);
+        }
     }
 }

@@ -28,6 +28,7 @@ import com.example.sampleproject_1.WaterReminder.Adapter.TodayWaterIntakeAdapter
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder;
 import com.example.sampleproject_1.WaterReminder.Dialog.BottomSheetDialog;
+import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.AutoStartHelper;
 import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.TaskWorker;
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils;
 import com.example.sampleproject_1.WaterReminder.model.WaterIntake;
@@ -72,7 +73,7 @@ public class FragmentWaterReminderHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        scheduleNotificationChannel();
+        //scheduleNotificationChannel();
 
         sharedPreferences = this.getActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE);
 
@@ -137,6 +138,7 @@ public class FragmentWaterReminderHome extends Fragment {
 
         return v;
     }
+
 
     private void updateTimeChart() {
 
