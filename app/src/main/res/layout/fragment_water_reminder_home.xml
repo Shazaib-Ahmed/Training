@@ -188,18 +188,8 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/drinkwater" />
 
-                <!--  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_below="@+id/imageViewDrinkWater"
-                      android:layout_centerHorizontal="true"
-                      android:fontFamily="@font/baloo"
-                      android:text="5 L"
-                      android:textColor="@color/yellowButtonColor"
-                      android:textSize="15dp"
-                      android:visibility="gone"/>-->
                 <TextView
-                    android:id="@+id/genderTV"
+                    android:id="@+id/totalIntakeTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageViewDrinkWater"

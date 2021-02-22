@@ -6,7 +6,7 @@
             android:title="Enable Notification"
             app:showAsAction="never"
             />
-        <item android:id="@+id/disableNotificationn"
+        <item android:id="@+id/disableNotification"
             android:title="Disable Notification"
             app:showAsAction="never"
             />

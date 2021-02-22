@@ -139,6 +139,7 @@
             android:layout_centerInParent="true"
             android:hint="Enter Weight"
             android:inputType="number"
+            android:textAlignment="center"
             android:textColor="@color/waterIntake"
             android:textColorHint="#656565"
             android:textSize="15dp"
@@ -201,28 +202,26 @@
 
 
             <TextView
-                android:id="@+id/timePickerBedTV1"
+                android:id="@+id/timePickerBedTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:src="@drawable/drinkwater"
                 android:hint="00:00"
                 android:textColorHint="#8F8F8F"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/timePickerWakeTV1"
+                android:id="@+id/timePickerWakeTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:src="@drawable/drinkwater"
                 android:hint="00:00"
                 android:textColorHint="#8F8F8F"
                 android:textColor="@color/black"
@@ -238,27 +237,25 @@
 
 
             <TextView
-                android:id="@+id/timePickerBedTV"
+                android:id="@+id/timePickerBedSelectTimeTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:src="@drawable/drinkwater"
                 android:text="Select Time"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/timePickerWakeTV"
+                android:id="@+id/timePickerWakeSelectTimeTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:src="@drawable/drinkwater"
                 android:text="Select Time"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
