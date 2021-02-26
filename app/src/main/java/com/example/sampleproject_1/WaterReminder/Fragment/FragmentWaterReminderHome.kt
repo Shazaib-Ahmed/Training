@@ -111,8 +111,8 @@ class FragmentWaterReminderHome : Fragment() {
     private fun updateTimeChart() {
         adapterTime!!.updateData(WaterIntake(currentTime, inTook))
         adapterTime!!.notifyItemInserted(saveDailyData!!.size)
-        entityWaterReminder = EntityWaterReminder(currentTime, inTook, totalIntake, totalInTook)
-        viewModelWaterReminder!!.insert(entityWaterReminder)
+        entityWaterReminder = EntityWaterReminder(0,currentTime, inTook, totalIntake, totalInTook)
+        viewModelWaterReminder?.insert(entityWaterReminder!!)
     }
 
     private fun setWaterLevel(inTook: Int, totalIntake: Int) {

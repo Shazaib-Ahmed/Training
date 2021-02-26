@@ -7,10 +7,11 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [EntityWaterReminder::class], version = 7)
 abstract class DatabaseWaterReminder : RoomDatabase() {
-    abstract fun dataAccessObjectWaterReminder(): DataAccessObjectWaterReminder?
+    abstract fun dataAccessObjectWaterReminder(): DataAccessObjectWaterReminder
 
     companion object {
         private const val dbName = "database_water_reminder"
+
         private var instance: DatabaseWaterReminder? = null
 
         @JvmStatic
@@ -21,6 +22,7 @@ abstract class DatabaseWaterReminder : RoomDatabase() {
                         .fallbackToDestructiveMigration()
                         .build()
             }
+
             return instance
         }
     }

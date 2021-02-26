@@ -24,23 +24,23 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import java.util.*
 
 class FragmentWaterReminderHistory : Fragment() {
-    private var viewModelWaterReminder: ViewModelWaterReminder? = null
+    private lateinit var viewModelWaterReminder: ViewModelWaterReminder
     private lateinit var barChart: BarChart
     var barEntries: ArrayList<BarEntry>? = null
     var labelsNames: ArrayList<String>? = null
     private var sortBySpinner: Spinner? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_water_reminder_history, container, false)
         barChart = v.findViewById(R.id.chart)
         sortBySpinner = v.findViewById(R.id.sortBySpinner)
         setUpSpinner()
-        viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
-        viewModelWaterReminder!!.allData.observe(this.activity!!, Observer<List<EntityWaterReminder?>?> { dailyWaterIntakeData ->
 
-            /* public void onChanged(List<Entry> entries) {
-               // BarDataSet barDataSet = new BarDataSet(entries, "Days");*/
+        viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
+        viewModelWaterReminder.getAllUser.observe(viewLifecycleOwner, Observer<List<EntityWaterReminder?>?> { dailyWaterIntakeData ->
+
             barEntries = ArrayList()
             labelsNames = ArrayList()
             //fillData();
@@ -112,7 +112,9 @@ class FragmentWaterReminderHistory : Fragment() {
         val sortBySpinnerData = resources.getStringArray(R.array.sortByspinner)
         val ad = ArrayAdapter(context!!.applicationContext, android.R.layout.simple_dropdown_item_1line, sortBySpinnerData)
         sortBySpinner!!.adapter = ad
-    } /*private void fillData() {
+    }
+    
+    /*private void fillData() {
         dailyWaterIntakeData.add(new DailyWaterIntakeData("1", 60f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("2", 70f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("3", 50f));
@@ -144,4 +146,5 @@ class FragmentWaterReminderHistory : Fragment() {
         dailyWaterIntakeData.add(new DailyWaterIntakeData("29", 50f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("30", 60f));
     }*/
+
 }

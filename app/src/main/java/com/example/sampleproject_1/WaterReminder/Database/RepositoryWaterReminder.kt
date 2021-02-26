@@ -2,9 +2,23 @@ package com.example.sampleproject_1.WaterReminder.Database
 
 import android.app.Application
 import android.os.AsyncTask
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.sampleproject_1.WaterReminder.Database.DatabaseWaterReminder.Companion.getInstance
+import kotlinx.coroutines.flow.Flow
 
+class RepositoryWaterReminder(private val dataAccessObjectWaterReminder: DataAccessObjectWaterReminder) {
+
+    val getAllUser: LiveData<List<EntityWaterReminder>> = dataAccessObjectWaterReminder.getAllUsers()
+
+
+    suspend fun insert(entityWaterReminder: EntityWaterReminder) {
+        dataAccessObjectWaterReminder.insert(entityWaterReminder)
+    }
+}
+
+
+/*
 class RepositoryWaterReminder(application: Application?) {
     private val dataAccessObjectWaterReminder: DataAccessObjectWaterReminder?
     private val allUsers: MutableLiveData<List<EntityWaterReminder?>?>
@@ -18,9 +32,6 @@ class RepositoryWaterReminder(application: Application?) {
             return allUsers
         }
 
-    /* public LiveData<List<EntityWaterReminder>> getAllUsers(){
-        return allUsers;
-    }*/
     private class InsertUserInfoAsyncTask(private val dataAccessObjectWaterReminder: DataAccessObjectWaterReminder?) : AsyncTask<EntityWaterReminder?, Void?, Void?>() {
         protected override fun doInBackground(vararg entityWaterReminders: EntityWaterReminder?): Void? {
             dataAccessObjectWaterReminder!!.insert(entityWaterReminders[0])
@@ -30,11 +41,7 @@ class RepositoryWaterReminder(application: Application?) {
     }
 
     private class GetWaterReminderData(private val dataAccessObjectWaterReminder: DataAccessObjectWaterReminder?, private val allData: MutableLiveData<List<EntityWaterReminder?>?>) : AsyncTask<Void?, Void?, List<EntityWaterReminder?>?>() {
-        protected override fun doInBackground(vararg params: Void?): List<EntityWaterReminder?>? {
-            //            List<BarEntry> values = new ArrayList<>();
-//            for (int i = 0; i < current.size(); i++) {
-//                values.add(new BarEntry(100f,current.get(i).getKEY_INTOOK()));
-//            }
+        override fun doInBackground(vararg params: Void?): List<EntityWaterReminder?>? {
             return dataAccessObjectWaterReminder!!.getAllUsers
         }
 
@@ -50,4 +57,4 @@ class RepositoryWaterReminder(application: Application?) {
         dataAccessObjectWaterReminder = databaseWaterReminder!!.dataAccessObjectWaterReminder()
         allUsers = MutableLiveData()
     }
-}
+}*/

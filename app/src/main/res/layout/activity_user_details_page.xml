@@ -7,7 +7,6 @@
     android:background="@color/white"
     tools:context=".WaterReminder.UserDetailsPage">
 
-
     <TextView
         android:id="@+id/textViewGender"
         android:layout_width="wrap_content"
@@ -62,7 +61,8 @@
         android:id="@+id/genderRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/genderLinearLayout">
+        android:layout_below="@+id/genderLinearLayout"
+        android:layout_margin="10dp">
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -98,10 +98,17 @@
             android:id="@+id/genderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gender"
+            android:hint="Enter Gender"
+            android:layout_centerHorizontal="true"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textColorHint="#494949" />
+            android:textColorHint="#494949"
+            android:padding="8dp"
+            android:textSize="15dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_margin="20dp"
+            android:background="@drawable/input_design"/>
 
 
     </RelativeLayout>
@@ -133,7 +140,7 @@
 
         <EditText
             android:id="@+id/weightEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageWeight"
             android:layout_centerInParent="true"
@@ -143,9 +150,12 @@
             android:textColor="@color/waterIntake"
             android:textColorHint="#656565"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="@drawable/input_design"
+            android:padding="8dp"
+            android:layout_margin="20dp"/>
 
-        <SeekBar
+      <!--  <SeekBar
             android:id="@+id/weightSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,7 +164,7 @@
             android:background="@color/tabColor"
             android:progress="00"
             android:progressTint="@color/white"
-            android:thumbTint="@color/white" />
+            android:thumbTint="@color/white" />-->
 
     </RelativeLayout>
 
@@ -170,97 +180,98 @@
         <LinearLayout
             android:id="@+id/wakeUpTexView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:weightSum="2">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/baloo"
-                android:text="Bed Time"
-                android:textAlignment="center"
-                android:textColor="@color/waterIntake" />
+                android:orientation="vertical">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/baloo"
+                    android:text="Bed Time"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/waterIntake" />
+
+                <TextView
+                    android:id="@+id/timePickerBedTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="00:00"
+                    android:textColor="@color/black"
+                    android:textColorHint="#8F8F8F"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/timePickerBedSelectTimeTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Select Time"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/baloo"
-                android:text="Wakeup Time"
-                android:textAlignment="center"
-                android:textColor="@color/waterIntake" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/baloo"
+                    android:text="Wakeup Time"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/waterIntake" />
+
+                <TextView
+                    android:id="@+id/timePickerWakeTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="00:00"
+                    android:textColor="@color/black"
+                    android:textColorHint="#8F8F8F"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/timePickerWakeSelectTimeTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Select Time"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+            </LinearLayout>
 
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linearselect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/wakeUpTexView"
-            android:weightSum="2">
 
-
-            <TextView
-                android:id="@+id/timePickerBedTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="00:00"
-                android:textColorHint="#8F8F8F"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/timePickerWakeTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="00:00"
-                android:textColorHint="#8F8F8F"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearselect"
-            android:weightSum="2">
-
-
-            <TextView
-                android:id="@+id/timePickerBedSelectTimeTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Select Time"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/timePickerWakeSelectTimeTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Select Time"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
