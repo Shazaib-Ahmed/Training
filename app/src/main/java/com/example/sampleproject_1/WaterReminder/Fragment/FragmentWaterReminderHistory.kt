@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
+import com.example.sampleproject_1.WaterReminder.viewModelModule
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -21,10 +22,16 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class FragmentWaterReminderHistory : Fragment() {
-    private lateinit var viewModelWaterReminder: ViewModelWaterReminder
+     private lateinit var viewModelWaterReminder: ViewModelWaterReminder
+
+    //private val viewModelWaterReminder by viewModel<ViewModelWaterReminder>()
+
+   // private val viewModelWaterReminder:ViewModelWaterReminder by viewModel()
+
     private lateinit var barChart: BarChart
     var barEntries: ArrayList<BarEntry>? = null
     var labelsNames: ArrayList<String>? = null
@@ -36,20 +43,21 @@ class FragmentWaterReminderHistory : Fragment() {
         val v = inflater.inflate(R.layout.fragment_water_reminder_history, container, false)
         barChart = v.findViewById(R.id.chart)
         sortBySpinner = v.findViewById(R.id.sortBySpinner)
+
         setUpSpinner()
 
         viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
-        viewModelWaterReminder.getAllUser.observe(viewLifecycleOwner, Observer<List<EntityWaterReminder?>?> { dailyWaterIntakeData ->
 
+       viewModelWaterReminder.getAllUser.observe(viewLifecycleOwner, Observer<List<EntityWaterReminder>> { dailyWaterIntakeData ->
             barEntries = ArrayList()
             labelsNames = ArrayList()
             //fillData();
             for (i in dailyWaterIntakeData!!.indices) {
-                val day = dailyWaterIntakeData?.get(i)?.kEY_DATE
-                val percentage = dailyWaterIntakeData?.get(i)?.kEY_INTOOK?.toFloat()
+                val day = dailyWaterIntakeData[i].kEY_DATE
+                val percentage = dailyWaterIntakeData[i].kEY_INTOOK.toFloat()
                 Log.e("data", "$day  ===DAILY_DATA===  $percentage")
                 if (day != null) {
-                    barEntries!!.add(BarEntry(i.toFloat(), percentage!!))
+                    barEntries!!.add(BarEntry(i.toFloat(), percentage))
                     labelsNames!!.add(day)
                 }
             }
@@ -113,7 +121,7 @@ class FragmentWaterReminderHistory : Fragment() {
         val ad = ArrayAdapter(context!!.applicationContext, android.R.layout.simple_dropdown_item_1line, sortBySpinnerData)
         sortBySpinner!!.adapter = ad
     }
-    
+
     /*private void fillData() {
         dailyWaterIntakeData.add(new DailyWaterIntakeData("1", 60f));
         dailyWaterIntakeData.add(new DailyWaterIntakeData("2", 70f));

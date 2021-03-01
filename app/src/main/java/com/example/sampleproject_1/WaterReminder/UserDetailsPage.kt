@@ -18,6 +18,7 @@ import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
+import org.koin.android.ext.android.inject
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -25,34 +26,44 @@ import java.util.*
 
 class UserDetailsPage : AppCompatActivity() {
 
-    private var sleepingTime: String? = null
-    private var wakeUptime: String? = null
+    private lateinit var sleepingTime: String
+    private lateinit var wakeUptime: String
     private var weight = 0
-    private lateinit var sharedPreferences: SharedPreferences
+    //private lateinit var sharedPreferences: SharedPreferences
+
+    private val sharedPreferences: SharedPreferences by inject()
+    private val viewModelWaterReminder: ViewModelWaterReminder by inject()
+
     private val gender: String? = null
-    var continueTextView: TextView? = null
+    private lateinit var continueTextView: TextView
     var genderEditText: EditText? = null
     var weightEditText: EditText? = null
-    var timePickerBedSelectTimeTV: TextView? = null
-    var timePickerWakeSelectTimeTV: TextView? = null
-    private val entityWaterReminders: List<EntityWaterReminder> = ArrayList()
+    private lateinit var timePickerBedSelectTimeTV: TextView
+    private lateinit var timePickerWakeSelectTimeTV: TextView
+
+    // private val entityWaterReminders: List<EntityWaterReminder> = ArrayList()
     var timePickerBedTV: TextView? = null
     var timePickerWakeTV: TextView? = null
     var actionBar: ActionBar? = null
-    private lateinit var viewModelWaterReminder: ViewModelWaterReminder
+    //private lateinit var viewModelWaterReminder: ViewModelWaterReminder
     private var getMaleOption: RadioButton? = null
     private var getFemaleOption: RadioButton? = null
     private var hourPick = 0
     private var minutePick = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details_page)
+
         initialisationFields()
+
         actionBar = supportActionBar
         actionBar!!.title = "Home Page"
         val colorDrawable = ColorDrawable(Color.parseColor("#3F51B5"))
         actionBar!!.setBackgroundDrawable(colorDrawable)
-        viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
+
+        //viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
+
         timePickerBedSelectTimeTV!!.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
                     android.R.style.Theme_Holo_Dialog_MinWidth,
@@ -75,6 +86,7 @@ class UserDetailsPage : AppCompatActivity() {
             timePickerDialog.updateTime(hourPick, minutePick)
             timePickerDialog.show()
         }
+
         timePickerWakeSelectTimeTV!!.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
                     android.R.style.Theme_Holo_Dialog_MinWidth,
@@ -115,7 +127,7 @@ class UserDetailsPage : AppCompatActivity() {
         }
 
         val data = Intent(this@UserDetailsPage, HomePage::class.java)
-        sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+        //sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val editor = sharedPreferences.edit()
         editor.putBoolean(AppUtils.FIRST_RUN_KEY, false)
         editor.putString(AppUtils.WAKE_UP_TIME_KEY, timeWake)

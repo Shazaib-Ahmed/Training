@@ -8,13 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.AutoStartHelper
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
+import org.koin.android.ext.android.inject
 
 class IntroductionPage : AppCompatActivity() {
-    private var sharedPreferences: SharedPreferences? = null
+    //private lateinit var sharedPreferences: SharedPreferences
+
+    private val sharedPreferences: SharedPreferences by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_introduction_page)
-        sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+        //sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         autoStartNotification()
     }
 

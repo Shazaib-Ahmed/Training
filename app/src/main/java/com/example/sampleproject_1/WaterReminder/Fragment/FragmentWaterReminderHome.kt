@@ -23,6 +23,8 @@ import com.example.sampleproject_1.WaterReminder.model.WaterIntake
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import me.itangqi.waveloadingview.WaveLoadingView
+import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -32,8 +34,9 @@ class FragmentWaterReminderHome : Fragment() {
     private var totalIntakeTV: TextView? = null
     private var addWater: TextView? = null
     private lateinit var remainingWater: TextView
-    private var viewModelWaterReminder: ViewModelWaterReminder? = null
-    private lateinit var sharedPreferences: SharedPreferences
+
+    // private var viewModelWaterReminder: ViewModelWaterReminder? = null
+    //private lateinit var sharedPreferences: SharedPreferences
     private var entityWaterReminder: EntityWaterReminder? = null
     private var progress = 0
     private var inTook = 0
@@ -43,27 +46,33 @@ class FragmentWaterReminderHome : Fragment() {
     private var saveDailyData: ArrayList<WaterIntake>? = null
     private var adapterTime: TodayWaterIntakeAdapter? = null
 
-    //var context: Context
+    private val viewModelWR: ViewModelWaterReminder by inject()
+    private val sharedPreferences: SharedPreferences by inject()
+
+    //var context: Context3
+
     private lateinit var waveLoadingView: WaveLoadingView
     private val calendar = Calendar.getInstance()
     private val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
     private val currentTime = simpleDateFormat.format(calendar.time)
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        sharedPreferences = this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+       // sharedPreferences = this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val v = inflater.inflate(R.layout.fragment_water_reminder_home, container, false)
         userWeight = v.findViewById(R.id.userWeightTextView)
         totalIntakeTV = v.findViewById(R.id.totalIntakeTV)
         waveLoadingView = v.findViewById(R.id.progress_bar)
 
-       // addWater = v.findViewById(R.id.add_water)
 
-        addWater = v.findViewById(R.id.add_water)as TextView
+        // addWater = v.findViewById(R.id.add_water)
+
+        addWater = v.findViewById(R.id.add_water) as TextView
 
         remainingWater = v.findViewById(R.id.remainingWater)
         timeIntakeWaterListRV = v.findViewById(R.id.time_intake_water_list)
-        viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
+        //viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
         val w = sharedPreferences.getInt(AppUtils.WEIGHT_KEY, 0)
         val g = sharedPreferences.getString(AppUtils.GENDER_KEY, "")
         totalIntake = sharedPreferences.getInt(AppUtils.TOTAL_INTAKE, 0)
@@ -103,7 +112,7 @@ class FragmentWaterReminderHome : Fragment() {
 */
 
         userWeight!!.text = "$w kg"
-        var totalIntakeInLitreTV = (totalIntake /1000).toString()
+        var totalIntakeInLitreTV = (totalIntake / 1000).toString()
         totalIntakeTV!!.text = "$totalIntakeInLitreTV L"
         return v
     }
@@ -111,8 +120,10 @@ class FragmentWaterReminderHome : Fragment() {
     private fun updateTimeChart() {
         adapterTime!!.updateData(WaterIntake(currentTime, inTook))
         adapterTime!!.notifyItemInserted(saveDailyData!!.size)
-        entityWaterReminder = EntityWaterReminder(0,currentTime, inTook, totalIntake, totalInTook)
-        viewModelWaterReminder?.insert(entityWaterReminder!!)
+        // entityWaterReminder = EntityWaterReminder(0,currentTime, inTook, totalIntake, totalInTook)
+        // viewModelWaterReminder?.insert(entityWaterReminder!!)
+        viewModelWR.insert(entityWaterReminder = EntityWaterReminder(0, currentTime, inTook, totalIntake, totalInTook))
+
     }
 
     private fun setWaterLevel(inTook: Int, totalIntake: Int) {
@@ -130,18 +141,18 @@ class FragmentWaterReminderHome : Fragment() {
         remainingWater!!.text = "$totalInTook/$totalIntake ml"
     }
 
- /*   //    private void setWaterLevel(int inTook, int totalIntake) {
-    //
-    //        Log.e("intook",inTook+"    "+totalIntake);
-    //        if (((inTook * 100) / totalIntake) > 140) {
-    //            Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
-    //        } else {
-    //            progress = ((inTook / totalIntake) * 100);
-    //            waveLoadingView.setProgressValue(progress);
-    //            waveLoadingView.setCenterTitle(progress + " %");
-    //        }
-    //        remainingWater.setText(inTook + "/" + totalIntake + " ml");
-    //    }*/
+    /*   //    private void setWaterLevel(int inTook, int totalIntake) {
+       //
+       //        Log.e("intook",inTook+"    "+totalIntake);
+       //        if (((inTook * 100) / totalIntake) > 140) {
+       //            Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
+       //        } else {
+       //            progress = ((inTook / totalIntake) * 100);
+       //            waveLoadingView.setProgressValue(progress);
+       //            waveLoadingView.setCenterTitle(progress + " %");
+       //        }
+       //        remainingWater.setText(inTook + "/" + totalIntake + " ml");
+       //    }*/
     /*
     public void addWater(int inTook){
        // inTook = 200;
