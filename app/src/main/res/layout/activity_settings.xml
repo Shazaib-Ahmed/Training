@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/general_set"
             android:layout_margin="10dp"
-            android:background="#F8F8F8"
+            android:background="@drawable/settings_grey_background"
             android:orientation="vertical">
 
             <TextView
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/personal_in"
             android:layout_margin="10dp"
-            android:background="#F8F8F8"
+            android:background="@drawable/settings_grey_background"
             android:orientation="vertical">
 
             <TextView
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/developer"
             android:layout_margin="10dp"
-            android:background="#F8F8F8"
+            android:background="@drawable/settings_grey_background"
             android:orientation="vertical">
 
             <TextView
