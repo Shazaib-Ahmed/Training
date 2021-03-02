@@ -30,12 +30,13 @@ class FragmentWaterReminderHistory : Fragment() {
 
     //private val viewModelWaterReminder by viewModel<ViewModelWaterReminder>()
 
-   // private val viewModelWaterReminder:ViewModelWaterReminder by viewModel()
+ //  private val viewModelWaterReminder:ViewModelWaterReminder by viewModel()
 
     private lateinit var barChart: BarChart
     var barEntries: ArrayList<BarEntry>? = null
     var labelsNames: ArrayList<String>? = null
     private var sortBySpinner: Spinner? = null
+    
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WaterReminder.Settings">
+
+    <RelativeLayout
+        android:id="@+id/general_relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/general_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10sp"
+            android:fontFamily="@font/poppins_normal"
+            android:gravity="top"
+            android:text="@string/general_set"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/general_LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/general_set"
+            android:layout_margin="10dp"
+            android:background="#F8F8F8"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/notification"
+                app:drawableStartCompat="@drawable/noti"
+                />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#AFAFAF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/reminder_schedule"
+                app:drawableEndCompat="@drawable/more"
+                app:drawableStartCompat="@drawable/notification" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#AFAFAF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/reminder_tone"
+                app:drawableEndCompat="@drawable/more"
+                app:drawableStartCompat="@drawable/tone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/personal_in_Relative_Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/general_relativeLayout"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/personal_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10sp"
+            android:fontFamily="@font/poppins_normal"
+            android:text="@string/personal_in"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/personal_in_LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/personal_in"
+            android:layout_margin="10dp"
+            android:background="#F8F8F8"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/clear_data"
+                app:drawableStartCompat="@drawable/ic_clear_data" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#AFAFAF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/update_data"
+                app:drawableEndCompat="@drawable/more"
+                app:drawableStartCompat="@drawable/ic_update_data" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/developer_Relative_Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personal_in_Relative_Layout"
+        android:layout_margin="10dp">
+
+                                                                                                <TextView
+            android:id="@+id/developer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10sp"
+            android:fontFamily="@font/poppins_normal"
+            android:text="@string/developer"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/developer_LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/developer"
+            android:layout_margin="10dp"
+            android:background="#F8F8F8"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/feedback"
+                app:drawableEndCompat="@drawable/more"
+                app:drawableStartCompat="@drawable/ic_feedback" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#AFAFAF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/rate_app"
+                app:drawableEndCompat="@drawable/more"
+                app:drawableStartCompat="@drawable/ic_rating" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#AFAFAF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/share_app"
+                app:drawableEndCompat="@drawable/more"
+                app:drawableStartCompat="@drawable/ic_share" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#AFAFAF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="@string/more_apps"
+                app:drawableEndCompat="@drawable/more"
+                app:drawableStartCompat="@drawable/ic_more_apps" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

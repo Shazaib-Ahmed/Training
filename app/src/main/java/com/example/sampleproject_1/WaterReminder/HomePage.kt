@@ -1,9 +1,7 @@
 package com.example.sampleproject_1.WaterReminder
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +14,6 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Adapter.TabAccessAdapter
-import com.example.sampleproject_1.WaterReminder.Dialog.BottomSheetDialog.BottomSheetListener
 import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.TaskWorker
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.google.android.material.tabs.TabLayout
@@ -29,6 +26,7 @@ class HomePage : AppCompatActivity() {
     private var actionBar: ActionBar? = null
     private lateinit var sharedPreferences: SharedPreferences
     private var editor: SharedPreferences.Editor? = null
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.menu_water_reminder, menu)
@@ -37,16 +35,9 @@ class HomePage : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.enableNotification -> {
-                Toast.makeText(this, "Notification Scheduled", Toast.LENGTH_SHORT).show()
-                scheduleNotificationChannel()
-                //item.setVisible(false);
-                true
-            }
-            R.id.disableNotification -> {
-                cancelNotification()
-                Toast.makeText(this, "Notification Disabled", Toast.LENGTH_SHORT).show()
-                //item.setVisible(false);
+            R.id.settings -> {
+                val data = Intent(this, Settings::class.java)
+                startActivity(data)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -56,10 +47,7 @@ class HomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
-        actionBar = supportActionBar
-        actionBar!!.title = "Home Page"
-        val colorDrawable = ColorDrawable(Color.parseColor("#3F51B5"))
-        actionBar!!.setBackgroundDrawable(colorDrawable)
+        supportActionBar!!.title = "Home Page"
         viewPager = findViewById<View>(R.id.main_tabs_pager) as ViewPager
         tabsAccessAdapter = TabAccessAdapter(supportFragmentManager)
         viewPager!!.adapter = tabsAccessAdapter

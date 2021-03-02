@@ -11,5 +11,19 @@
         <item>Weekly</item>
     </string-array>
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
-
+    <string name="gender">
+Gender
+</string>
+    <string name="general_set">General Settings</string>
+    <string name="notification">Notification</string>
+    <string name="reminder_tone">Reminder Tone</string>
+    <string name="personal_in">Personal Information</string>
+    <string name="reminder_schedule">Reminder Schedule</string>
+    <string name="clear_data">Clear Data</string>
+    <string name="update_data">Update Data</string>
+    <string name="developer">Developer</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate_app">Rate App</string>
+    <string name="share_app">Share App</string>
+    <string name="more_apps">More Apps</string>
 </resources>
