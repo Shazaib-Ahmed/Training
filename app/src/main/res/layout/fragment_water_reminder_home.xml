@@ -58,13 +58,14 @@
                     android:textAlignment="center"
                     android:textColor="@color/tabColor"
                     android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_normal"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/poppins_normal"
                     android:text="Water Intake"
                     android:textAlignment="center"
                     android:textColor="@color/waterIntake"
@@ -78,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/yellowbuttondesign"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/poppins_normal"
                     android:gravity="center"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
@@ -96,7 +97,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:background="@drawable/yellowbuttondesign"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/poppins_normal"
                     android:gravity="center"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
@@ -112,13 +113,14 @@
             android:id="@+id/linear2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#D5E0E1"
+            android:background="@drawable/vector_grey_down"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical">
 
 
                 <TextView
@@ -126,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/poppins_normal"
                     android:text="Suggested Water"
                     android:textColor="#3F51B5"
                     android:textSize="15dp" />
@@ -137,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/suggested_water"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/poppins_normal"
                     android:text="Intake Per Day"
                     android:textColor="#FFC107"
                     android:textSize="12dp" />
@@ -149,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/intake_per_day"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/meter" />
+                    android:src="@drawable/weight" />
 
                 <TextView
                     android:id="@+id/userWeightTextView"
@@ -157,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/weight_meter"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/poppins_normal"
                     android:text="65 Kg"
                     android:textColor="#3F51B5"
                     android:textSize="15dp" />
@@ -181,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageViewDrinkWater"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/poppins_normal"
                     android:text="5 L"
                     android:textColor="@color/yellowButtonColor"
                     android:textSize="15dp" />
