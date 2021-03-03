@@ -29,7 +29,6 @@ class UserDetailsPage : AppCompatActivity() {
     private lateinit var sleepingTime: String
     private lateinit var wakeUptime: String
     private var weight = 0
-    //private lateinit var sharedPreferences: SharedPreferences
 
     private val sharedPreferences: SharedPreferences by inject()
     private val viewModelWaterReminder: ViewModelWaterReminder by inject()
@@ -41,13 +40,6 @@ class UserDetailsPage : AppCompatActivity() {
     private lateinit var timePickerBedSelectTimeTV: TextView
     private lateinit var timePickerWakeSelectTimeTV: TextView
 
-    // private val entityWaterReminders: List<EntityWaterReminder> = ArrayList()
-    var timePickerBedTV: TextView? = null
-    var timePickerWakeTV: TextView? = null
-    var actionBar: ActionBar? = null
-    //private lateinit var viewModelWaterReminder: ViewModelWaterReminder
-    private var getMaleOption: RadioButton? = null
-    private var getFemaleOption: RadioButton? = null
     private var hourPick = 0
     private var minutePick = 0
 
@@ -57,14 +49,9 @@ class UserDetailsPage : AppCompatActivity() {
 
         initialisationFields()
 
-        actionBar = supportActionBar
-        actionBar!!.title = "Home Page"
-        val colorDrawable = ColorDrawable(Color.parseColor("#3F51B5"))
-        actionBar!!.setBackgroundDrawable(colorDrawable)
+        supportActionBar!!.title = "User Details"
 
-        //viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
-
-        timePickerBedSelectTimeTV!!.setOnClickListener {
+        timePickerBedSelectTimeTV.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
                     android.R.style.Theme_Holo_Dialog_MinWidth,
                     OnTimeSetListener { view, hourOfDay, minute ->
@@ -75,7 +62,7 @@ class UserDetailsPage : AppCompatActivity() {
                         try {
                             val date = f24hours.parse(sleepingTime)
                             val f12hours = SimpleDateFormat("hh:mm aa")
-                            timePickerBedTV!!.text = f12hours.format(date)
+                            timePickerBedSelectTimeTV.text = f12hours.format(date)
                         } catch (e: ParseException) {
                             e.printStackTrace()
                         }
@@ -87,7 +74,7 @@ class UserDetailsPage : AppCompatActivity() {
             timePickerDialog.show()
         }
 
-        timePickerWakeSelectTimeTV!!.setOnClickListener {
+        timePickerWakeSelectTimeTV.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
                     android.R.style.Theme_Holo_Dialog_MinWidth,
                     OnTimeSetListener { view, hourOfDay, minute ->
@@ -98,7 +85,7 @@ class UserDetailsPage : AppCompatActivity() {
                         try {
                             val date = f24hours.parse(wakeUptime)
                             val f12hours = SimpleDateFormat("hh:mm aa")
-                            timePickerWakeTV!!.text = f12hours.format(date)
+                            timePickerWakeSelectTimeTV.text = f12hours.format(date)
                         } catch (e: ParseException) {
                             e.printStackTrace()
                         }
@@ -109,16 +96,18 @@ class UserDetailsPage : AppCompatActivity() {
             timePickerDialog.updateTime(hourPick, minutePick)
             timePickerDialog.show()
         }
+
         continueTextView!!.setOnClickListener { saveUserInfo() }
+
     }
 
     private fun saveUserInfo() {
-        if (genderEditText!!.text.toString().isEmpty() || weightEditText!!.text.toString().isEmpty() || timePickerWakeTV!!.text.toString().isEmpty() || timePickerBedTV!!.text.toString().isEmpty()) {
+        if (genderEditText!!.text.toString().isEmpty() || weightEditText!!.text.toString().isEmpty() || timePickerWakeSelectTimeTV!!.text.toString().isEmpty() || timePickerBedSelectTimeTV!!.text.toString().isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
-        val timeBed = timePickerBedTV!!.text.toString()
-        val timeWake = timePickerWakeTV!!.text.toString()
+        val timeBed = timePickerBedSelectTimeTV.text.toString()
+        val timeWake = timePickerWakeSelectTimeTV.text.toString()
         weight = weightEditText!!.text.toString().toInt()
 
         if (weight > 200 || weight < 20) {
@@ -127,7 +116,6 @@ class UserDetailsPage : AppCompatActivity() {
         }
 
         val data = Intent(this@UserDetailsPage, HomePage::class.java)
-        //sharedPreferences = getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val editor = sharedPreferences.edit()
         editor.putBoolean(AppUtils.FIRST_RUN_KEY, false)
         editor.putString(AppUtils.WAKE_UP_TIME_KEY, timeWake)
@@ -144,17 +132,13 @@ class UserDetailsPage : AppCompatActivity() {
     }
 
     private fun initialisationFields() {
-        getMaleOption = findViewById(R.id.maleOption)
-        getFemaleOption = findViewById(R.id.femaleOption)
-        getMaleOption = findViewById(R.id.maleOption)
-        getFemaleOption = findViewById(R.id.femaleOption)
+
         continueTextView = findViewById(R.id.bottomContinueButtonUserDetailsPage)
         weightEditText = findViewById(R.id.weightEditText)
         genderEditText = findViewById(R.id.genderEditText)
         timePickerBedSelectTimeTV = findViewById(R.id.timePickerBedSelectTimeTV)
         timePickerWakeSelectTimeTV = findViewById(R.id.timePickerWakeSelectTimeTV)
-        timePickerBedTV = findViewById(R.id.timePickerBedTV)
-        timePickerWakeTV = findViewById(R.id.timePickerWakeTV)
+
     }
 
     companion object {

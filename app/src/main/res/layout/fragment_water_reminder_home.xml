@@ -6,14 +6,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -27,6 +26,7 @@
                     android:id="@+id/progress_bar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
                     app:wlv_borderColor="#8D98D3"
                     app:wlv_borderWidth="4dp"
                     app:wlv_progressValue="0"
@@ -39,8 +39,7 @@
                     app:wlv_titleCenterStrokeWidth="2dp"
                     app:wlv_triangle_direction="north"
                     app:wlv_waveAmplitude="60"
-                    app:wlv_waveColor="@color/tabColor"
-                    android:layout_centerInParent="true"/>
+                    app:wlv_waveColor="@color/tabColor" />
             </RelativeLayout>
 
             <LinearLayout
@@ -53,13 +52,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_normal"
                     android:padding="5dp"
                     android:text="Keep Track of"
                     android:textAlignment="center"
                     android:textColor="@color/tabColor"
                     android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins_normal"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -117,10 +116,10 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical">
+                android:gravity="center_vertical">
 
 
                 <TextView
@@ -166,16 +165,16 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageViewDrinkWater"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="130dp"
+                    android:layout_height="113dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/drinkwater" />
+                    android:background="@drawable/ic_drinking_water" />
 
                 <TextView
                     android:id="@+id/totalIntakeTV"

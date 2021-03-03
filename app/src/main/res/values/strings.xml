@@ -26,4 +26,5 @@ Gender
     <string name="rate_app">Rate App</string>
     <string name="share_app">Share App</string>
     <string name="more_apps">More Apps</string>
+    <string name="enter_weight">Enter Weight</string>
 </resources>

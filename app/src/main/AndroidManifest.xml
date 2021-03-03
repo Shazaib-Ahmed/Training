@@ -25,7 +25,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".WaterReminder.UserDetailsPage"
-            android:parentActivityName=".WaterReminder.IntroductionPage" />
+             />
         <activity
             android:name=".WaterReminder.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
