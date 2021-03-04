@@ -11,6 +11,7 @@ object AppUtils {
     @JvmField
     var WEIGHT_KEY = "weight"
     var FIRST_RUN_KEY = "firstrun"
+    var NOTIFICATION_KEY = "notificationkey"
     var WORK_TIME_KEY = "worktime"
 
     @JvmField

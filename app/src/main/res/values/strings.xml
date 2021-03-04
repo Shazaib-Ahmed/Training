@@ -10,6 +10,10 @@
         <item>Yearly</item>
         <item>Weekly</item>
     </string-array>
+    <string-array name="genderSpinnerList">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="gender">
 Gender
@@ -27,4 +31,5 @@ Gender
     <string name="share_app">Share App</string>
     <string name="more_apps">More Apps</string>
     <string name="enter_weight">Enter Weight</string>
+    <string name="clear_all_data">Do you want to clear all data?</string>
 </resources>

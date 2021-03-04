@@ -96,7 +96,7 @@ class FragmentWaterReminderHome : Fragment() {
                 updateTimeChart()
                 saveData()
             } else {
-                Toast.makeText(getContext()!!.applicationContext, "You are done for the day", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context!!.applicationContext, "You are done for the day", Toast.LENGTH_SHORT).show()
             }
         })
 

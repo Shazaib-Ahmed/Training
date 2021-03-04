@@ -15,6 +15,11 @@ class RepositoryWaterReminder(private val dataAccessObjectWaterReminder: DataAcc
     suspend fun insert(entityWaterReminder: EntityWaterReminder) {
         dataAccessObjectWaterReminder.insert(entityWaterReminder)
     }
+
+    suspend fun deleteAllData(){
+        dataAccessObjectWaterReminder.deleteAllData()
+    }
+
 }
 
 

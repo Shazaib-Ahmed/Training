@@ -22,4 +22,7 @@ interface DataAccessObjectWaterReminder {
 
     @Query("SELECT * from water_reminder_users_stats")
     fun getAllUsers(): LiveData<List<EntityWaterReminder>>
+
+    @Query("DELETE from water_reminder_users_stats")
+    suspend fun deleteAllData()
 }

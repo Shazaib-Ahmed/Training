@@ -57,22 +57,4 @@ class HomePage : AppCompatActivity() {
         editor = sharedPreferences.edit()
     }
 
-
-    private fun scheduleNotificationChannel() {
-
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
-                .setInitialDelay(15,TimeUnit.MINUTES)
-                .build()
-
-        WorkManager.getInstance().enqueue(periodicWorkRequest)
-
-    }
-
-    private fun cancelNotification() {
-        WorkManager.getInstance().cancelAllWork()
-
-        Toast.makeText(this, "Notification Canceled", Toast.LENGTH_SHORT).show()
-    }
-
-
 }

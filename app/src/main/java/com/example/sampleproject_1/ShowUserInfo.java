@@ -50,6 +50,7 @@ public class ShowUserInfo extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

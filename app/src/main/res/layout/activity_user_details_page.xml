@@ -11,7 +11,7 @@
         android:id="@+id/genderLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/vector_grey_down">
+        android:background="@drawable/greyyyyyyy">
 
         <TextView
             android:id="@+id/textViewGender"
@@ -82,9 +82,8 @@
             android:layout_below="@+id/genderLinearLayoutt"
             android:layout_margin="10dp">
 
-
-            <EditText
-                android:id="@+id/genderEditText"
+            <Spinner
+                android:id="@+id/genderSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -98,8 +97,8 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textColorHint="#494949"
-                android:textSize="15dp" />
-
+                android:textSize="15dp"
+                android:spinnerMode="dropdown"/>
 
         </RelativeLayout>
 
@@ -137,11 +136,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageWeight"
-            android:layout_centerInParent="true"
-            android:layout_margin="20dp"
+            android:layout_margin="0dp"
             android:backgroundTint="@color/tabColor"
             android:fontFamily="@font/poppins_normal"
             android:hint="@string/enter_weight"
+            android:layout_centerHorizontal="true"
             android:inputType="number"
             android:padding="8dp"
             android:textAlignment="center"

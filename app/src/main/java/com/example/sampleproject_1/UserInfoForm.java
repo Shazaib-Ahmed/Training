@@ -98,7 +98,9 @@ public class UserInfoForm extends AppCompatActivity {
 
 
         });
+
         loadData();
+
         updateViews();
 
     }

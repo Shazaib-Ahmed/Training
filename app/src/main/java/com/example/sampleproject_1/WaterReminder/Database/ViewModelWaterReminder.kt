@@ -38,4 +38,11 @@ class ViewModelWaterReminder(application: Application) :AndroidViewModel(applica
             repositoryWaterReminder.insert(entityWaterReminder)
         }
     }
+
+    fun deleteAllData(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repositoryWaterReminder.deleteAllData()
+        }
+    }
+
 }
