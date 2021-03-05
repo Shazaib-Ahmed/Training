@@ -1,93 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_margin="20dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_normal"
+        android:text="Switch Cup"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="2dp"
-        >
-        <TextView
-            android:id="@+id/textView_100ml"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="100 ml"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_margin="15dp"
-            android:background="@drawable/border_design_card_view_2"/>
-        <TextView
-            android:id="@+id/textView_200ml"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="200 ml"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_margin="15dp"
-            android:background="@drawable/border_design_card_view_2"/>
-        <TextView
-            android:id="@+id/textView_300ml"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="300 ml"
-            android:layout_weight="1"
-            android:textAlignment="center"
+        android:orientation="horizontal">
 
-            android:layout_margin="15dp"
-            android:background="@drawable/border_design_card_view_2"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/switch_cup_item_background">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <RelativeLayout
+                    android:id="@+id/ml100_relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_cup_background">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_cup_vector" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ml100_relative_layout"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:text="100 ml" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="8sp"
+                android:src="@drawable/ic_baseline_more_vert" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/switch_cup_item_background">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <RelativeLayout
+                    android:id="@+id/ml200_relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_glass_background">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_glass_vector" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ml200_relative_layout"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:text="200 ml" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="8sp"
+                android:src="@drawable/ic_baseline_more_vert" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/switch_cup_item_background">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <RelativeLayout
+                    android:id="@+id/ml300_relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_jug_background">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_jug_vector" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ml300_relative_layout"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:text="300 ml" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="8sp"
+                android:src="@drawable/ic_baseline_more_vert" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="2dp">
-        <TextView
-            android:id="@+id/textView_400ml"
+        android:orientation="horizontal">
 
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="400 ml"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_margin="15dp"
-            android:background="@drawable/border_design_card_view_2"/>
-        <TextView
-            android:id="@+id/textView_500ml"
+            android:background="@drawable/switch_cup_item_background">
 
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="500 ml"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_margin="15dp"
-            android:background="@drawable/border_design_card_view_2"/>
-        <TextView
-            android:id="@+id/textView_800ml"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
 
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="800 ml"
+                <RelativeLayout
+                    android:id="@+id/ml400_relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_bottle_background">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_bottle_vector" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ml400_relative_layout"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:text="400 ml" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="8sp"
+                android:src="@drawable/ic_baseline_more_vert" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_margin="15dp"
-            android:background="@drawable/border_design_card_view_2"/>
+            android:background="@drawable/switch_cup_item_background">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <RelativeLayout
+                    android:id="@+id/ml500_relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_big_bottle_background">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_big_bottle_vector" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ml500_relative_layout"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:text="500 ml" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="8sp"
+                android:src="@drawable/ic_baseline_more_vert" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/switch_cup_item_background">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <RelativeLayout
+                    android:id="@+id/ml800_relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_big_jug_background">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_big_jug_vector" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ml800_relative_layout"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:text="100 ml" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="8sp"
+                android:src="@drawable/ic_baseline_more_vert" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
+
+
 
 </LinearLayout>

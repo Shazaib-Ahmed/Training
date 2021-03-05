@@ -6,9 +6,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -49,6 +51,7 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
     private var minutePick = 0
     private var genderValue = 0
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details_page)
@@ -66,8 +69,8 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
         timePickerBedSelectTimeTV.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
-                    android.R.style.Theme_Holo_Dialog_MinWidth,
-                    OnTimeSetListener { view, hourOfDay, minute ->
+                    android.R.style.ThemeOverlay_Material_Dark,
+                    OnTimeSetListener { _, hourOfDay, minute ->
                         hourPick = hourOfDay
                         minutePick = minute
                         sleepingTime = "$hourPick:$minutePick"
@@ -90,7 +93,7 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         timePickerWakeSelectTimeTV.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
                     android.R.style.Theme_Holo_Dialog_MinWidth,
-                    OnTimeSetListener { view, hourOfDay, minute ->
+                    OnTimeSetListener { _, hourOfDay, minute ->
                         hourPick = hourOfDay
                         minutePick = minute
                         wakeUptime = "$hourPick:$minutePick"

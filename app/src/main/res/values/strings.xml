@@ -32,4 +32,5 @@ Gender
     <string name="more_apps">More Apps</string>
     <string name="enter_weight">Enter Weight</string>
     <string name="clear_all_data">Do you want to clear all data?</string>
+    <string name="customize_cup">Customize your drinking cup</string>
 </resources>

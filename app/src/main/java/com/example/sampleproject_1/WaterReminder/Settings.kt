@@ -38,10 +38,9 @@ class Settings : AppCompatActivity() {
 
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_two_buttons)
-        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_border))
+        //dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_border))
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.setCancelable(false)
-
 
         val clearUserData = findViewById<TextView>(R.id.clear_user_data)
         val updateUserData = findViewById<TextView>(R.id.update_user_data)
@@ -51,24 +50,20 @@ class Settings : AppCompatActivity() {
 
         val switchh = sharedPreferences.getBoolean(AppUtils.NOTIFICATION_KEY, false)
 
-
-
-
-
         switchNotification.isChecked = switchh
 
-
         clearUserData.setOnClickListener {
-        //clearAllUserData()
             dialog.show()
 
             yesBtn.setOnClickListener {
                 clearAllUserData()
-                dialog.dismiss()}
+                dialog.dismiss()
+            }
 
             noBtn.setOnClickListener {
                 dialog.dismiss()
-            }}
+            }
+        }
 
         updateUserData.setOnClickListener { updateUserDataFun() }
 
@@ -91,20 +86,12 @@ class Settings : AppCompatActivity() {
     }
 
     private fun clearAllUserData() {
-
-       /* val builder = AlertDialog.Builder(this)
-        builder.setPositiveButton("Yes") { _, _ ->*/
-            sharedPreferences.edit().clear().apply()
-            viewModelWaterReminder.deleteAllData()
-            val intent = Intent(this, UserDetailsPage::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-            finishAffinity()
-       // }
-       /* builder.setNegativeButton("No") { _, _ -> }
-        builder.setTitle("Clear Data")
-        builder.setMessage("Do you want to clear all data?")
-        builder.create().show()*/
+        sharedPreferences.edit().clear().apply()
+        viewModelWaterReminder.deleteAllData()
+        val intent = Intent(this, UserDetailsPage::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        finishAffinity()
     }
 
     private fun updateUserDataFun() {

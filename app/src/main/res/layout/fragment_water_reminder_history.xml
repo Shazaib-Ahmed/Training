@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/chart"
-        android:layout_margin="3dp"
+        android:layout_margin="10dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 
@@ -57,20 +57,20 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/blue_week_circle"
+                    android:background="@drawable/blue_wekk_opening"
                     android:scaleType="center"
                     android:src="@drawable/ic_water_glass" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="MON"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_normal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -83,20 +83,20 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_week_circle"
+                    android:background="@drawable/yellow_week_opening"
                     android:scaleType="center"
                     android:src="@drawable/ic_water_glass" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="TUE"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_normal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -109,20 +109,20 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/blue_week_circle"
+                    android:background="@drawable/blue_wekk_opening"
                     android:scaleType="center"
                     android:src="@drawable/ic_water_glass" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="WED"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_normal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -135,20 +135,20 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_week_circle"
+                    android:background="@drawable/yellow_week_opening"
                     android:scaleType="center"
                     android:src="@drawable/ic_water_glass" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="THU"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_normal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -161,20 +161,20 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/blue_week_circle"
+                    android:background="@drawable/blue_wekk_opening"
                     android:scaleType="center"
                     android:src="@drawable/ic_water_glass" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="FRI"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_normal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -187,20 +187,20 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_week_circle"
+                    android:background="@drawable/yellow_week_opening"
                     android:scaleType="center"
                     android:src="@drawable/ic_water_glass" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="SAT"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_normal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -213,20 +213,20 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_week_circle"
+                    android:background="@drawable/yellow_week_opening"
                     android:scaleType="center"
                     android:src="@drawable/ic_water_glass" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="SUN"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_normal"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -238,7 +238,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/week_card_view"
-        android:layout_margin="3dp"
+        android:layout_margin="10dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 
@@ -254,7 +254,8 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="Average Water Intake"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_normal"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -263,7 +264,8 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="2400ml/day"
-                android:textColor="@color/tabColor" />
+                android:textColor="@color/tabColor"
+                android:fontFamily="@font/poppins_normal"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -272,7 +274,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/avg_water_intake_card_view"
-        android:layout_margin="3dp"
+        android:layout_margin="10dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 
@@ -288,7 +290,8 @@
                android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="Drinking Frequency"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_normal"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -297,7 +300,8 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="10/day"
-                android:textColor="@color/tabColor" />
+                android:textColor="@color/tabColor"
+                android:fontFamily="@font/poppins_normal"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -306,7 +310,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/drinking_frequency_card_view"
-        android:layout_margin="3dp"
+        android:layout_margin="10dp"
         android:background="@color/cardview_light_background"
         android:elevation="5dp">
 
@@ -322,7 +326,8 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="Average Completion"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_normal"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -331,7 +336,8 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="70%"
-                android:textColor="@color/tabColor" />
+                android:textColor="@color/tabColor"
+                android:fontFamily="@font/poppins_normal"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
