@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-<item>
+<!--<item>
     <shape
         android:shape="ring"
         android:thicknessRatio="16"
         android:useLevel="false">
-        <solid android:color="#FFC107"/>
+        <solid android:color="#FFD600"/>
     </shape>
 </item>
     <item>
@@ -14,8 +14,46 @@
         <shape android:shape="ring"
             android:thicknessRatio="16"
             android:useLevel="true">
-        <solid android:color="#3F51B5"/>
+        <solid android:color="#3A79C3"/>
         </shape>
+        </rotate>
+    </item>-->
+
+    <item>
+
+        <rotate
+            android:fromDegrees="270"
+            android:toDegrees="270">
+            <shape
+                android:innerRadiusRatio="2.55"
+                android:shape="ring"
+                android:thickness="15dp"
+                android:useLevel="true">
+                <solid
+                    android:color="@color/purple_200"/>
+            </shape>
+        </rotate>
+    </item>
+<item android:bottom="211dp">
+    <shape
+        android:innerRadiusRatio="1000"
+        android:shape="ring"
+        android:thickness="7dp"
+        android:useLevel="false">
+        <solid android:color="@color/purple_200"/>
+    </shape>
+</item>
+    <item>
+        <rotate>
+            <inset android:insetBottom="211dp">
+                <shape
+                    android:innerRadiusRatio="1000"
+                    android:shape="ring"
+                    android:thickness="7dp"
+                    android:useLevel="false">
+                    <solid android:color="@color/purple_200"/>
+                </shape>
+            </inset>
         </rotate>
     </item>
 </layer-list>

@@ -69,7 +69,7 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
         timePickerBedSelectTimeTV.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
-                    android.R.style.ThemeOverlay_Material_Dark,
+                    android.R.style.Theme_Holo_Dialog_MinWidth,
                     OnTimeSetListener { _, hourOfDay, minute ->
                         hourPick = hourOfDay
                         minutePick = minute
@@ -183,6 +183,8 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
             loaData()
             updateView()
+
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
     }
 

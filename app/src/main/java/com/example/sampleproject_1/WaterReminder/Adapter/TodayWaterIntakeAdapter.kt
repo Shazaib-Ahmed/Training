@@ -35,7 +35,7 @@ class TodayWaterIntakeAdapter //this.data = data;
         private val tvWaterQuantity: TextView = itemView.findViewById(R.id.tvWaterQuantity)
         fun bindData(s: WaterIntake) {
             tvWaterIntakeTime.text = s.time
-            tvWaterQuantity.text = s.quantity.toString() + "ml"
+            tvWaterQuantity.text = s.quantity.toString() + " ml"
         }
 
     }

@@ -24,6 +24,7 @@
         android:layout_height="200dp"
         android:indeterminateOnly="false"
         android:progress="0"
+        tools:progress="75"
         android:progressDrawable="@drawable/circle"
         tools:ignore="MissingConstraints"
         android:layout_centerInParent="true"/>

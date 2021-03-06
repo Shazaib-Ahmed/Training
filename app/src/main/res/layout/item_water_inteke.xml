@@ -4,20 +4,62 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_clock"
 
+    />
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="10dp"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:text="10:30 am"/>
 
     <TextView
         android:id="@+id/tvWaterQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="14sp" />
+        android:layout_margin="10dp"
+        android:textSize="14sp"
+        android:text="200 ml"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/poppins_normal"
+        android:textColor="@color/tabColor"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5sp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dot"
+            android:layout_margin="1sp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dot"
+            android:layout_margin="1sp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dot"
+            android:layout_margin="1sp"/>
+    </LinearLayout>
+
+
+
+   <!-- <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_more_vert"
+        />-->
 
 </LinearLayout>

@@ -20,12 +20,13 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
     var textView800ml: TextView? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.bottom_sheet_layout, container, false)
-        textView100ml = v.findViewById(R.id.textView_100ml)
-        textView200ml = v.findViewById(R.id.textView_200ml)
-        textView300ml = v.findViewById(R.id.textView_300ml)
-        textView400ml = v.findViewById(R.id.textView_400ml)
-        textView500ml = v.findViewById(R.id.textView_500ml)
-        textView800ml = v.findViewById(R.id.textView_800ml)
+        textView100ml = v.findViewById(R.id.ml100_relative_layout)
+        textView200ml = v.findViewById(R.id.ml200_relative_layout)
+        textView300ml = v.findViewById(R.id.ml300_relative_layout)
+        textView400ml = v.findViewById(R.id.ml400_relative_layout)
+        textView500ml = v.findViewById(R.id.ml500_relative_layout)
+        textView800ml = v.findViewById(R.id.ml800_relative_layout)
+
         textView100ml!!.setOnClickListener(View.OnClickListener {
             Toast.makeText(context!!.applicationContext, "100 ml touch", Toast.LENGTH_SHORT).show()
             dismiss()
