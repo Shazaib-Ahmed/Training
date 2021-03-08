@@ -141,41 +141,7 @@ class FragmentWaterReminderHome : Fragment() {
         remainingWater!!.text = "$totalInTook/$totalIntake ml"
     }
 
-    /*   //    private void setWaterLevel(int inTook, int totalIntake) {
-       //
-       //        Log.e("intook",inTook+"    "+totalIntake);
-       //        if (((inTook * 100) / totalIntake) > 140) {
-       //            Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
-       //        } else {
-       //            progress = ((inTook / totalIntake) * 100);
-       //            waveLoadingView.setProgressValue(progress);
-       //            waveLoadingView.setCenterTitle(progress + " %");
-       //        }
-       //        remainingWater.setText(inTook + "/" + totalIntake + " ml");
-       //    }*/
-    /*
-    public void addWater(int inTook){
-       // inTook = 200;
 
-        if (totalIntook < totalIntake) {
-            totalIntook += inTook;
-            progress += inTook * 100 / totalIntake;
-            if (progress < 100) {
-                //progress = ((200/totalIntake)*100);
-                // progress=(int)((double) 200/totalIntake*100);
-
-                remainingWater.setText(totalIntook + "/" + totalIntake + " ml");
-                waveLoadingView.setProgressValue(progress);
-                waveLoadingView.setCenterTitle(progress + " %");
-                updateTimeChart();
-            }
-        } else {
-
-            Toast.makeText(getContext().getApplicationContext(), "You are done for the day", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-*/
 
     private fun saveData() {
         val sharedPreferences = this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
@@ -204,17 +170,5 @@ class FragmentWaterReminderHome : Fragment() {
         timeIntakeWaterListRV!!.adapter = adapterTime
     }
 
-    private fun scheduleNotificationChannel() {
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES).build()
-        WorkManager.getInstance().enqueue(periodicWorkRequest)
-    }
 
-    private fun cancelNotification() {
-        WorkManager.getInstance().cancelAllWork()
-        Toast.makeText(this.activity, "Notification Canceled", Toast.LENGTH_SHORT).show()
-    }
-
-    init {
-        // context = context
-    }
 }

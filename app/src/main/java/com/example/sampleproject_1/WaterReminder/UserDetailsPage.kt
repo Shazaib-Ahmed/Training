@@ -1,5 +1,6 @@
 package com.example.sampleproject_1.WaterReminder
 
+import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Intent
@@ -14,34 +15,39 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.aigestudio.wheelpicker.WheelPicker
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import org.koin.android.ext.android.inject
+import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class UserDetailsPage : AppCompatActivity() {
 
     private lateinit var sleepingTime: String
     private lateinit var wakeUptime: String
     private var weight = 0
 
-    private lateinit var genderSpinner: Spinner
-
     private val sharedPreferences: SharedPreferences by inject()
     private val viewModelWaterReminder: ViewModelWaterReminder by inject()
 
-    private var genderKey: String? = null
-    private var text: String? = null
+    private var radioM = true
+    private var radioF = true
+
+    private lateinit var sleepHourPicker:WheelPicker
+
     private var weightKey = 0
     private var sleepingKey: String? = null
     private var wakeKey: String? = null
 
-    private var gender: String? = null
+    private lateinit var maleOption: RadioButton
+    private lateinit var femaleOption: RadioButton
+
     private lateinit var continueTextView: TextView
     var weightEditText: EditText? = null
     private lateinit var timePickerBedSelectTimeTV: TextView
@@ -51,13 +57,16 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
     private var minutePick = 0
     private var genderValue = 0
 
+    private lateinit var calender: Calendar
+    private  var sleepHourr = 0
+    private var sleepMinutee = 0
+    private lateinit var selectedTime: String
+
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details_page)
-
-        genderSpinner = findViewById(R.id.genderSpinner)
-        setUpSpinner()
 
         genderValue = sharedPreferences.getInt("LastPosition", 0)
 
@@ -65,7 +74,24 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
         supportActionBar!!.title = "User Details"
 
-        genderSpinner.onItemSelectedListener = this
+        /*calender = Calendar.getInstance()
+        val simpleDateFormat = SimpleDateFormat("hh:mm")
+        val currentTime = simpleDateFormat.format(calender.time)
+
+        selectedTime = "$sleepHourr:$sleepMinutee"*/
+
+
+        maleOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, maleIsChecked ->
+
+            saveData("MALE_CHECKED", maleIsChecked)
+        }
+        )
+
+        femaleOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, femaleIsChecked ->
+
+            saveData("FEMALE_CHECKED", femaleIsChecked)
+        }
+        )
 
         timePickerBedSelectTimeTV.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
@@ -155,6 +181,11 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         timePickerBedSelectTimeTV = findViewById(R.id.timePickerBedSelectTimeTV)
         timePickerWakeSelectTimeTV = findViewById(R.id.timePickerWakeSelectTimeTV)
 
+        maleOption = findViewById(R.id.male_option)
+        femaleOption = findViewById(R.id.female_option)
+
+        sleepHourPicker = findViewById(R.id.sleepHourPicker)
+
     }
 
     companion object {
@@ -162,14 +193,16 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
     }
 
     private fun loaData() {
-        genderKey = sharedPreferences.getString(AppUtils.GENDER_KEY, "");
+        radioM = updateRadio("MALE_CHECKED")
+        radioF = updateRadio("FEMALE_CHECKED")
         weightKey = sharedPreferences.getInt(AppUtils.WEIGHT_KEY, 0);
-        sleepingKey = sharedPreferences.getString(AppUtils.SLEEPING_TIME_KEY, "");
-        wakeKey = sharedPreferences.getString(AppUtils.WAKE_UP_TIME_KEY, "");
+        sleepingKey = sharedPreferences.getString(AppUtils.SLEEPING_TIME_KEY, "")
+        wakeKey = sharedPreferences.getString(AppUtils.WAKE_UP_TIME_KEY, "")
     }
 
     private fun updateView() {
-        genderSpinner.setSelection(genderValue)
+        maleOption.isChecked = radioM
+        femaleOption.isChecked = radioF
         weightEditText?.setText("$weightKey")
         timePickerBedSelectTimeTV.text = sleepingKey
         timePickerWakeSelectTimeTV.text = wakeKey
@@ -188,21 +221,15 @@ class UserDetailsPage : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         }
     }
 
-    private fun setUpSpinner() {
-        val genderSpinnerData = resources.getStringArray(R.array.genderSpinnerList)
-        val ad = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, genderSpinnerData)
-        genderSpinner!!.adapter = ad
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        text = parent?.getItemAtPosition(position).toString()
+    private fun saveData(key: String, value: Boolean) {
         val editor = sharedPreferences.edit()
-        editor.putString(AppUtils.GENDER_KEY, text)
-        editor.putInt("LastPosition", position)
+        editor.putBoolean(key, value)
         editor.apply()
     }
+
+    private fun updateRadio(key: String):
+            Boolean {
+        return sharedPreferences.getBoolean(key, false)
+    }
+
 }
