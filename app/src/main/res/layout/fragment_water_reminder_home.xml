@@ -113,84 +113,146 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/vector_grey_down"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:gravity="center"
+           >
 
-            <RelativeLayout
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:gravity="center">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/suggested_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_normal"
+            android:text="Suggested Water"
+            android:textColor="@color/tabColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20sp"/>
+
+        <TextView
+            android:id="@+id/intake_per_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/suggested_water"
+            android:fontFamily="@font/poppins_normal"
+            android:text="Intake Per Day"
+            android:layout_gravity="center"
+            android:textColor="#FFC107"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20sp"/>
+
+        <ImageView
+            android:id="@+id/weight_meter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/intake_per_day"
+            android:src="@drawable/weight"
+
+            />
+
+        <TextView
+            android:id="@+id/weight_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weight_meter"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_normal"
+            android:text="Weight"
+            android:textColor="@color/tabColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    <ImageView
+        android:id="@+id/imageViewDrinkWater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/drinkin_water" />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
 
-
-                <TextView
-                    android:id="@+id/suggested_water"
+                >
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/poppins_normal"
-                    android:text="Suggested Water"
-                    android:textColor="#3F51B5"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/intake_per_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/suggested_water"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/poppins_normal"
-                    android:text="Intake Per Day"
-                    android:textColor="#FFC107"
-                    android:textSize="12sp" />
-
-
-                <ImageView
-                    android:id="@+id/weight_meter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/intake_per_day"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/weight" />
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginRight="25sp"
+                    android:layout_marginLeft="25sp">
 
                 <TextView
                     android:id="@+id/userWeightTextView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/weight_meter"
-                    android:layout_centerHorizontal="true"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:fontFamily="@font/poppins_normal"
                     android:text="65 Kg"
-                    android:textColor="#3F51B5"
-                    android:textSize="15sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                >
-
-                <ImageView
-                    android:id="@+id/imageViewDrinkWater"
+                    android:textStyle="bold"
+                    android:textColor="@color/tabColor"
+                    android:textSize="15sp"
+                    android:layout_weight="1"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="3sp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@color/tabColor" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-
-                    android:background="@drawable/ic_drinking_water" />
-
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginRight="25sp"
+                    android:layout_marginLeft="25sp">
                 <TextView
                     android:id="@+id/totalIntakeTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageViewDrinkWater"
-                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/poppins_normal"
-                    android:text="5 L"
+                    android:text="5 l"
+                    android:textStyle="bold"
                     android:textColor="@color/yellowButtonColor"
-                    android:textSize="15dp" />
-
-
-            </RelativeLayout>
+                    android:textSize="15sp"
+                    android:layout_weight="1"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="3sp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@color/yellowButtonColor" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
