@@ -35,8 +35,14 @@ Gender
     <string name="customize_cup">Customize your drinking cup</string>
     <string name="wakeup_time">Wakeup Time</string>
     <string name="continue_btn">Continue</string>
+    <string name="weight_kg">    65 Kg     </string>
 
     <string-array name="hour_select">
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
         <item>12</item>
         <item>01</item>
         <item>02</item>
@@ -44,11 +50,7 @@ Gender
         <item>04</item>
         <item>05</item>
         <item>06</item>
-        <item>07</item>
-        <item>08</item>
-        <item>09</item>
-        <item>10</item>
-        <item>11</item>
+
 
     </string-array>
 

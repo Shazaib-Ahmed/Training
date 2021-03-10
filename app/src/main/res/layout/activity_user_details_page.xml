@@ -42,7 +42,6 @@
                 android:layout_margin="20sp"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
-                android:checked="true"
                 android:drawableStart="@drawable/ic_male"
                 android:padding="25sp"
 
