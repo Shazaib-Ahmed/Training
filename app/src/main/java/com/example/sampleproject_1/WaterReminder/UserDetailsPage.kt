@@ -64,6 +64,7 @@ class UserDetailsPage : AppCompatActivity() {
     private var wakeHourUpdate = 0
     private var wakeMinuteUpdate = 0
 
+
     private lateinit var selectedTime: String
 
     private lateinit var sleepHourPicker: WheelPicker
@@ -84,49 +85,40 @@ class UserDetailsPage : AppCompatActivity() {
 
         supportActionBar!!.title = "User Details"
 
-        /*calender = Calendar.getInstance()
-        val simpleDateFormat = SimpleDateFormat("hh:mm")
-        val currentTime = simpleDateFormat.format(calender.time)
+        loaData()
+        updateView()
 
-        selectedTime = "$sleepHourr:$sleepMinutee"*/
-
-
-        sleepHourPicker.selectedItemPosition = 1
-        sleepMinutePicker.selectedItemPosition = 1
-        wakeHourPicker.selectedItemPosition = 1
-        wakeMinutePicker.selectedItemPosition = 1
-
-        sleepHourPicker.setOnItemSelectedListener { picker, data, position ->
-            var sleepHourSelect = data
+          sleepHourPicker.setOnItemSelectedListener { picker, data, position ->
+            sleepHourSelect = position
             val editor = sharedPreferences.edit()
-            editor.putInt("SLEEP_HOUR_KEY", position)
+            editor.putInt("SLEEP_HOUR_KEY", sleepHourSelect)
             editor.apply()
 
         }
 
         sleepMinutePicker.setOnItemSelectedListener { picker, data, position ->
-            var sleepMinuteSelect = data
+            sleepMinuteSelect = position
             val editor = sharedPreferences.edit()
-            editor.putInt("SLEEP_MINUTE_KEY", position)
+            editor.putInt("SLEEP_MINUTE_KEY", sleepMinuteSelect)
             editor.apply()
 
         }
 
         wakeHourPicker.setOnItemSelectedListener { picker, data, position ->
-            var wakeHourSelect = data
+            wakeHourSelect = position
             val editor = sharedPreferences.edit()
-            editor.putInt("WAKE_HOUR_KEY", position)
+            editor.putInt("WAKE_HOUR_KEY", wakeHourSelect)
             editor.apply()
 
         }
 
         wakeMinutePicker.setOnItemSelectedListener { picker, data, position ->
-            var wakeMinuteSelect = data
+            wakeMinuteSelect = position
             val editor = sharedPreferences.edit()
-            editor.putInt("WAKE_MINUTE_KEY", position)
+            editor.putInt("WAKE_MINUTE_KEY", wakeMinuteSelect)
             editor.apply()
-            /*Toast.makeText(this, "Selected : $wakeMinuteSelect",Toast.LENGTH_SHORT).show()
-            Log.e("HELLO", "====== $wakeMinuteSelect")*/
+            Toast.makeText(this, "Selected : $wakeMinuteSelect",Toast.LENGTH_SHORT).show()
+
         }
 
 
@@ -142,7 +134,7 @@ class UserDetailsPage : AppCompatActivity() {
         }
         )
 
-        timePickerBedSelectTimeTV.setOnClickListener {
+        /*timePickerBedSelectTimeTV.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
                     android.R.style.Theme_Holo_Dialog_MinWidth,
                     OnTimeSetListener { _, hourOfDay, minute ->
@@ -186,15 +178,17 @@ class UserDetailsPage : AppCompatActivity() {
             timePickerDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             timePickerDialog.updateTime(hourPick, minutePick)
             timePickerDialog.show()
-        }
+        }*/
 
         continueTextView.setOnClickListener { saveUserInfo() }
-        updateDetails()
+        //updateDetails()
 
     }
 
     private fun saveUserInfo() {
-        if (weightEditText!!.text.toString().isEmpty()  || !maleOption.isChecked && !femaleOption.isChecked /*|| timePickerWakeSelectTimeTV!!.text.toString().isEmpty() || timePickerBedSelectTimeTV!!.text.toString().isEmpty()*/) {
+
+
+        if (weightEditText!!.text.toString().isEmpty() || !maleOption.isChecked && !femaleOption.isChecked /*|| timePickerWakeSelectTimeTV!!.text.toString().isEmpty() || timePickerBedSelectTimeTV!!.text.toString().isEmpty()*/) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
@@ -217,6 +211,8 @@ class UserDetailsPage : AppCompatActivity() {
         editor.putInt(AppUtils.WEIGHT_KEY, weight)
         editor.putInt(AppUtils.WORK_TIME_KEY, workTime)
         val totalIntake = AppUtils.calculateIntake(weight, workTime)
+
+
         val df = DecimalFormat("#")
         editor.putInt(AppUtils.TOTAL_INTAKE, df.format(totalIntake.toLong()).toInt())
         editor.apply()
@@ -265,13 +261,20 @@ class UserDetailsPage : AppCompatActivity() {
         maleOption.isChecked = radioM
         femaleOption.isChecked = radioF
         weightEditText?.setText("$weightKey")
-        timePickerBedSelectTimeTV.text = sleepingKey
-        timePickerWakeSelectTimeTV.text = wakeKey
+        /*timePickerBedSelectTimeTV.text = sleepingKey
+        timePickerWakeSelectTimeTV.text = wakeKey*/
+
+        sleepHourPicker.selectedItemPosition =sleepHourUpdate
+        sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
+        wakeMinutePicker.selectedItemPosition = wakeHourUpdate
+        wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
 
 
 
-
-
+        Log.e("MY === VALUE == 1", " =========  $sleepHourUpdate")
+        Log.e("MY === VALUE == 2", " =========  $sleepMinuteUpdate")
+        Log.e("MY === VALUE == 3", " =========  $wakeHourUpdate")
+        Log.e("MY === VALUE == 4", " =========  $wakeMinuteUpdate")
 
     }
 
@@ -280,9 +283,8 @@ class UserDetailsPage : AppCompatActivity() {
 
         if (!firstRunKey) {
 
-            loaData()
-            updateView()
-            updatePickerDetails()
+            /*loaData()
+            updateView()*/
 
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
@@ -306,38 +308,33 @@ class UserDetailsPage : AppCompatActivity() {
         if (picker != null) {
             when (picker.id) {
                 R.id.sleepHourPicker -> {
-                    sleepHourSelect = sleepHourPicker.data[position] as Int
                     val editor = sharedPreferences.edit()
-                    editor.putInt("SLEEP_HOUR_KEY", sleepHourSelect)
+                    editor.putInt("SLEEP_HOUR_KEY", position)
                     editor.apply()
-                    Toast.makeText(this, "Selected : $sleepHourSelect",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"  + $data",Toast.LENGTH_SHORT).show()
 
-                    Log.e("HELLO", "====== $sleepHourSelect")
 
-*//*val sleepTimePickerHourData = resources.getStringArray(R.array.hour_select)
-                    val adapter = ArrayAdapter(this.applicationContext, android.R.layout.simple_dropdown_item_1line, sleepTimePickerHourData)*//*
+                    *//*val sleepTimePickerHourData = resources.getStringArray(R.array.hour_select)
+                                       val adapter = ArrayAdapter(this.applicationContext, android.R.layout.simple_dropdown_item_1line, sleepTimePickerHourData)*//*
 
                 }
                 R.id.sleepMinutePicker -> {
-                    sleepMinuteSelect = sleepHourPicker.data[position] as Int
                     val editor = sharedPreferences.edit()
                     editor.putInt("SLEEP_MINUTE_KEY", sleepMinuteSelect)
                     editor.apply()
-                    Toast.makeText(this, "Selected : $sleepMinuteSelect",Toast.LENGTH_SHORT).show()
+
                 }
                 R.id.wakeHourPicker -> {
-                    wakeHourSelect = sleepHourPicker.data[position] as Int
+
                     val editor = sharedPreferences.edit()
-                    editor.putInt("WAKE_HOUR_KEY", wakeHourSelect)
+                    editor.putInt("WAKE_HOUR_KEY", position)
                     editor.apply()
-                    Toast.makeText(this, "Selected : $wakeHourSelect",Toast.LENGTH_SHORT).show()
+
                 }
                 R.id.wakeMinutePicker -> {
-                    wakeMinuteSelect = sleepHourPicker.data[position] as Int
                     val editor = sharedPreferences.edit()
-                    editor.putInt("WAKE_MINUTE_KEY", wakeMinuteSelect)
+                    editor.putInt("WAKE_MINUTE_KEY", position)
                     editor.apply()
-                    Toast.makeText(this, "Selected : $wakeMinuteSelect",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -345,20 +342,26 @@ class UserDetailsPage : AppCompatActivity() {
     }*/
 
     private fun updatePickerDetails() {
-        sleepHourPicker.selectedItemPosition = sleepHourUpdate
-        sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
-        wakeMinutePicker.selectedItemPosition = wakeHourUpdate
-        wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
+        /*val firstRunKey = sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY, true)
 
-        Log.e("MYVALUE", " =========  $sleepHourUpdate")
-        Log.e("MYVALUE", " =========  $sleepMinuteUpdate")
-        Log.e("MYVALUE", " =========  $wakeHourUpdate")
-        Log.e("MYVALUE", " =========  $wakeMinuteUpdate")
+        if (!firstRunKey) {*/
 
+            sleepHourPicker.selectedItemPosition = sleepHourUpdate
+            sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
+            wakeMinutePicker.selectedItemPosition = wakeHourUpdate
+            wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
 
+            Log.e("MY === VALUE", " =========  $sleepHourUpdate")
+            Log.e("MY === VALUE", " =========  $sleepMinuteUpdate")
+            Log.e("MY === VALUE", " =========  $wakeHourUpdate")
+            Log.e("MY === VALUE", " =========  $wakeMinuteUpdate")
 
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+       // }
 
-        }
     }
+
+}
+
 
 
