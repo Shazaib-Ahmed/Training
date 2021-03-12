@@ -42,7 +42,7 @@
                 android:layout_margin="20sp"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
-                android:drawableStart="@drawable/ic_male"
+                android:drawableStart="@drawable/ic_boy"
                 android:padding="25sp"
 
                 />
@@ -55,7 +55,7 @@
                 android:layout_margin="20sp"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
-                android:drawableStart="@drawable/ic_female"
+                android:drawableStart="@drawable/ic_girl"
                 android:padding="25sp" />
         </RadioGroup>
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewWeight"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/weight" />
+            android:src="@drawable/ic_weight" />
 
         <EditText
             android:id="@+id/weightEditText"
@@ -165,7 +165,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_sleeping_time"
+                        android:src="@drawable/ic_sleep_time"
                         android:layout_weight="1"/>
 
                     <LinearLayout
@@ -178,7 +178,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_clock_detail"
+                            android:src="@drawable/ic_clock_details_page"
                             />
 
                         <LinearLayout
@@ -292,7 +292,7 @@
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_wake_up"
+                        android:src="@drawable/ic_wakeup_time"
                         android:layout_weight="1"/>
 
                     <LinearLayout
@@ -304,7 +304,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_clock_detail" />
+                            android:src="@drawable/ic_clock_details_page" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"

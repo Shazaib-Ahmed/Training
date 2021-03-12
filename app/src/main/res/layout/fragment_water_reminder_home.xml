@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -113,111 +114,115 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/vector_grey_down"
-            android:orientation="vertical"
             android:gravity="center"
-           >
+            android:orientation="vertical">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center"
-    android:gravity="center">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/suggested_water"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Suggested Water"
-            android:textColor="@color/tabColor"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginStart="20sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/intake_per_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/suggested_water"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Intake Per Day"
-            android:layout_gravity="center"
-            android:textColor="#FFC107"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginStart="20sp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/weight_meter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_below="@id/intake_per_day"
-            android:src="@drawable/weight"
+                    <TextView
+                        android:id="@+id/suggested_water"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20sp"
+                        android:fontFamily="@font/poppins_normal"
+                        android:text="Suggested Water"
+                        android:textColor="@color/tabColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-            />
+                    <TextView
+                        android:id="@+id/intake_per_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/suggested_water"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20sp"
+                        android:fontFamily="@font/poppins_normal"
+                        android:text="Intake Per Day"
+                        android:textColor="#FFC107"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/weight_TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/weight_meter"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Weight"
-            android:textColor="@color/tabColor"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/weight_meter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/intake_per_day"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_weight"
 
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-    <ImageView
-        android:id="@+id/imageViewDrinkWater"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/drinkin_water" />
-    </RelativeLayout>
+                        />
+
+                    <TextView
+                        android:id="@+id/weight_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/weight_meter"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_normal"
+                        android:text="Weight"
+                        android:textColor="@color/tabColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/imageViewDrinkWater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_body_weight" />
+                </RelativeLayout>
 
 
+            </LinearLayout>
 
-
-</LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
 
                 >
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="25sp"
                     android:layout_marginRight="25sp"
-                    android:layout_marginLeft="25sp">
-
-                <TextView
-                    android:id="@+id/userWeightTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:fontFamily="@font/poppins_normal"
-                    android:text="@string/weight_kg"
-                    android:textStyle="bold"
-                    android:textColor="@color/tabColor"
-                    android:textSize="15sp"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/userWeightTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_normal"
+                        android:gravity="center"
+                        android:text="@string/weight_kg"
+                        android:textColor="@color/tabColor"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="3sp"
@@ -225,27 +230,30 @@
                         android:layout_marginRight="25dp"
                         android:background="@color/tabColor" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginRight="25sp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginRight="25sp"
-                    android:layout_marginLeft="25sp">
-                <TextView
-                    android:id="@+id/totalIntakeTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageViewDrinkWater"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_normal"
-                    android:text="5 l"
-                    android:textStyle="bold"
-                    android:textColor="@color/yellowButtonColor"
-                    android:textSize="15sp"
-                    android:layout_weight="1"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/totalIntakeTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imageViewDrinkWater"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_normal"
+                        android:gravity="center"
+                        android:text="5 l"
+                        android:textColor="@color/yellowButtonColor"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="3sp"
@@ -266,7 +274,8 @@
             android:background="@drawable/borderdesign"
             android:orientation="vertical"
             android:padding="20dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
 
     </LinearLayout>

@@ -10,5 +10,7 @@
     <color name="tabColor">#3A79C3</color>
     <color name="waterIntake">#474747</color>
     <color name="yellowButtonColor">#FFC107</color>
+    <color name="settingsHeadlineTextColor">#272727</color>
+    <color name="settingsSubTextColor">#000000</color>
 
 </resources>
