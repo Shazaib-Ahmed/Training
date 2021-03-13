@@ -13,4 +13,9 @@
     <color name="settingsHeadlineTextColor">#272727</color>
     <color name="settingsSubTextColor">#000000</color>
 
+   //weight tracker colors
+    <color name="weightTrackerColorOne">#23033C</color>
+    <color name="weightTrackerColorTwo">#FFE037</color>
+
+
 </resources>

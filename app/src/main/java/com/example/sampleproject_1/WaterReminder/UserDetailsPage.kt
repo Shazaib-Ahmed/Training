@@ -1,12 +1,8 @@
 package com.example.sampleproject_1.WaterReminder
 
 import android.annotation.SuppressLint
-import android.app.TimePickerDialog
-import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -19,8 +15,6 @@ import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import org.koin.android.ext.android.inject
 import java.text.DecimalFormat
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 class UserDetailsPage : AppCompatActivity() {

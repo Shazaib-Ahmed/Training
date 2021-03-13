@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background_wt_one"
+    tools:context=".weightTracker.UserDetailsWeightTracker">
+
+    <LinearLayout
+        android:id="@+id/welcome_wt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="40sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_normal"
+            android:text="Hi,"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/weightTrackerColorTwo"
+            android:fontFamily="@font/poppins_normal"
+            android:padding="8sp"
+            android:text="Welcome"
+            android:textColor="@color/weightTrackerColorOne"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/input_weight_relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_wt"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_input_wt"
+        android:padding="10sp"
+        android:layout_margin="15sp"
+
+        >
+
+        <ImageView
+            android:id="@+id/meter_wt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_weight_meter_wt"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5sp"/>
+
+        <EditText
+            android:id="@+id/input_weight_wt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/meter_wt"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_edittext_wt"
+            android:fontFamily="@font/poppins_normal"
+            android:hint="Input \n Weight"
+            android:textAlignment="center"
+            android:textColor="@color/weightTrackerColorOne"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/current_goal_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_weight_relativeLayout"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_current_goal_background_wt"
+                android:gravity="center|center_horizontal">
+                <TextView
+                    android:id="@+id/current_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/weightTrackerColorOne"
+                   android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:layout_below="@+id/current_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="95 lb"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/weightTrackerColorOne"
+                    android:fontFamily="@font/poppins_normal"
+                    android:textSize="16sp"
+                    android:padding="8sp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_current_goal_background_wt"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/goal_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Goal"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/weightTrackerColorOne"
+                    android:fontFamily="@font/poppins_normal"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:layout_below="@+id/goal_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="90 lb"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/weightTrackerColorOne"
+                   android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_normal"
+                    android:textSize="16sp"
+                    android:padding="8sp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <RadioGroup
+        android:layout_below="@+id/current_goal_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp">
+        <RadioButton
+            android:id="@+id/kg_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kg"
+            android:textColor="@drawable/radio_button_text_color_wt"
+            android:gravity="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector_wt"
+            />
+        <RadioButton
+            android:id="@+id/lb_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lb"
+            android:textColor="@drawable/radio_button_text_color_wt"
+            android:gravity="center"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector_wt"
+            />
+    </RadioGroup>
+    <RelativeLayout
+        android:id="@+id/bottomContinueButtonWTRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/bottomContinueButtonWT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/continue_btn_wt"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/continue_btn"
+            android:textColor="@color/weightTrackerColorTwo"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_continue_wt"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
