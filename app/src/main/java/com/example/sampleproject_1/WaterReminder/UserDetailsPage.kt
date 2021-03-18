@@ -44,6 +44,7 @@ class UserDetailsPage : AppCompatActivity() {
 
     private var hourPick = 0
     private var minutePick = 0
+
     private var genderValue = 0
 
     private lateinit var calender: Calendar
@@ -79,10 +80,7 @@ class UserDetailsPage : AppCompatActivity() {
 
         supportActionBar!!.title = "User Details"
 
-        loaData()
-        updateView()
-
-          sleepHourPicker.setOnItemSelectedListener { picker, data, position ->
+        sleepHourPicker.setOnItemSelectedListener { picker, data, position ->
             sleepHourSelect = position
             val editor = sharedPreferences.edit()
             editor.putInt("SLEEP_HOUR_KEY", sleepHourSelect)
@@ -111,7 +109,7 @@ class UserDetailsPage : AppCompatActivity() {
             val editor = sharedPreferences.edit()
             editor.putInt("WAKE_MINUTE_KEY", wakeMinuteSelect)
             editor.apply()
-            Toast.makeText(this, "Selected : $wakeMinuteSelect",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Selected : $wakeMinuteSelect", Toast.LENGTH_SHORT).show()
 
         }
 
@@ -128,61 +126,16 @@ class UserDetailsPage : AppCompatActivity() {
         }
         )
 
-        /*timePickerBedSelectTimeTV.setOnClickListener {
-            val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
-                    android.R.style.Theme_Holo_Dialog_MinWidth,
-                    OnTimeSetListener { _, hourOfDay, minute ->
-                        hourPick = hourOfDay
-                        minutePick = minute
-                        sleepingTime = "$hourPick:$minutePick"
-                        val f24hours = SimpleDateFormat("HH:mm")
-                        try {
-                            val date = f24hours.parse(sleepingTime)
-                            val f12hours = SimpleDateFormat("hh:mm aa")
-                            timePickerBedSelectTimeTV.text = f12hours.format(date)
-                        } catch (e: ParseException) {
-                            e.printStackTrace()
-                        }
-                    }, 12, 0, false
-            )
-            timePickerDialog.setTitle("Select Sleeping Time")
-            timePickerDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            timePickerDialog.updateTime(hourPick, minutePick)
-            timePickerDialog.show()
-        }
-
-        timePickerWakeSelectTimeTV.setOnClickListener {
-            val timePickerDialog = TimePickerDialog(this@UserDetailsPage,
-                    android.R.style.Theme_Holo_Dialog_MinWidth,
-                    OnTimeSetListener { _, hourOfDay, minute ->
-                        hourPick = hourOfDay
-                        minutePick = minute
-                        wakeUptime = "$hourPick:$minutePick"
-                        val f24hours = SimpleDateFormat("HH:mm")
-                        try {
-                            val date = f24hours.parse(wakeUptime)
-                            val f12hours = SimpleDateFormat("hh:mm aa")
-                            timePickerWakeSelectTimeTV.text = f12hours.format(date)
-                        } catch (e: ParseException) {
-                            e.printStackTrace()
-                        }
-                    }, 12, 0, false
-            )
-            timePickerDialog.setTitle("Select Wake Up Time")
-            timePickerDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            timePickerDialog.updateTime(hourPick, minutePick)
-            timePickerDialog.show()
-        }*/
 
         continueTextView.setOnClickListener { saveUserInfo() }
-        //updateDetails()
+        updateDetails()
 
     }
 
     private fun saveUserInfo() {
 
 
-        if (weightEditText!!.text.toString().isEmpty() || !maleOption.isChecked && !femaleOption.isChecked /*|| timePickerWakeSelectTimeTV!!.text.toString().isEmpty() || timePickerBedSelectTimeTV!!.text.toString().isEmpty()*/) {
+        if (weightEditText!!.text.toString().isEmpty() || !maleOption.isChecked && !femaleOption.isChecked ) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
@@ -255,20 +208,10 @@ class UserDetailsPage : AppCompatActivity() {
         maleOption.isChecked = radioM
         femaleOption.isChecked = radioF
         weightEditText?.setText("$weightKey")
-        /*timePickerBedSelectTimeTV.text = sleepingKey
-        timePickerWakeSelectTimeTV.text = wakeKey*/
-
-        sleepHourPicker.selectedItemPosition =sleepHourUpdate
+        sleepHourPicker.selectedItemPosition = sleepHourUpdate
         sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
         wakeMinutePicker.selectedItemPosition = wakeHourUpdate
         wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
-
-
-
-        Log.e("MY === VALUE == 1", " =========  $sleepHourUpdate")
-        Log.e("MY === VALUE == 2", " =========  $sleepMinuteUpdate")
-        Log.e("MY === VALUE == 3", " =========  $wakeHourUpdate")
-        Log.e("MY === VALUE == 4", " =========  $wakeMinuteUpdate")
 
     }
 
@@ -277,8 +220,8 @@ class UserDetailsPage : AppCompatActivity() {
 
         if (!firstRunKey) {
 
-            /*loaData()
-            updateView()*/
+            loaData()
+            updateView()
 
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
@@ -296,19 +239,19 @@ class UserDetailsPage : AppCompatActivity() {
     }
 
 
-   /* override fun onItemSelected(picker: WheelPicker?, data: Any?, position: Int) {
+    /* override fun onItemSelected(picker: WheelPicker?, data: Any?, position: Int) {
 
 
-        if (picker != null) {
-            when (picker.id) {
-                R.id.sleepHourPicker -> {
-                    val editor = sharedPreferences.edit()
-                    editor.putInt("SLEEP_HOUR_KEY", position)
-                    editor.apply()
-                    Toast.makeText(this,"  + $data",Toast.LENGTH_SHORT).show()
+         if (picker != null) {
+             when (picker.id) {
+                 R.id.sleepHourPicker -> {
+                     val editor = sharedPreferences.edit()
+                     editor.putInt("SLEEP_HOUR_KEY", position)
+                     editor.apply()
+                     Toast.makeText(this,"  + $data",Toast.LENGTH_SHORT).show()
 
 
-                    *//*val sleepTimePickerHourData = resources.getStringArray(R.array.hour_select)
+                     *//*val sleepTimePickerHourData = resources.getStringArray(R.array.hour_select)
                                        val adapter = ArrayAdapter(this.applicationContext, android.R.layout.simple_dropdown_item_1line, sleepTimePickerHourData)*//*
 
                 }
@@ -340,18 +283,18 @@ class UserDetailsPage : AppCompatActivity() {
 
         if (!firstRunKey) {*/
 
-            sleepHourPicker.selectedItemPosition = sleepHourUpdate
-            sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
-            wakeMinutePicker.selectedItemPosition = wakeHourUpdate
-            wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
+        sleepHourPicker.selectedItemPosition = sleepHourUpdate
+        sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
+        wakeMinutePicker.selectedItemPosition = wakeHourUpdate
+        wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
 
-            Log.e("MY === VALUE", " =========  $sleepHourUpdate")
-            Log.e("MY === VALUE", " =========  $sleepMinuteUpdate")
-            Log.e("MY === VALUE", " =========  $wakeHourUpdate")
-            Log.e("MY === VALUE", " =========  $wakeMinuteUpdate")
+        Log.e("MY === VALUE", " =========  $sleepHourUpdate")
+        Log.e("MY === VALUE", " =========  $sleepMinuteUpdate")
+        Log.e("MY === VALUE", " =========  $wakeHourUpdate")
+        Log.e("MY === VALUE", " =========  $wakeMinuteUpdate")
 
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-       // }
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        // }
 
     }
 

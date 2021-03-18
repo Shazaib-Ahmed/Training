@@ -12,7 +12,6 @@ import org.koin.dsl.module
 
 val appModule: Module = module {
     single { setSharedPrefs(androidApplication()) }
-    single { setSharedPrefsWT(androidApplication()) }
 }
 
 val viewModelModule:Module = module {
@@ -20,5 +19,5 @@ val viewModelModule:Module = module {
 }
 
 private fun setSharedPrefs(app:Application) : SharedPreferences = app.getSharedPreferences(AppUtils.USERS_SHARED_PREF,AppUtils.PRIVATE_MODE)
-private fun setSharedPrefsWT(app:Application) : SharedPreferences = app.getSharedPreferences(AppUtilsWeightTracker.USERS_SHARED_PREF_WEIGHT_TRACKER, AppUtilsWeightTracker.PRIVATE_MODE_WEIGHT_TRACKER)
+
 

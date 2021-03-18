@@ -56,7 +56,7 @@
             android:layout_alignParentTop="true"
             android:layout_margin="5sp"/>
 
-        <EditText
+        <TextView
             android:id="@+id/input_weight_wt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,8 +64,10 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/ic_edittext_wt"
             android:fontFamily="@font/poppins_normal"
-            android:hint="Input \n Weight"
+            android:text="Input \n Weight"
             android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="16sp"
             android:textColor="@color/weightTrackerColorOne"
             android:textStyle="bold" />
 
@@ -102,12 +104,14 @@
                     android:fontFamily="@font/poppins_normal"
                     android:textSize="16sp"/>
                 <EditText
+                    android:id="@+id/current_weight_ET"
                     android:layout_below="@+id/current_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="95 lb"
+                    android:hint="Enter Weight"
                     android:textStyle="bold"
                     android:textAlignment="center"
+                    android:inputType="number"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/weightTrackerColorOne"
                     android:fontFamily="@font/poppins_normal"
@@ -139,11 +143,13 @@
                     android:fontFamily="@font/poppins_normal"
                     android:textSize="16sp"/>
                 <EditText
+                    android:id="@+id/goal_weight_ET"
                     android:layout_below="@+id/goal_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="90 lb"
+                    android:hint="Enter Weight"
                     android:textStyle="bold"
+                    android:inputType="number"
                     android:textAlignment="center"
                     android:textColor="@color/weightTrackerColorOne"
                    android:layout_centerHorizontal="true"

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".weightTracker.HomePageWeightTracker"></activity>
+        <activity android:name=".weightTracker.UserDetailWeightTracker"></activity>
+        <activity android:name=".weightTracker.HomePageWeightTracker" />
         <activity android:name=".weightTracker.UserDetailsWeightTracker" />
         <activity
             android:name=".weightTracker.SplashScreenWeightTracker"

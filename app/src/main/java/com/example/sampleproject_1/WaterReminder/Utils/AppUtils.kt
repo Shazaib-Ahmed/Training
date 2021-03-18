@@ -8,6 +8,9 @@ object AppUtils {
     const val USERS_SHARED_PREF = "user_pref"
     const val PRIVATE_MODE = 0
 
+
+    //WATER_REMINDER
+
     @JvmField
     var WEIGHT_KEY = "weight"
     var FIRST_RUN_KEY = "firstrun"
@@ -34,5 +37,13 @@ object AppUtils {
             val dateFormat: DateFormat = SimpleDateFormat("dd-MM-yyyy")
             return dateFormat.format(calendar)
         }
+
+
+    //WEIGHT_TRACKER
+
+    @JvmField
+    var INITIAL_WEIGHT_KEY_WT  = "current_weight_wt"
+    var FINAL_WEIGHT_KEY_WT  = "goal_weight_wt"
+    var FIRST_RUN_KEY_WEIGHT_TRACKER = "firstrunWT"
 
 }
