@@ -3,7 +3,7 @@
   <solid android:color="@color/weightTrackerColorOne" />
   <size
       android:width="100dp"
-      android:height="20dp" />
+      android:height="50dp" />
 
-
+  <corners android:radius="0sp"/>
 </shape>
