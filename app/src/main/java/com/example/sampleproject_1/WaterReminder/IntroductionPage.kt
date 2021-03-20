@@ -24,7 +24,7 @@ class IntroductionPage : AppCompatActivity() {
 
     fun sendToUserDetailsPage(v: View?) {
 
-        if (sharedPreferences!!.getBoolean(AppUtils.FIRST_RUN_KEY, true)) {
+        if (sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY, true)) {
             startActivity(Intent(this, UserDetailsPage::class.java))
         } else {
             val intent = Intent(this, HomePage::class.java)

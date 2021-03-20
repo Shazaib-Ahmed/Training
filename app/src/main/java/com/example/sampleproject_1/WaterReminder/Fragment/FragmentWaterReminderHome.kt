@@ -128,7 +128,7 @@ class FragmentWaterReminderHome : Fragment() {
 
     private fun setWaterLevel(inTook: Int, totalIntake: Int) {
         if (inTook * 100 / totalIntake > 140) {
-            Toast.makeText(getContext()!!.applicationContext, "You are done for the day", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context!!.applicationContext, "You are done for the day", Toast.LENGTH_SHORT).show()
         } else {
             progress += inTook * 100 / totalIntake
             waveLoadingView!!.progressValue = progress

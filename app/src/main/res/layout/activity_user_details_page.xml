@@ -95,7 +95,7 @@
             android:layout_below="@+id/imageWeight"
             android:layout_centerHorizontal="true"
             android:layout_margin="0dp"
-            android:backgroundTint="@color/tabColor"
+           android:background="@drawable/edit_text_bg_selector_wr"
             android:fontFamily="@font/poppins_normal"
             android:hint="@string/enter_weight"
             android:inputType="number"
