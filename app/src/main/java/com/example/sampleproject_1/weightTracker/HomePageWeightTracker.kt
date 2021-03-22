@@ -18,6 +18,7 @@ import com.example.sampleproject_1.weightTracker.DatabaseWT.EntityWeightTracker
 import com.example.sampleproject_1.weightTracker.DatabaseWT.ViewModelWeightTracker
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import org.koin.android.ext.android.inject
@@ -35,6 +36,7 @@ private lateinit var spinnerWeightTracker: Spinner
 private lateinit var viewModelWeightTracker: ViewModelWeightTracker
 private lateinit var lineChart: LineChart
 private var lineEntries: ArrayList<Entry>? = null
+
 //private lateinit var lineEntries: ArrayList<Entry>
 private lateinit var labelsNames: ArrayList<String>
 
@@ -109,7 +111,15 @@ class HomePageWeightTracker : AppCompatActivity() {
             }
         }
 
-
+        val xAxis = lineChart.xAxis
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        lineChart.isDragEnabled = true
+        lineChart.setScaleEnabled(false)
+        lineChart.axisRight.isEnabled = false
+        lineChart.setBackgroundColor(Color.WHITE)
+        lineChart.description.text = "Time"
+        lineChart.setVisibleXRangeMaximum(10f)
+        lineChart.animateXY(3000, 3000)
 
         viewModelWeightTracker.getAllUserWT.observe(this, Observer<List<EntityWeightTracker>> { weightTracker ->
 
@@ -136,6 +146,7 @@ class HomePageWeightTracker : AppCompatActivity() {
             description.textSize = 1f
             lineChart.description = description
             lineChart.setPinchZoom(false)
+
 
         })
     }
