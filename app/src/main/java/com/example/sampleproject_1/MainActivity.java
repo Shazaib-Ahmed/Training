@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import com.example.sampleproject_1.Notifications.NotificationMain;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -94,4 +96,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

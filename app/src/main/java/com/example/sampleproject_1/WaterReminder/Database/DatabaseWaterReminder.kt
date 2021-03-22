@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [EntityWaterReminder::class], version = 7)
 abstract class DatabaseWaterReminder : RoomDatabase() {
+
     abstract fun dataAccessObjectWaterReminder(): DataAccessObjectWaterReminder
 
     companion object {

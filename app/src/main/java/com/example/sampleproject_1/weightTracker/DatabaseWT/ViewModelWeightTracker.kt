@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 class ViewModelWeightTracker(application: Application) : AndroidViewModel(application) {
 
     val getAllUserWT: LiveData<List<EntityWeightTracker>>
+
     private val repositoryWeightTracker: RepositoryWeightTracker
 
     init {

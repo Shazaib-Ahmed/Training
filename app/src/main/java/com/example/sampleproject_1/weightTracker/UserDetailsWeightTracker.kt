@@ -8,9 +8,11 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
+import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.weightTracker.DatabaseWT.EntityWeightTracker
 import com.example.sampleproject_1.weightTracker.DatabaseWT.ViewModelWeightTracker
+import org.koin.android.ext.android.inject
 
 private lateinit var kgOption: RadioButton
 private lateinit var lbOption: RadioButton
@@ -31,21 +33,20 @@ private lateinit var goalWeightET: EditText
 
 private lateinit var viewModelWeightTracker: ViewModelWeightTracker
 
-//private val sharedPreferences: SharedPreferences by inject()
-//private val viewModelWR: ViewModelWaterReminder by inject()
-
-
-private lateinit var sharedPreferences: SharedPreferences
-
-
 class UserDetailsWeightTracker : AppCompatActivity() {
+
+    private val sharedPreferences: SharedPreferences by inject()
+
+    //private val viewModelWeightTracker: ViewModelWeightTracker by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details_weight_tracker)
 
+
         initialisationFields()
 
-        viewModelWeightTracker = ViewModelProvider(this).get(ViewModelWeightTracker::class.java)
+       viewModelWeightTracker = ViewModelProvider(this).get(ViewModelWeightTracker::class.java)
 
 
         kgOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, kgIsChecked ->
@@ -63,7 +64,6 @@ class UserDetailsWeightTracker : AppCompatActivity() {
     }
 
     private fun initialisationFields() {
-        sharedPreferences = this.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         kgOption = findViewById(R.id.kg_option)
         currentWeightET = findViewById(R.id.current_weight_ET)
         goalWeightET = findViewById(R.id.goal_weight_ET)
@@ -104,7 +104,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         editor.putBoolean("LB_CHECKED", radioLB)
         editor.putInt(AppUtils.INITIAL_WEIGHT_KEY_WT, weightInitial)
         editor.putInt(AppUtils.FINAL_WEIGHT_KEY_WT, weightGoal)
-        var weightCurrent = weightInitial
+        val weightCurrent = weightInitial
         editor.putInt("CURRENT_WEIGHT_KEY", weightCurrent)
         editor.apply()
         viewModelWeightTracker.insert(entityWeightTracker = EntityWeightTracker(0, weightInitial, weightGoal, weightCurrent))

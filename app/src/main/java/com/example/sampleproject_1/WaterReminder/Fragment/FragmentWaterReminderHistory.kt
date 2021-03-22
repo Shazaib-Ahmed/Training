@@ -26,17 +26,17 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class FragmentWaterReminderHistory : Fragment() {
-     private lateinit var viewModelWaterReminder: ViewModelWaterReminder
+    private lateinit var viewModelWaterReminder: ViewModelWaterReminder
 
     //private val viewModelWaterReminder by viewModel<ViewModelWaterReminder>()
 
- //  private val viewModelWaterReminder:ViewModelWaterReminder by viewModel()
+    //  private val viewModelWaterReminder:ViewModelWaterReminder by viewModel()
 
     private lateinit var barChart: BarChart
     var barEntries: ArrayList<BarEntry>? = null
     var labelsNames: ArrayList<String>? = null
     private var sortBySpinner: Spinner? = null
-    
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -49,7 +49,7 @@ class FragmentWaterReminderHistory : Fragment() {
 
         viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
 
-       viewModelWaterReminder.getAllUser.observe(viewLifecycleOwner, Observer<List<EntityWaterReminder>> { dailyWaterIntakeData ->
+        viewModelWaterReminder.getAllUser.observe(viewLifecycleOwner, Observer<List<EntityWaterReminder>> { dailyWaterIntakeData ->
             barEntries = ArrayList()
             labelsNames = ArrayList()
             //fillData();
@@ -68,14 +68,14 @@ class FragmentWaterReminderHistory : Fragment() {
             val description = Description()
             description.text = "Days"
             description.textSize = 1f
-            barChart.setDescription(description)
+            barChart.description = description
             barChart.setPinchZoom(false)
             val barData = BarData(barDataSet)
             barData.barWidth = 0.9f
-            barChart.setData(barData)
-            val xAxis = barChart.getXAxis()
+            barChart.data = barData
+            val xAxis = barChart.xAxis
             xAxis.valueFormatter = IndexAxisValueFormatter(labelsNames)
-            val yAxis = barChart.getAxisLeft()
+            val yAxis = barChart.axisLeft
             yAxis.mAxisMinimum = 0f
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setDrawGridLines(false)
