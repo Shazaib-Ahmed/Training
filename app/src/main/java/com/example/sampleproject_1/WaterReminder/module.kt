@@ -15,14 +15,14 @@ val appModule: Module = module {
     single { setSharedPrefs(androidApplication()) }
 }
 
-val viewModelModule:Module = module {
+val viewModelModule: Module = module {
     viewModel { ViewModelWaterReminder(Application()) }
 }
 
-val viewModelModuleWT:Module = module {
+val viewModelModuleWT: Module = module {
     viewModel { ViewModelWeightTracker(Application()) }
 }
 
-private fun setSharedPrefs(app:Application) : SharedPreferences = app.getSharedPreferences(AppUtils.USERS_SHARED_PREF,AppUtils.PRIVATE_MODE)
+private fun setSharedPrefs(app: Application): SharedPreferences = app.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
 
 

@@ -22,7 +22,6 @@ private var radioLB = true
 
 private var weightInitial = 0
 private var weightGoal = 0
-//private var weightCurrent = 0
 
 private var currentWeightKey = 0
 private var goalWeightKey = 0
@@ -46,7 +45,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
         initialisationFields()
 
-       viewModelWeightTracker = ViewModelProvider(this).get(ViewModelWeightTracker::class.java)
+        viewModelWeightTracker = ViewModelProvider(this).get(ViewModelWeightTracker::class.java)
 
 
         kgOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, kgIsChecked ->

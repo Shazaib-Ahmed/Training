@@ -135,7 +135,7 @@ class UserDetailsPage : AppCompatActivity() {
     private fun saveUserInfo() {
 
 
-        if (weightEditText!!.text.toString().isEmpty() || !maleOption.isChecked && !femaleOption.isChecked ) {
+        if (weightEditText!!.text.toString().isEmpty() || !maleOption.isChecked && !femaleOption.isChecked) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
