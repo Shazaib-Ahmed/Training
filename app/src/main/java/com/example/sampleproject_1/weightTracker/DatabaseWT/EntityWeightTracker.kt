@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 class EntityWeightTracker(@PrimaryKey(autoGenerate = true) val key_ID_weight_tracker: Int,
                           val key_initial_weight: Int,
                           val key_final_weight: Int,
-                          val key_current_weight: Int
+                          val key_current_weight: Int,
+                          val key_current_date: String
 ) {
 }

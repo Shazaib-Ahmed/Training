@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.sampleproject_1.WaterReminder.Database.DataAccessObjectWaterReminder
 import com.example.sampleproject_1.WaterReminder.Database.DatabaseWaterReminder
 
-@Database(entities = [EntityWeightTracker::class], version = 1)
+@Database(entities = [EntityWeightTracker::class], version = 2)
 abstract class DatabaseWeightTracker : RoomDatabase() {
 
     abstract fun dataAccessObjectWeightTracker(): DataAccessObjectWeightTracker

@@ -255,6 +255,7 @@
             android:textSize="11sp" />
 
         <TextView
+            android:id="@+id/lost_weight_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/avg_change_per_week"

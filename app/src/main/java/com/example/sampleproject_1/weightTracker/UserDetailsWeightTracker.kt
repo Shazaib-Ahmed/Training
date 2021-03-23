@@ -106,7 +106,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         val weightCurrent = weightInitial
         editor.putInt("CURRENT_WEIGHT_KEY", weightCurrent)
         editor.apply()
-        viewModelWeightTracker.insert(entityWeightTracker = EntityWeightTracker(0, weightInitial, weightGoal, weightCurrent))
+      //viewModelWeightTracker.insert(entityWeightTracker = EntityWeightTracker(0, weightInitial, weightGoal, weightCurrent))
 
         startActivity(data)
         finishAffinity()
