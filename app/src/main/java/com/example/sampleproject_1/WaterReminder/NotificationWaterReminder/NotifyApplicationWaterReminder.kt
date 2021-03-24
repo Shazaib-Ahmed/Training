@@ -26,6 +26,7 @@ class NotifyApplicationWaterReminder : Application() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
             val notificationChannel = NotificationChannel(
                     CHANNEL__ID,
                     "Channel Water Reminder",
@@ -34,10 +35,24 @@ class NotifyApplicationWaterReminder : Application() {
             notificationChannel.description = "This is water reminder application channel"
             val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(notificationChannel)
+
+
+            val notificationChannelWT = NotificationChannel(
+                    CHANNEL__ID_WT,
+                    "Channel Weight Tracker",
+                    NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationChannelWT.description = "This is weight tracker application channel"
+            val managerWT = getSystemService(NotificationManager::class.java)
+            managerWT.createNotificationChannel(notificationChannelWT)
+
         }
     }
 
+
     companion object {
         const val CHANNEL__ID = "channel_WR"
+        const val CHANNEL__ID_WT = "channel_WT"
+
     }
 }

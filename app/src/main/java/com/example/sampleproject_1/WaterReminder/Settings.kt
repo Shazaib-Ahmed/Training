@@ -37,7 +37,6 @@ class Settings : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
-
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_two_buttons)
         //dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.dialog_border))
@@ -120,7 +119,6 @@ class Settings : AppCompatActivity() {
 
         Toast.makeText(this, "Notification Disabled", Toast.LENGTH_SHORT).show()
     }
-
 
 
 }

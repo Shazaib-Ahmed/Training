@@ -2,6 +2,7 @@ package com.example.sampleproject_1.weightTracker
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.icu.text.DateFormat
@@ -9,12 +10,15 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
+import com.example.sampleproject_1.WaterReminder.Settings
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.weightTracker.DatabaseWT.EntityWeightTracker
 import com.example.sampleproject_1.weightTracker.DatabaseWT.ViewModelWeightTracker
@@ -54,6 +58,23 @@ class HomePageWeightTracker : AppCompatActivity() {
 
     private val sharedPreferences: SharedPreferences by inject()
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val menuInflater = menuInflater
+        menuInflater.inflate(R.menu.menu_weight_tracker, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settingsWT -> {
+                val data = Intent(this, SettingsWeightTracker::class.java)
+                startActivity(data)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     // private val viewModelWeightTracker: ViewModelWeightTracker by inject()
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -61,8 +82,14 @@ class HomePageWeightTracker : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page_weight_tracker)
+
+
         initialisationFields()
         setUpSpinner()
+
+
+
+
         calendar = Calendar.getInstance()
 
 

@@ -17,5 +17,9 @@
     <style name="switchTheme">
         <item name="android:colorControlActivated"> #FFC727  </item>
     </style>
+    <style name="switchThemeWT">
+        <item name="android:colorControlActivated"> #23033C  </item>
+    </style>
+
 
 </resources>

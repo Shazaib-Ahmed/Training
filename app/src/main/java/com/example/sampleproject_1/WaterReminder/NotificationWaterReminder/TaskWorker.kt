@@ -10,10 +10,14 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.HomePage
+import com.example.sampleproject_1.weightTracker.HomePageWeightTracker
 
 class TaskWorker(var context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
     override fun doWork(): Result {
-       // Log.e("scheduleTask", "WORKING")
+        // Log.e("scheduleTask", "WORKING")
+
+
+
         val intent = Intent(context, HomePage::class.java)
         val pendingIntent = PendingIntent.getActivity(context, 2, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val notification = NotificationCompat.Builder(context, NotifyApplicationWaterReminder.CHANNEL__ID)
@@ -26,6 +30,8 @@ class TaskWorker(var context: Context, workerParams: WorkerParameters) : Worker(
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(1, notification.build())
         return Result.success()
+
+
     }
 
 }
