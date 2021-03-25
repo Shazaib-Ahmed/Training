@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Water Reminder</string>
+    <string name="app_name">Reminder</string>
     <string name="app_name_wt">Weight Tracker</string>
     <string-array name="data">
         <item>Male</item>

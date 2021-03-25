@@ -191,6 +191,7 @@ class UserDetailsPage : AppCompatActivity() {
     private fun loaData() {
         radioM = updateRadio("MALE_CHECKED")
         radioF = updateRadio("FEMALE_CHECKED")
+
         weightKey = sharedPreferences.getInt(AppUtils.WEIGHT_KEY, 0);
         sleepingKey = sharedPreferences.getString(AppUtils.SLEEPING_TIME_KEY, "")
         wakeKey = sharedPreferences.getString(AppUtils.WAKE_UP_TIME_KEY, "")

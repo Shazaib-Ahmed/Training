@@ -49,17 +49,17 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
 
         kgOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, kgIsChecked ->
-            saveData("KG_CHECKED", kgIsChecked)
+            saveRadioData("KG_CHECKED", kgIsChecked)
         }
         )
 
         lbOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, lbIsChecked ->
-            saveData("LB_CHECKED", lbIsChecked)
+            saveRadioData("LB_CHECKED", lbIsChecked)
         }
         )
 
         continueBtnWt.setOnClickListener { saveUserInfo() }
-        //updateDetails()
+        updateDetails()
     }
 
     private fun initialisationFields() {
@@ -99,8 +99,6 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         val data = Intent(this@UserDetailsWeightTracker, HomePageWeightTracker::class.java)
         val editor = sharedPreferences.edit()
         editor.putBoolean(AppUtils.FIRST_RUN_KEY_WEIGHT_TRACKER, false)
-        editor.putBoolean("KG_CHECKED", radioKG)
-        editor.putBoolean("LB_CHECKED", radioLB)
         editor.putInt(AppUtils.INITIAL_WEIGHT_KEY_WT, weightInitial)
         editor.putInt(AppUtils.FINAL_WEIGHT_KEY_WT, weightGoal)
         val weightCurrent = weightInitial
@@ -112,7 +110,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         finishAffinity()
     }
 
-    private fun saveData(key: String, value: Boolean) {
+    private fun saveRadioData(key: String, value: Boolean) {
         val editor = sharedPreferences.edit()
         editor.putBoolean(key, value)
         editor.apply()
@@ -121,13 +119,15 @@ class UserDetailsWeightTracker : AppCompatActivity() {
     private fun loaData() {
         radioKG = updateRadio("KG_CHECKED")
         radioLB = updateRadio("LB_CHECKED")
+        currentWeightKey = sharedPreferences.getInt(AppUtils.INITIAL_WEIGHT_KEY_WT, 0)
+        goalWeightKey = sharedPreferences.getInt(AppUtils.FINAL_WEIGHT_KEY_WT, 0)
     }
 
     private fun updateView() {
         kgOption.isChecked = radioKG
         lbOption.isChecked = radioLB
-        currentWeightKey = sharedPreferences.getInt(AppUtils.INITIAL_WEIGHT_KEY_WT, 0)
-        goalWeightKey = sharedPreferences.getInt(AppUtils.FINAL_WEIGHT_KEY_WT, 0)
+        currentWeightET.setText("$currentWeightKey")
+        goalWeightET.setText("$goalWeightKey")
     }
 
     private fun updateRadio(key: String):
