@@ -3,6 +3,8 @@
     package="com.example.sampleproject_1">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="com.android.gms.permission.ACTIVITY_RECOGNITION" />
 
     <application
         android:name=".WaterReminder.NotificationWaterReminder.NotifyApplicationWaterReminder"
@@ -12,12 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".weightTracker.SettingsWeightTracker"
-            android:parentActivityName=".weightTracker.HomePageWeightTracker">
+        <activity android:name=".PedometerExample.StepCounter">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".weightTracker.HomePageWeightTracker"
-            android:launchMode="singleTop"/>
+        <activity
+            android:name=".weightTracker.SettingsWeightTracker"
+            android:parentActivityName=".weightTracker.HomePageWeightTracker"></activity>
+        <activity
+            android:name=".weightTracker.HomePageWeightTracker"
+            android:launchMode="singleTop" />
         <activity android:name=".weightTracker.UserDetailsWeightTracker" />
         <activity
             android:name=".weightTracker.SplashScreenWeightTracker"
