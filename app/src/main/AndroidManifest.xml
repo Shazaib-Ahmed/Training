@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".PedometerExample.StepCounter">
+
+        <activity
+            android:name=".PedometerExample.StepCounter"
+            android:label="@string/step_counter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,14 +26,16 @@
         </activity>
         <activity
             android:name=".weightTracker.SettingsWeightTracker"
-            android:parentActivityName=".weightTracker.HomePageWeightTracker"></activity>
+            android:parentActivityName=".weightTracker.HomePageWeightTracker">
+
+        </activity>
         <activity
             android:name=".weightTracker.HomePageWeightTracker"
             android:launchMode="singleTop" />
         <activity android:name=".weightTracker.UserDetailsWeightTracker" />
         <activity
             android:name=".weightTracker.SplashScreenWeightTracker"
-            android:label="@string/app_name_wt">
+            android:label="@string/weight_tracker">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,6 +57,7 @@
             android:parentActivityName=".WaterReminder.Settings" />
         <activity
             android:name=".WaterReminder.SplashScreen"
+            android:label="@string/water_reminder"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

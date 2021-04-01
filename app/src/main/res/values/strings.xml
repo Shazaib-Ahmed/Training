@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Reminder</string>
-    <string name="app_name_wt">Weight Tracker</string>
+    <string name="water_reminder">Water Reminder</string>
+    <string name="weight_tracker">Weight Tracker</string>
+    <string name="step_counter">Step Counter</string>
     <string-array name="data">
         <item>Male</item>
         <item>Female</item>

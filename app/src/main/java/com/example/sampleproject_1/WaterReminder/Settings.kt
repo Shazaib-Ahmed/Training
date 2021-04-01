@@ -6,18 +6,15 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.TaskWorker
-import com.example.sampleproject_1.WaterReminder.UserDetailsPage
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import org.koin.android.ext.android.inject
 import java.util.concurrent.TimeUnit
@@ -26,15 +23,18 @@ class Settings : AppCompatActivity() {
 
     private val sharedPreferences: SharedPreferences by inject()
     private val viewModelWaterReminder: ViewModelWaterReminder by inject()
+    private lateinit var workManager: WorkManager
+    private lateinit var periodicWorkRequest: PeriodicWorkRequest
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    @SuppressLint("UseSwitchCompatOrMaterialCode", "ShowToast", "UseCompatLoadingForDrawables")
+
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
         supportActionBar!!.title = "Settings"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
 
 
         val dialog = Dialog(this)
@@ -49,9 +49,9 @@ class Settings : AppCompatActivity() {
         val yesBtn = dialog.findViewById<TextView>(R.id.yes_TV)
         val noBtn = dialog.findViewById<TextView>(R.id.no_TV)
 
-        val switchh = sharedPreferences.getBoolean(AppUtils.NOTIFICATION_KEY, false)
+        val switchWR = sharedPreferences.getBoolean(AppUtils.NOTIFICATION_KEY, false)
 
-        switchNotification.isChecked = switchh
+        switchNotification.isChecked = switchWR
 
         clearUserData.setOnClickListener {
             dialog.show()
@@ -96,7 +96,6 @@ class Settings : AppCompatActivity() {
     }
 
     private fun updateUserDataFun() {
-
         val intent = Intent(this, UserDetailsPage::class.java)
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
@@ -104,20 +103,29 @@ class Settings : AppCompatActivity() {
     }
 
     private fun scheduleNotificationChannel() {
-
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
+        /*val periodicWorkRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
+                .setInitialDelay(15, TimeUnit.MINUTES)
+                .build()*/
+        workManager = WorkManager.getInstance(this)
+        periodicWorkRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
                 .setInitialDelay(15, TimeUnit.MINUTES)
                 .build()
 
-        WorkManager.getInstance().enqueue(periodicWorkRequest)
-        Toast.makeText(this, "Notification Enabled", Toast.LENGTH_SHORT).show()
+        workManager.enqueue(periodicWorkRequest)
+        //WorkManager.getInstance().enqueue(periodicWorkRequest)
+        Toast.makeText(this, "WR Notification Enabled", Toast.LENGTH_SHORT).show()
 
     }
 
     private fun cancelNotification() {
-        WorkManager.getInstance().cancelAllWork()
+       // val requestWR: WorkRequest = OneTimeWorkRequest.Builder(TaskWorker::class.java).build()
+        // workManager.enqueue(request)
+        //workManager.cancelWorkById(periodicWorkRequest.id)
+        workManager = WorkManager.getInstance(this)
+        workManager.cancelWorkById(periodicWorkRequest.id)
+       // workManager.cancelAllWork()
+        Toast.makeText(this, "WR Notification Disabled", Toast.LENGTH_SHORT).show()
 
-        Toast.makeText(this, "Notification Disabled", Toast.LENGTH_SHORT).show()
     }
 
 

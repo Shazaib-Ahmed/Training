@@ -16,8 +16,6 @@ class TaskWorker(var context: Context, workerParams: WorkerParameters) : Worker(
     override fun doWork(): Result {
         // Log.e("scheduleTask", "WORKING")
 
-
-
         val intent = Intent(context, HomePage::class.java)
         val pendingIntent = PendingIntent.getActivity(context, 2, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val notification = NotificationCompat.Builder(context, NotifyApplicationWaterReminder.CHANNEL__ID)

@@ -2,6 +2,7 @@ package com.example.sampleproject_1.WaterReminder
 
 import android.app.Application
 import android.content.SharedPreferences
+import androidx.work.WorkManager
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.weightTracker.DatabaseWT.ViewModelWeightTracker
@@ -23,5 +24,7 @@ val viewModelModuleWT: Module = module {
 }
 
 private fun setSharedPrefs(app: Application): SharedPreferences = app.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+
+
 
 

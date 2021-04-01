@@ -11,7 +11,6 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 
-
 public class JsonPlaceHolderApi extends AppCompatActivity {
 
 
@@ -25,20 +24,18 @@ public class JsonPlaceHolderApi extends AppCompatActivity {
         setContentView(R.layout.activity_json_place_holder_api);
 
 
-        rvEndPoints=findViewById(R.id.rv_endpoints);
-        context=this;
-        rvEndPoints.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        rvEndPoints = findViewById(R.id.rv_endpoints);
+        context = this;
+        rvEndPoints.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        endPointAdapter=new EndPointAdapter(dataQueue(),JsonPlaceHolderApi.this);
+        endPointAdapter = new EndPointAdapter(dataQueue(), JsonPlaceHolderApi.this);
         rvEndPoints.setAdapter(endPointAdapter);
         setTitle("Json Placeholder");
- }
+    }
 
 
-
-    public ArrayList<EndPointModel> dataQueue()
-    {
-        ArrayList<EndPointModel> holder =new ArrayList<>();
+    public ArrayList<EndPointModel> dataQueue() {
+        ArrayList<EndPointModel> holder = new ArrayList<>();
 
         EndPointModel ob1 = new EndPointModel();
         ob1.setEndpointText("Post");
@@ -60,27 +57,30 @@ public class JsonPlaceHolderApi extends AppCompatActivity {
     }
 
     public void updateFragmentForPhotos() {
-        PhotosFragment photosFragment =new PhotosFragment();
+        PhotosFragment photosFragment = new PhotosFragment();
         getSupportFragmentManager()
-                .beginTransaction().replace(R.id.frame_layout123,photosFragment)
+                .beginTransaction().replace(R.id.frame_layout123, photosFragment)
                 .commit();
     }
+
     public void updateFragmentForPost() {
-        PostFragment postFragment =new PostFragment();
+        PostFragment postFragment = new PostFragment();
         getSupportFragmentManager()
-                .beginTransaction().replace(R.id.frame_layout123,postFragment)
+                .beginTransaction().replace(R.id.frame_layout123, postFragment)
                 .commit();
     }
+
     public void updateFragmentForComments() {
-        CommentFragment commentFragment =new CommentFragment();
+        CommentFragment commentFragment = new CommentFragment();
         getSupportFragmentManager()
-                .beginTransaction().replace(R.id.frame_layout123,commentFragment)
+                .beginTransaction().replace(R.id.frame_layout123, commentFragment)
                 .commit();
     }
+
     public void updateFragmentForAlbums() {
-        AlbumFragment albumFragment =new AlbumFragment();
+        AlbumFragment albumFragment = new AlbumFragment();
         getSupportFragmentManager()
-                .beginTransaction().replace(R.id.frame_layout123,albumFragment)
+                .beginTransaction().replace(R.id.frame_layout123, albumFragment)
                 .commit();
     }
 
