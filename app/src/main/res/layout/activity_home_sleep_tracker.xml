@@ -44,38 +44,4 @@
         tools:listitem="@layout/item_sleep_tracker"
         />
 
-
-    <!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/startStopLinearLayout"
-            android:orientation="vertical"
-            android:background="#E3BBBB"
-            android:layout_margin="15sp">
-
-            <TextView
-                android:id="@+id/startTimeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15sp"
-                android:text="Start Sleep - " />
-
-            <TextView
-                android:id="@+id/stopTimeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15sp"
-                android:text="Stop Sleep - " />
-
-            <TextView
-                android:id="@+id/totalTimeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15sp"
-                android:text="Total Sleep - " />
-
-        </LinearLayout>
-    -->
-
 </RelativeLayout>
