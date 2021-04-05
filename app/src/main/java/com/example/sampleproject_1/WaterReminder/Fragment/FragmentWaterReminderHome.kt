@@ -42,6 +42,7 @@ class FragmentWaterReminderHome : Fragment() {
     private var inTook = 0
     private var totalIntake = 0
     var totalInTook = 0
+
     private var timeIntakeWaterListRV: RecyclerView? = null
     private var saveDailyData: ArrayList<WaterIntake>? = null
     private var adapterTime: TodayWaterIntakeAdapter? = null
