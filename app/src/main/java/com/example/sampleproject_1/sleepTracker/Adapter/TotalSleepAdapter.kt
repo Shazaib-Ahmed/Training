@@ -31,16 +31,18 @@ class TotalSleepAdapter
 
     class TotalSleepViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val TotalTime: TextView = itemView.findViewById(R.id.totalTimeTV)
-        private val TodayDate: TextView = itemView.findViewById(R.id.today_date)
+        private val totalTime: TextView = itemView.findViewById(R.id.totalTimeTV)
+        private val todayDate: TextView = itemView.findViewById(R.id.today_date)
+        private val sleepRating: TextView = itemView.findViewById(R.id.ratingTV)
 
         @SuppressLint("SetTextI18n")
         fun bindData(s: TotalSleep) {
-            TotalTime.text ="Total Sleep - " + s.totalUserTime
-            TodayDate.text ="Date - " + s.date
+            totalTime.text ="Total Sleep - " + s.totalUserTime
+            todayDate.text ="Date - " + s.date
+            sleepRating.text ="Sleep rating - " + s.rating+ " Star"
 
         }
 
     }
-    class TotalSleep(val totalUserTime: String , val date: String)
+    class TotalSleep(val totalUserTime: String , val date: String, val rating:String)
 }

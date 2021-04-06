@@ -129,4 +129,6 @@ Gender
 
     </string-array>
 
+    <string name="how_was_hour_sleep">How was your sleep?</string>
+
 </resources>
