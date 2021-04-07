@@ -99,6 +99,7 @@ class SettingsWeightTracker : AppCompatActivity() {
     private fun clearAllUserData() {
         sharedPreferences.edit().clear().apply()
         viewModelWeightTracker.deleteAllData()
+        val intent = Intent(this, UserDetailsWeightTracker::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
         finishAffinity()

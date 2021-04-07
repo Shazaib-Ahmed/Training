@@ -72,6 +72,7 @@ public class RoomDatabaseExample extends AppCompatActivity {
                 Toast.makeText(RoomDatabaseExample.this, "User Deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerViewRoomDatabase);
+
         userInfoRoomAdapter.setOnItemClickListener(new UserInfoRoomAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(UserInfo userInfo) {
@@ -103,9 +104,9 @@ public class RoomDatabaseExample extends AppCompatActivity {
             Toast.makeText(this, "User info saved", Toast.LENGTH_SHORT).show();
 
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
-            int id =data.getIntExtra(AddEditUserInfo.EXTRA_ID,-1);
+            int id = data.getIntExtra(AddEditUserInfo.EXTRA_ID, -1);
 
-            if (id==-1){
+            if (id == -1) {
                 Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -114,7 +115,7 @@ public class RoomDatabaseExample extends AppCompatActivity {
             String email = data.getStringExtra(AddEditUserInfo.EXTRA_EMAIL);
             String mobileNumber = data.getStringExtra(AddEditUserInfo.EXTRA_MOBILE);
 
-            UserInfo userInfo =new UserInfo(name,age,email,mobileNumber);
+            UserInfo userInfo = new UserInfo(name, age, email, mobileNumber);
             userInfo.setId(id);
             userInfoViewModel.update(userInfo);
 
