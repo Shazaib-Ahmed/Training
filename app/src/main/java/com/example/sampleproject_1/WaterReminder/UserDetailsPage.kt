@@ -139,8 +139,8 @@ class UserDetailsPage : AppCompatActivity() {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
-        val timeBed = timePickerBedSelectTimeTV.text.toString()
-        val timeWake = timePickerWakeSelectTimeTV.text.toString()
+       /* val timeBed = timePickerBedSelectTimeTV.text.toString()
+        val timeWake = timePickerWakeSelectTimeTV.text.toString()*/
         weight = weightEditText!!.text.toString().toInt()
 
 
@@ -153,8 +153,8 @@ class UserDetailsPage : AppCompatActivity() {
         val data = Intent(this@UserDetailsPage, HomePage::class.java)
         val editor = sharedPreferences.edit()
         editor.putBoolean(AppUtils.FIRST_RUN_KEY, false)
-        editor.putString(AppUtils.WAKE_UP_TIME_KEY, timeWake)
-        editor.putString(AppUtils.SLEEPING_TIME_KEY, timeBed)
+        /*editor.putString(AppUtils.WAKE_UP_TIME_KEY, timeWake)
+        editor.putString(AppUtils.SLEEPING_TIME_KEY, timeBed)*/
         editor.putInt(AppUtils.WEIGHT_KEY, weight)
         editor.putInt(AppUtils.WORK_TIME_KEY, workTime)
         val totalIntake = AppUtils.calculateIntake(weight, workTime)
@@ -171,8 +171,7 @@ class UserDetailsPage : AppCompatActivity() {
 
         continueTextView = findViewById(R.id.bottomContinueButtonUserDetailsPage)
         weightEditText = findViewById(R.id.weightEditText)
-        timePickerBedSelectTimeTV = findViewById(R.id.timePickerBedSelectTimeTV)
-        timePickerWakeSelectTimeTV = findViewById(R.id.timePickerWakeSelectTimeTV)
+
 
         maleOption = findViewById(R.id.male_option)
         femaleOption = findViewById(R.id.female_option)

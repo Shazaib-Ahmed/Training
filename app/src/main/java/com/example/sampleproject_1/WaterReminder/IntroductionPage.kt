@@ -22,6 +22,7 @@ class IntroductionPage : AppCompatActivity() {
         autoStartNotification()
     }
 
+/*
     fun sendToUserDetailsPage(v: View?) {
 
         if (sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY, true)) {
@@ -34,11 +35,20 @@ class IntroductionPage : AppCompatActivity() {
         }
         finish()
     }
+*/
 
     private fun autoStartNotification() {
         val autoStart = sharedPreferences!!.getString("autoStart", "")
         if (autoStart == "") {
             AutoStartHelper.instance.getAutoStartPermission(this)
         }
+    }
+
+    fun sendToUserDetailsPage(view: View) {
+        val intent = Intent(this, UserDetailsPage::class.java)
+        // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        //finishAffinity()
+        //finish()
     }
 }

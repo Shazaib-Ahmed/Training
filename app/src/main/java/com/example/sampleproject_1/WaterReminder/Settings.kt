@@ -24,7 +24,7 @@ class Settings : AppCompatActivity() {
     private val sharedPreferences: SharedPreferences by inject()
     private val viewModelWaterReminder: ViewModelWaterReminder by inject()
     private lateinit var workManager: WorkManager
-    private lateinit var periodicWorkRequest: PeriodicWorkRequest
+    private lateinit var periodicWorkRequestWR: PeriodicWorkRequest
 
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
@@ -35,7 +35,10 @@ class Settings : AppCompatActivity() {
         supportActionBar!!.title = "Settings"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-
+        //workManager = WorkManager.getInstance(this)
+        periodicWorkRequestWR = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
+                .setInitialDelay(15, TimeUnit.MINUTES)
+                .build()
 
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_two_buttons)
@@ -107,23 +110,20 @@ class Settings : AppCompatActivity() {
                 .setInitialDelay(15, TimeUnit.MINUTES)
                 .build()*/
         workManager = WorkManager.getInstance(this)
-        periodicWorkRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
-                .setInitialDelay(15, TimeUnit.MINUTES)
-                .build()
 
-        workManager.enqueue(periodicWorkRequest)
-        //WorkManager.getInstance().enqueue(periodicWorkRequest)
+        workManager.enqueue(periodicWorkRequestWR)
+        // WorkManager.getInstance().enqueue(periodicWorkRequest)
         Toast.makeText(this, "WR Notification Enabled", Toast.LENGTH_SHORT).show()
 
     }
 
     private fun cancelNotification() {
-       // val requestWR: WorkRequest = OneTimeWorkRequest.Builder(TaskWorker::class.java).build()
+        // val requestWR: WorkRequest = OneTimeWorkRequest.Builder(TaskWorker::class.java).build()
         // workManager.enqueue(request)
-        //workManager.cancelWorkById(periodicWorkRequest.id)
+        // workManager.cancelWorkById(periodicWorkRequest.id)
         workManager = WorkManager.getInstance(this)
-        workManager.cancelWorkById(periodicWorkRequest.id)
-       // workManager.cancelAllWork()
+        // workManager.cancelWorkById(periodicWorkRequestWR.id)
+        workManager.cancelAllWork()
         Toast.makeText(this, "WR Notification Disabled", Toast.LENGTH_SHORT).show()
 
     }

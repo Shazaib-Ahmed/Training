@@ -4,17 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WaterReminder.SplashScreen"
-    android:background="@color/tabColor">
-    <TextView
+    android:background="@color/weightTrackerColorOne"
+    tools:context=".WaterReminder.SplashScreen">
+
+    <ImageView
+        android:id="@+id/weight_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Weight Tracker"
-        android:textSize="40dp"
-        tools:ignore="MissingConstraints"
-        android:fontFamily="@font/baloo"
+        android:layout_centerInParent="true"
+        android:src="@drawable/weight" />
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weight_image"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        />
+        android:fontFamily="@font/poppins_normal"
+        android:text="@string/weight_tracker"
+        android:textColor="@color/weightTrackerColorTwo"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
 
 
 </RelativeLayout>

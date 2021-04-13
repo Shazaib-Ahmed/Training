@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_body_weight"
-        android:layout_margin="40dp"/>
+        android:layout_margin="40dp"
+        android:src="@drawable/ic_body_weight" />
 
     <TextView
         android:id="@+id/dummy_textView"
@@ -29,16 +29,15 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/vector_grey"
-        android:layout_below="@+id/dummy_textView"/>
+        android:layout_below="@+id/dummy_textView"
+        android:background="@drawable/vector_grey" />
 
     <RelativeLayout
         android:id="@+id/bottomContinueButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        >
+        android:layout_alignParentBottom="true">
 
         <TextView
 
@@ -46,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
+            android:layout_margin="20dp"
             android:background="@drawable/yellowbuttondesign"
             android:gravity="center"
             android:onClick="sendToUserDetailsPage"
@@ -54,9 +54,8 @@
             android:paddingEnd="5dp"
             android:paddingBottom="5dp"
             android:text="Continue"
-            android:layout_margin="20dp"
             android:textColor="@color/waterIntake"
             android:textSize="16sp"
-            app:drawableEndCompat="@drawable/ic_navigate_next" />
+            app:drawableEndCompat="@drawable/ic_continue_wr" />
     </RelativeLayout>
 </RelativeLayout>

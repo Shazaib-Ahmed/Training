@@ -32,6 +32,8 @@ class FragmentWaterReminderHistory : Fragment() {
 
     //  private val viewModelWaterReminder:ViewModelWaterReminder by viewModel()
 
+   // private val viewModelWaterReminder:ViewModelWaterReminder by viewModel()
+
     private lateinit var barChart: BarChart
     var barEntries: ArrayList<BarEntry>? = null
     var labelsNames: ArrayList<String>? = null

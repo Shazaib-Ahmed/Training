@@ -20,6 +20,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                />
             </intent-filter>
 
         </activity>
@@ -39,16 +40,18 @@
         </activity>
         <activity
             android:name=".weightTracker.HomePageWeightTracker"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            />
         <activity android:name=".weightTracker.UserDetailsWeightTracker" />
         <activity
             android:name=".weightTracker.SplashScreenWeightTracker"
-            android:label="@string/weight_tracker">
+            android:label="@string/weight_tracker"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT" />
+
             </intent-filter>
         </activity>
         <activity
@@ -70,7 +73,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity

@@ -193,6 +193,7 @@
             android:background="@drawable/radio_selector_wt"
             />
     </RadioGroup>
+
     <RelativeLayout
         android:id="@+id/bottomContinueButtonWTRelativeLayout"
         android:layout_width="match_parent"

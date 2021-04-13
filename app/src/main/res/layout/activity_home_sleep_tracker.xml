@@ -8,11 +8,12 @@
 
     <LinearLayout
         android:id="@+id/startStopLinearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="30sp"
+        android:layout_margin="10sp"
+        android:background="#BBD0E8"
         android:orientation="horizontal">
 
         <Button
@@ -20,19 +21,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_normal"
             android:text="Start"
-            android:theme="@style/Theme.AppCompat.DayNight"
-            />
+            android:theme="@style/Theme.AppCompat.DayNight" />
 
         <Button
             android:id="@+id/stopTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-            android:text="Stop"
+            android:layout_weight="1"
             android:enabled="false"
-            android:theme="@style/Theme.AppCompat.DayNight"
-            />
+            android:fontFamily="@font/poppins_normal"
+            android:text="Stop"
+            android:theme="@style/Theme.AppCompat.DayNight" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -40,8 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/startStopLinearLayout"
+        android:requiresFadingEdge="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_sleep_tracker"
-        />
+        tools:listitem="@layout/item_sleep_tracker" />
 
 </RelativeLayout>

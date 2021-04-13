@@ -115,8 +115,6 @@ class HomeSleepTracker : AppCompatActivity() {
             dialog.show()
             submitRatingBtn.setOnClickListener {
                 rate = ratingSleepTracker.rating.toString()
-
-
                 Toast.makeText(this, "$rate Star", Toast.LENGTH_SHORT).show()
                 stopTimeF()
                 dialog.dismiss()
@@ -138,8 +136,13 @@ class HomeSleepTracker : AppCompatActivity() {
         val mils: Long = date2.time - date1.time
         val mil: Long = abs(mils)
 
+       //for hour
         val hourDiff = (mil / (1000 * 60 * 60)).toInt()
+
+        //for minute
         val minDiff = (mil / (1000 * 60) % 60).toInt()
+
+        //for second
         val secDiff = ((mil / 1000) % 60).toInt()
 
         timeT = "$hourDiff : $minDiff : $secDiff"

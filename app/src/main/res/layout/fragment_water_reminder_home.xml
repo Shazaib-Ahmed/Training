@@ -125,8 +125,8 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
 
                     <TextView
@@ -137,7 +137,7 @@
                         android:fontFamily="@font/poppins_normal"
                         android:text="Suggested Water"
                         android:textColor="@color/tabColor"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -150,7 +150,7 @@
                         android:fontFamily="@font/poppins_normal"
                         android:text="Intake Per Day"
                         android:textColor="#FFC107"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -179,8 +179,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
 
                     <ImageView
