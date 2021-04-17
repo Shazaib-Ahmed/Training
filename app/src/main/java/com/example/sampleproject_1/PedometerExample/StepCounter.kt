@@ -22,7 +22,6 @@ class StepCounter : AppCompatActivity(), SensorEventListener {
     private var sensorManager: SensorManager? = null
 
     private var ACT_REC_PERMISSION_CODE = 1
-
     private var running = false
 
     private var totalSteps = 0f

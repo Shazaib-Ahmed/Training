@@ -14,7 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".sleepTracker.HomeSleepTracker"
+        <activity android:name=".bloodSugarTracker.HomePageBloodSugarTracker"></activity>
+        <activity android:name=".bloodSugarTracker.SplashScreenBloodSugarTracker">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sleepTracker.HomeSleepTracker"
             android:label="Sleep Tracker">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".PedometerExample.StepCounter"
@@ -35,13 +43,10 @@
         </activity>
         <activity
             android:name=".weightTracker.SettingsWeightTracker"
-            android:parentActivityName=".weightTracker.HomePageWeightTracker">
-
-        </activity>
+            android:parentActivityName=".weightTracker.HomePageWeightTracker" />
         <activity
             android:name=".weightTracker.HomePageWeightTracker"
-            android:launchMode="singleTop"
-            />
+            android:launchMode="singleTop" />
         <activity android:name=".weightTracker.UserDetailsWeightTracker" />
         <activity
             android:name=".weightTracker.SplashScreenWeightTracker"
@@ -51,7 +56,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
         <activity
@@ -73,8 +77,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-
+                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

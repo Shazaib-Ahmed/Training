@@ -17,4 +17,6 @@
     <color name="weightTrackerColorOne">#23033C</color>
     <color name="weightTrackerColorTwo">#FFE037</color>
 
+    //blood_sugar_level colors
+    <color name="bloodTrackerColorOne">#292929</color>
 </resources>
