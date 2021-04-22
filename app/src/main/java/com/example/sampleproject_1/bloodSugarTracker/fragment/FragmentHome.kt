@@ -16,14 +16,14 @@ class FragmentHome : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home_blood, container, false)
         val statisticsFragBtn: ImageView = view.findViewById(R.id.statistics_iv_btn)
 
-        val idSet: LinearLayout = view.findViewById(R.id.iddddd)
+        val averageFrag: LinearLayout = view.findViewById(R.id.average_linear_layout_bst)
 
         statisticsFragBtn.setOnClickListener {
 
             statisticsFragmentView()
         }
 
-        idSet.setOnClickListener {
+        averageFrag.setOnClickListener {
 
             averageFragmentView()
         }
