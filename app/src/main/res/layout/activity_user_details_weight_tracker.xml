@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background_wt_one"
+    android:background="@drawable/ic_main_background"
     tools:context=".weightTracker.UserDetailsWeightTracker">
 
     <LinearLayout
@@ -32,7 +32,8 @@
             android:text="Welcome"
             android:textColor="@color/weightTrackerColorOne"
             android:textSize="35sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+           />
     </LinearLayout>
 
     <RelativeLayout
@@ -40,23 +41,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome_wt"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_input_wt"
+        android:background="@drawable/ic_meter_input"
         android:padding="10sp"
-        android:layout_margin="15sp"
-
+        android:layout_marginStart="145sp"
         >
 
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/meter_wt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_weight_meter_wt"
             android:layout_alignParentTop="true"
-            android:layout_margin="5sp"/>
+            android:layout_margin="5sp"/>-->
 
-        <TextView
+      <!--  <TextView
             android:id="@+id/input_weight_wt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,9 +68,21 @@
             android:gravity="center"
             android:textSize="16sp"
             android:textColor="@color/weightTrackerColorOne"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
-
+        <TextView
+            android:id="@+id/input_weight_wt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_normal"
+            android:text="Input \n Weight"
+            android:layout_centerVertical="true"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/weightTrackerColorOne"
+            android:textStyle="bold"
+           android:layout_marginStart="21sp"
+            />
     </RelativeLayout>
 
     <LinearLayout

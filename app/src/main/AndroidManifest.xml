@@ -14,19 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".bloodSugarTracker.NotificationReminderAlertBloodSugarTracker"></activity>
         <activity android:name=".bloodSugarTracker.BloodSugarTrackerSettings"></activity>
         <activity
             android:name=".bloodSugarTracker.HomePageBloodSugarTracker"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".bloodSugarTracker.SplashScreenBloodSugarTracker"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:label="Blood Sugar Tracker">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT" />
+
             </intent-filter>
         </activity>
         <activity
@@ -60,7 +60,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -84,7 +84,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                />
             </intent-filter>
         </activity>
         <activity

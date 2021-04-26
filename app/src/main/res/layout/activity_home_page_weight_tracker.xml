@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background_wt_one"
+    android:background="@drawable/ic_main_background"
     tools:context=".weightTracker.HomePageWeightTracker">
 
     <LinearLayout
@@ -51,11 +51,11 @@
                 android:layout_height="wrap_content"
                 android:background="@color/weightTrackerColorTwo"
                 android:fontFamily="@font/poppins_normal"
+                android:padding="5sp"
                 android:text="Current"
                 android:textColor="@color/weightTrackerColorOne"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:padding="5sp"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -92,14 +92,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/home_page_linear_layout"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="5sp"
-        android:background="@drawable/ic_input_wt"
-        android:padding="10sp"
-
+       android:layout_marginStart="145sp"
+        android:background="@drawable/ic_meter_input"
         >
 
-        <ImageView
+      <!--  <ImageView
             android:id="@+id/meter_wt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,151 +118,176 @@
             android:textAlignment="center"
             android:textColor="@color/weightTrackerColorOne"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
-
+        <TextView
+            android:id="@+id/current_weightTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_normal"
+            android:text="86 KG"
+            android:textColor="@color/weightTrackerColorOne"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginStart="29sp"/>
     </RelativeLayout>
 
-
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/trends_relative_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/input_weight_home_page_relativeLayout"
         android:layout_margin="8sp"
-        android:background="@drawable/ic_trend_card_background"
-        android:elevation="5sp"
-        android:padding="8sp">
 
-        <TextView
-            android:id="@+id/trends_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="8sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Trends"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+        app:cardCornerRadius="10sp"
+        app:cardElevation="8sp">
 
-        <TextView
-            android:id="@+id/change_in_seven_days_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/trends_tv"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="13sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Change Last 7 days "
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
-
-        <TextView
-            android:id="@+id/change_in_seven_days"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/trends_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="-1 Kg"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/change_in_seven_days_textView"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="13sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Change Last 30 days "
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
-
-        <TextView
+        <RelativeLayout
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/change_in_seven_days"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="-3.8 Kg"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
-    </RelativeLayout>
+            android:background="@drawable/ic_trend_card_background"
+            android:padding="8sp">
 
-    <RelativeLayout
+            <TextView
+                android:id="@+id/trends_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Trends"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/change_in_seven_days_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/trends_tv"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Change Last 7 days "
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/change_in_seven_days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/trends_tv"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="-1 Kg"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/change_in_seven_days_textView"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Change Last 30 days "
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/change_in_seven_days"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="-3.8 Kg"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/progress_relative_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/trends_relative_layout"
         android:layout_margin="8sp"
-        android:background="@drawable/ic_trend_card_background"
-        android:elevation="10dp"
-        android:padding="8sp">
+        app:cardCornerRadius="10sp"
+        app:cardElevation="8sp">
 
-        <TextView
-            android:id="@+id/progress_tv"
+        <RelativeLayout
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="8sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Progress"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:background="@drawable/ic_trend_card_background"
+            android:elevation="10dp"
+            android:padding="8sp">
 
-        <TextView
-            android:id="@+id/avg_change_per_week_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progress_tv"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="13sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Average change per week"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
+            <TextView
+                android:id="@+id/progress_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="8sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Progress"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/avg_change_per_week"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progress_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="-2.1 Kg"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
+            <TextView
+                android:id="@+id/avg_change_per_week_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_tv"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Average change per week"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/avg_change_per_week_tv"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="13sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Lost Weight"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
+            <TextView
+                android:id="@+id/avg_change_per_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress_tv"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="-2.1 Kg"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
 
-        <TextView
-            android:id="@+id/lost_weight_TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/avg_change_per_week"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10sp"
-            android:fontFamily="@font/poppins_normal"
-            android:text="1.5 Kg"
-            android:textColor="@color/weightTrackerColorOne"
-            android:textSize="11sp" />
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/avg_change_per_week_tv"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Lost Weight"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/lost_weight_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/avg_change_per_week"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="1.5 Kg"
+                android:textColor="@color/weightTrackerColorOne"
+                android:textSize="11sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
     <RelativeLayout
         android:id="@+id/spinner_relative_layout"
@@ -291,9 +313,9 @@
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/MPLineChart"
-        android:layout_below="@+id/spinner_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="0dp" />
+        android:layout_below="@+id/spinner_relative_layout"
+        android:layout_margin="20sp" />
 
 </RelativeLayout>

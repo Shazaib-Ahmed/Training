@@ -1,4 +1,4 @@
-package com.example.sampleproject_1.bloodSugarTracker.wfragment
+package com.example.sampleproject_1.bloodSugarTracker.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -172,7 +172,6 @@ class HomePageWeightTracker : AppCompatActivity() {
 
         }
 
-
         val xAxis = lineChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         lineChart.isDragEnabled = true
