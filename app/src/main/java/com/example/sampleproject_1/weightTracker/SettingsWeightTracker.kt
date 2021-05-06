@@ -38,6 +38,7 @@ class SettingsWeightTracker : AppCompatActivity() {
         //workManager = WorkManager.getInstance(this)
         periodicWorkRequestWT = PeriodicWorkRequest.Builder(TaskWorkerWT::class.java, 15, TimeUnit.MINUTES)
                 .setInitialDelay(15, TimeUnit.MINUTES)
+                .addTag("weightTrackerNotification")
                 .build()
 
 
@@ -125,7 +126,8 @@ class SettingsWeightTracker : AppCompatActivity() {
         // workManager.cancelWorkById(periodicWorkRequest.id)
         workManager = WorkManager.getInstance(this)
         //workManager.cancelWorkById(periodicWorkRequestWT.id)
-        workManager.cancelAllWork()
+       // workManager.cancelAllWork()
+        workManager.cancelAllWorkByTag("weightTrackerNotification")
         Toast.makeText(this, "WT Notification Disabled", Toast.LENGTH_SHORT).show()
     }
 }

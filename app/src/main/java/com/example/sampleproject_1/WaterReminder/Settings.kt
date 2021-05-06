@@ -37,7 +37,7 @@ class Settings : AppCompatActivity() {
 
         //workManager = WorkManager.getInstance(this)
         periodicWorkRequestWR = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
-                .setInitialDelay(15, TimeUnit.MINUTES)
+                .setInitialDelay(15, TimeUnit.MINUTES).addTag("waterReminderNotification")
                 .build()
 
         val dialog = Dialog(this)
@@ -123,7 +123,8 @@ class Settings : AppCompatActivity() {
         // workManager.cancelWorkById(periodicWorkRequest.id)
         workManager = WorkManager.getInstance(this)
         // workManager.cancelWorkById(periodicWorkRequestWR.id)
-        workManager.cancelAllWork()
+       // workManager.cancelAllWork()
+        workManager.cancelAllWorkByTag("waterReminderNotification")
         Toast.makeText(this, "WR Notification Disabled", Toast.LENGTH_SHORT).show()
 
     }
