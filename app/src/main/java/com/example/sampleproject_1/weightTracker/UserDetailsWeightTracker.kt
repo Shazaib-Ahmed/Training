@@ -101,6 +101,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         editor.putBoolean(AppUtils.FIRST_RUN_KEY_WEIGHT_TRACKER, false)
         editor.putInt(AppUtils.INITIAL_WEIGHT_KEY_WT, weightInitial)
         editor.putInt(AppUtils.FINAL_WEIGHT_KEY_WT, weightGoal)
+
         val weightCurrent = weightInitial
         editor.putInt("CURRENT_WEIGHT_KEY", weightCurrent)
         editor.apply()

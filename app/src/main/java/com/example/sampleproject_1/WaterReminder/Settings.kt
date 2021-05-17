@@ -35,7 +35,6 @@ class Settings : AppCompatActivity() {
         supportActionBar!!.title = "Settings"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        //workManager = WorkManager.getInstance(this)
         periodicWorkRequestWR = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
                 .setInitialDelay(15, TimeUnit.MINUTES).addTag("waterReminderNotification")
                 .build()
@@ -106,9 +105,7 @@ class Settings : AppCompatActivity() {
     }
 
     private fun scheduleNotificationChannel() {
-        /*val periodicWorkRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java, 15, TimeUnit.MINUTES)
-                .setInitialDelay(15, TimeUnit.MINUTES)
-                .build()*/
+
         workManager = WorkManager.getInstance(this)
 
         workManager.enqueue(periodicWorkRequestWR)
@@ -118,12 +115,7 @@ class Settings : AppCompatActivity() {
     }
 
     private fun cancelNotification() {
-        // val requestWR: WorkRequest = OneTimeWorkRequest.Builder(TaskWorker::class.java).build()
-        // workManager.enqueue(request)
-        // workManager.cancelWorkById(periodicWorkRequest.id)
         workManager = WorkManager.getInstance(this)
-        // workManager.cancelWorkById(periodicWorkRequestWR.id)
-       // workManager.cancelAllWork()
         workManager.cancelAllWorkByTag("waterReminderNotification")
         Toast.makeText(this, "WR Notification Disabled", Toast.LENGTH_SHORT).show()
 

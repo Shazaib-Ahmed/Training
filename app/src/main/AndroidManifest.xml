@@ -14,19 +14,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".bloodSugarTracker.BloodSugarTrackerSettings"></activity>
+
+        <receiver
+            android:name=".service.Restarter"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="restartservice" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".service.MainActivityService"
+            android:label="SSSS">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                             <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.YourService"
+            android:enabled="true" >
+        </service>
+
+
+
+        <activity android:name=".bloodSugarTracker.BloodSugarTrackerSettings" />
         <activity
             android:name=".bloodSugarTracker.HomePageBloodSugarTracker"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".bloodSugarTracker.SplashScreenBloodSugarTracker"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:label="Blood Sugar Tracker">
+            android:label="Blood Sugar Tracker"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
         <activity
@@ -60,6 +84,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

@@ -46,6 +46,9 @@ private var currentWeightInput = 0
 private lateinit var spinnerWeightTracker: Spinner
 private lateinit var viewModelWeightTracker: ViewModelWeightTracker
 private lateinit var lineChart: LineChart
+
+private var lb =false
+private var kg =false
 //private var lineEntries: ArrayList<Entry>? = null
 
 private lateinit var calendar: Calendar
@@ -105,6 +108,10 @@ class HomePageWeightTracker : AppCompatActivity() {
         startingWeightKey = sharedPreferences.getInt(AppUtils.INITIAL_WEIGHT_KEY_WT.toString(), 0)
 
         goalWeightKey = sharedPreferences.getInt(AppUtils.FINAL_WEIGHT_KEY_WT.toString(), 0)
+
+       /* lb  = sharedPreferences.getBoolean("LB_CHECKED", false)
+        kg  = sharedPreferences.getBoolean("KG_CHECKED", false)*/
+
 
         currentWeightInput = sharedPreferences.getInt("CURRENT_WEIGHT_KEY", 0)
 

@@ -122,11 +122,8 @@ class SettingsWeightTracker : AppCompatActivity() {
     }
 
     private fun cancelNotificationWT() {
-        // workManager.enqueue(request)
-        // workManager.cancelWorkById(periodicWorkRequest.id)
+
         workManager = WorkManager.getInstance(this)
-        //workManager.cancelWorkById(periodicWorkRequestWT.id)
-       // workManager.cancelAllWork()
         workManager.cancelAllWorkByTag("weightTrackerNotification")
         Toast.makeText(this, "WT Notification Disabled", Toast.LENGTH_SHORT).show()
     }

@@ -45,6 +45,7 @@ object AppUtils {
     var INITIAL_WEIGHT_KEY_WT                =          "current_weight_wt"
     var FINAL_WEIGHT_KEY_WT                  =          "goal_weight_wt"
     var FIRST_RUN_KEY_WEIGHT_TRACKER         =          "firstrunWT"
+    var RADIO_OPTION_KEY_WT                  =          "radioOptionKeyWt"
     var NOTIFICATION_KEY_WT = "notificationkeyWT"
 
 }
