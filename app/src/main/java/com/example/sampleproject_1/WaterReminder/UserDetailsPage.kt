@@ -39,8 +39,6 @@ class UserDetailsPage : AppCompatActivity() {
 
     private lateinit var continueTextView: TextView
     var weightEditText: EditText? = null
-    private lateinit var timePickerBedSelectTimeTV: TextView
-    private lateinit var timePickerWakeSelectTimeTV: TextView
 
     private var hourPick = 0
     private var minutePick = 0
