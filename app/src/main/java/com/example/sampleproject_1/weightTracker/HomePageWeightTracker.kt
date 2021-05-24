@@ -109,8 +109,9 @@ class HomePageWeightTracker : AppCompatActivity() {
 
         goalWeightKey = sharedPreferences.getInt(AppUtils.FINAL_WEIGHT_KEY_WT.toString(), 0)
 
-       /* lb  = sharedPreferences.getBoolean("LB_CHECKED", false)
-        kg  = sharedPreferences.getBoolean("KG_CHECKED", false)*/
+        lb  = sharedPreferences.getBoolean("LB_CHECKED", false)
+        kg  = sharedPreferences.getBoolean("KG_CHECKED", false)
+
 
 
         currentWeightInput = sharedPreferences.getInt("CURRENT_WEIGHT_KEY", 0)
@@ -119,7 +120,132 @@ class HomePageWeightTracker : AppCompatActivity() {
 
         val firstRunKeyWT = sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WEIGHT_TRACKER, true)
 
-        startingWeight.text = "$startingWeightKey kg"
+        if (kg)
+        {
+            startingWeight.text = "$startingWeightKey kg"
+            goalWeight.text = "$goalWeightKey kg"
+
+            currentWeight.text = "$currentWeightInput kg"
+            lostWeightTV.text = "-$lostWeightkey kg"
+
+            if (!firstRunKeyWT) {
+                currentWeight.text = "$currentWeightInput kg"
+            }
+
+
+            val yesBtn = dialog.findViewById<TextView>(R.id.dialog_done_wt)
+            val noBtn = dialog.findViewById<TextView>(R.id.dialog_cancel_wt)
+            val currentInputET = dialog.findViewById<EditText>(R.id.weight_current_wt)
+
+
+
+            currentWeight.setOnClickListener {
+                dialog.show()
+                yesBtn.setOnClickListener {
+
+                    currentWeightInput = currentInputET!!.text.toString().toInt()
+
+                    if (currentWeightInput == goalWeightKey) {
+                        Toast.makeText(this, "You achieved your goal", Toast.LENGTH_SHORT).show()
+                    }
+
+                    if (currentWeightInput == (goalWeightKey - 1) || currentWeightInput < goalWeightKey) {
+                        Toast.makeText(this, "You achieved your goal. Update goal in settings", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                    if (currentWeightInput > startingWeightKey) {
+                        Toast.makeText(this, "Enter weight is more than initial weight. Please update weight in settings", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+
+                    currentWeight.text = "$currentWeightInput kg"
+                    lostWeightkey = startingWeightKey - currentWeightInput
+
+                    val editor = sharedPreferences.edit()
+                    editor.putInt("CURRENT_WEIGHT_KEY", currentWeightInput)
+                    editor.putInt("LOST_WEIGHT_KEY", lostWeightkey)
+                    editor.apply()
+
+
+
+                    viewModelWeightTracker.insert(entityWeightTracker = EntityWeightTracker(0, startingWeightKey, goalWeightKey, currentWeightInput, currentDate))
+                    lostWeightTV.text = "-$lostWeightkey kg"
+                    dialog.dismiss()
+
+                }
+
+                noBtn.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+
+            }
+        }else if (lb)
+        {
+            startingWeight.text = "$startingWeightKey lb"
+            goalWeight.text = "$goalWeightKey lb"
+
+            currentWeight.text = "$currentWeightInput lb"
+            lostWeightTV.text = "-$lostWeightkey lb"
+
+            if (!firstRunKeyWT) {
+                currentWeight.text = "$currentWeightInput lb"
+            }
+
+
+            val yesBtn = dialog.findViewById<TextView>(R.id.dialog_done_wt)
+            val noBtn = dialog.findViewById<TextView>(R.id.dialog_cancel_wt)
+            val currentInputET = dialog.findViewById<EditText>(R.id.weight_current_wt)
+
+
+
+            currentWeight.setOnClickListener {
+                dialog.show()
+                yesBtn.setOnClickListener {
+
+                    currentWeightInput = currentInputET!!.text.toString().toInt()
+
+                    if (currentWeightInput == goalWeightKey) {
+                        Toast.makeText(this, "You achieved your goal", Toast.LENGTH_SHORT).show()
+                    }
+
+                    if (currentWeightInput == (goalWeightKey - 1) || currentWeightInput < goalWeightKey) {
+                        Toast.makeText(this, "You achieved your goal. Update goal in settings", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                    if (currentWeightInput > startingWeightKey) {
+                        Toast.makeText(this, "Enter weight is more than initial weight. Please update weight in settings", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+
+                    currentWeight.text = "$currentWeightInput lb"
+                    lostWeightkey = startingWeightKey - currentWeightInput
+
+                    val editor = sharedPreferences.edit()
+                    editor.putInt("CURRENT_WEIGHT_KEY", currentWeightInput)
+                    editor.putInt("LOST_WEIGHT_KEY", lostWeightkey)
+                    editor.apply()
+
+
+
+                    viewModelWeightTracker.insert(entityWeightTracker = EntityWeightTracker(0, startingWeightKey, goalWeightKey, currentWeightInput, currentDate))
+                    lostWeightTV.text = "-$lostWeightkey lb"
+                    dialog.dismiss()
+
+                }
+
+                noBtn.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+
+            }
+        }
+
+
+      /*  startingWeight.text = "$startingWeightKey kg"
         goalWeight.text = "$goalWeightKey kg"
 
         currentWeight.text = "$currentWeightInput kg"
@@ -177,7 +303,7 @@ class HomePageWeightTracker : AppCompatActivity() {
             }
 
 
-        }
+        }*/
 
         val xAxis = lineChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM

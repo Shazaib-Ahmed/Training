@@ -42,21 +42,48 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details_weight_tracker)
 
-
         initialisationFields()
 
         viewModelWeightTracker = ViewModelProvider(this).get(ViewModelWeightTracker::class.java)
 
 
+
+        lbOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, lbIsChecked ->
+
+
+            saveRadioData("LB_CHECKED", lbIsChecked)
+        }
+        )
+
         kgOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, kgIsChecked ->
+
             saveRadioData("KG_CHECKED", kgIsChecked)
         }
         )
 
-        lbOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, lbIsChecked ->
-            saveRadioData("LB_CHECKED", lbIsChecked)
+
+       /* if (kgOption.isChecked) {
+            currentWeightET.hint = "Enter Weight in Kg"
+            goalWeightET.hint = "Enter Weight in Kg"
+        } else if (lbOption.isChecked) {
+            currentWeightET.hint = "Enter Weight in Lbs"
+            goalWeightET.hint = "Enter Weight in Lbs"
         }
-        )
+*/
+        kgOption.setOnClickListener {
+
+            currentWeightET.hint = "Enter Weight in Kg"
+            goalWeightET.hint = "Enter Weight in Kg"
+        }
+
+        lbOption.setOnClickListener {
+
+
+            currentWeightET.hint = "Enter Weight in Lb"
+            goalWeightET.hint = "Enter Weight in Lb"
+        }
+
+
 
         continueBtnWt.setOnClickListener { saveUserInfo() }
         updateDetails()
@@ -73,7 +100,6 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
     private fun saveUserInfo() {
 
-
         if (currentWeightET.text.toString().isEmpty() || goalWeightET.text.toString().isEmpty()) {
             Toast.makeText(this, "Please enter weight", Toast.LENGTH_SHORT).show()
             return
@@ -85,7 +111,46 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         weightInitial = currentWeightET.text.toString().toInt()
         weightGoal = goalWeightET.text.toString().toInt()
 
-        if (weightInitial > 200 || weightInitial < 20) {
+        if (kgOption.isChecked) {
+
+            if (weightInitial > 200 || weightInitial < 20) {
+                Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                return
+
+            } else if (weightGoal > 200 || weightGoal < 20) {
+                Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                return
+
+            }
+        } else if (lbOption.isChecked) {
+
+
+            if (weightInitial > 440 || weightInitial < 44) {
+                Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                return
+
+            } else if (weightGoal > 440 || weightGoal < 44) {
+                Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                return
+
+            }
+
+        }
+
+        kgOption.setOnClickListener {
+
+           val ss = AppUtils.covertToKg(weightInitial)
+           val sp = AppUtils.covertToKg(weightGoal)
+        }
+
+        lbOption.setOnClickListener {
+
+
+            currentWeightET.hint = "Enter Weight in Lb"
+            goalWeightET.hint = "Enter Weight in Lb"
+        }
+
+        /*if (weightInitial > 200 || weightInitial < 20) {
             Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
             return
 
@@ -93,7 +158,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
             return
 
-        }
+        }*/
 
 
         val data = Intent(this@UserDetailsWeightTracker, HomePageWeightTracker::class.java)
@@ -105,7 +170,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         val weightCurrent = weightInitial
         editor.putInt("CURRENT_WEIGHT_KEY", weightCurrent)
         editor.apply()
-      //viewModelWeightTracker.insert(entityWeightTracker = EntityWeightTracker(0, weightInitial, weightGoal, weightCurrent))
+        //viewModelWeightTracker.insert(entityWeightTracker = EntityWeightTracker(0, weightInitial, weightGoal, weightCurrent))
 
         startActivity(data)
         finishAffinity()
@@ -143,6 +208,8 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
             loaData()
             updateView()
+
+
 
         }
     }

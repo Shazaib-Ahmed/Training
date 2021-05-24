@@ -48,4 +48,15 @@ object AppUtils {
     var RADIO_OPTION_KEY_WT                  =          "radioOptionKeyWt"
     var NOTIFICATION_KEY_WT = "notificationkeyWT"
 
+    fun covertToKg(weight: Int): Double {
+        val change = 2.2046226218
+        return weight / change
+    }
+
+
+    fun covertToLb(weight: Double): Double {
+        val change = 2.2046226218
+        return weight * change
+    }
+
 }
