@@ -100,9 +100,10 @@
             android:layout_weight="1">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_margin="15sp"
                 android:background="@drawable/ic_current_goal_background_wt"
                 android:gravity="center|center_horizontal">
 
@@ -130,10 +131,10 @@
                     android:fontFamily="@font/poppins_normal"
                     android:hint="Enter Weight in Kg"
                     android:inputType="number"
-                    android:padding="8sp"
+                    android:padding="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/weightTrackerColorOne"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -145,8 +146,9 @@
             android:layout_weight="1">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="15sp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/ic_current_goal_background_wt"
                 android:gravity="center">
@@ -174,10 +176,10 @@
                     android:fontFamily="@font/poppins_normal"
                     android:hint="Enter Weight in Kg"
                     android:inputType="number"
-                    android:padding="8sp"
+                    android:padding="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/weightTrackerColorOne"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </RelativeLayout>
