@@ -36,8 +36,8 @@ class SettingsWeightTracker : AppCompatActivity() {
 
 
         //workManager = WorkManager.getInstance(this)
-        periodicWorkRequestWT = PeriodicWorkRequest.Builder(TaskWorkerWT::class.java, 15, TimeUnit.MINUTES)
-                .setInitialDelay(15, TimeUnit.MINUTES)
+        periodicWorkRequestWT = PeriodicWorkRequest.Builder(TaskWorkerWT::class.java, 6, TimeUnit.HOURS)
+                .setInitialDelay(6, TimeUnit.HOURS)
                 .addTag("weightTrackerNotification")
                 .build()
 

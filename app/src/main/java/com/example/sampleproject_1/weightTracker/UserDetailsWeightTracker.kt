@@ -37,6 +37,8 @@ class UserDetailsWeightTracker : AppCompatActivity() {
     private val sharedPreferences: SharedPreferences by inject()
 
     //private val viewModelWeightTracker: ViewModelWeightTracker by inject()
+    private val firstRunKey =
+        sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WEIGHT_TRACKER, true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +47,6 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         initialisationFields()
 
         viewModelWeightTracker = ViewModelProvider(this).get(ViewModelWeightTracker::class.java)
-
-
 
         lbOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, lbIsChecked ->
 
@@ -61,15 +61,14 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         }
         )
 
-
-       /* if (kgOption.isChecked) {
-            currentWeightET.hint = "Enter Weight in Kg"
-            goalWeightET.hint = "Enter Weight in Kg"
-        } else if (lbOption.isChecked) {
-            currentWeightET.hint = "Enter Weight in Lbs"
-            goalWeightET.hint = "Enter Weight in Lbs"
-        }
-*/
+        /* if (kgOption.isChecked) {
+             currentWeightET.hint = "Enter Weight in Kg"
+             goalWeightET.hint = "Enter Weight in Kg"
+         } else if (lbOption.isChecked) {
+             currentWeightET.hint = "Enter Weight in Lbs"
+             goalWeightET.hint = "Enter Weight in Lbs"
+         }
+ */
         kgOption.setOnClickListener {
 
             currentWeightET.hint = "Enter Weight in Kg"
@@ -78,12 +77,9 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
         lbOption.setOnClickListener {
 
-
             currentWeightET.hint = "Enter Weight in Lb"
             goalWeightET.hint = "Enter Weight in Lb"
         }
-
-
 
         continueBtnWt.setOnClickListener { saveUserInfo() }
         updateDetails()
@@ -137,19 +133,6 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
         }
 
-        kgOption.setOnClickListener {
-
-           val ss = AppUtils.covertToKg(weightInitial)
-           val sp = AppUtils.covertToKg(weightGoal)
-        }
-
-        lbOption.setOnClickListener {
-
-
-            currentWeightET.hint = "Enter Weight in Lb"
-            goalWeightET.hint = "Enter Weight in Lb"
-        }
-
         /*if (weightInitial > 200 || weightInitial < 20) {
             Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
             return
@@ -159,7 +142,6 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             return
 
         }*/
-
 
         val data = Intent(this@UserDetailsWeightTracker, HomePageWeightTracker::class.java)
         val editor = sharedPreferences.edit()
@@ -202,14 +184,12 @@ class UserDetailsWeightTracker : AppCompatActivity() {
     }
 
     private fun updateDetails() {
-        val firstRunKey = sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WEIGHT_TRACKER, true)
+
 
         if (!firstRunKey) {
 
             loaData()
             updateView()
-
-
 
         }
     }

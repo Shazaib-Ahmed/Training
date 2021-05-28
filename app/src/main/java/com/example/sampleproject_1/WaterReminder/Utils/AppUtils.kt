@@ -54,7 +54,7 @@ object AppUtils {
     }
 
 
-    fun covertToLb(weight: Double): Double {
+    fun covertToLb(weight: Int): Double {
         val change = 2.2046226218
         return weight * change
     }
