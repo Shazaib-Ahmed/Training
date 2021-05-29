@@ -8,9 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
-import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
-import com.example.sampleproject_1.weightTracker.DatabaseWT.EntityWeightTracker
 import com.example.sampleproject_1.weightTracker.DatabaseWT.ViewModelWeightTracker
 import org.koin.android.ext.android.inject
 
@@ -21,8 +19,8 @@ private lateinit var lbOption: RadioButton
 private var radioKG = true
 private var radioLB = true
 
-private var kkkk = false
-private var lllll = false
+private var kgOptionISChecked = false
+private var lbOptionISChecked = false
 
 private var weightInitial = 0
 private var weightGoal = 0
@@ -59,18 +57,18 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
             if (kgOption.isChecked) {
                 //saveRadioData("KG_CHECKED", true)
-                kkkk = true
+                kgOptionISChecked = true
 
             } else if (lbOption.isChecked) {
                 //saveRadioData("LB_CHECKED", true)
 
-                lllll = true
+                lbOptionISChecked = true
             }
 
             lbOption.setOnCheckedChangeListener { _, lbIsChecked ->
 
                 saveRadioData("LB_CHECKED", lbIsChecked)
-                lllll = lbIsChecked
+                lbOptionISChecked = lbIsChecked
 
             }
 
@@ -78,7 +76,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
                 saveRadioData("KG_CHECKED", kgIsChecked)
 
-                kkkk = kgIsChecked
+                kgOptionISChecked = kgIsChecked
             }
 
         }
@@ -104,11 +102,11 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             }
 */
             kgOption.setOnCheckedChangeListener { _, kgIsChecked ->
-                kkkk = kgIsChecked
+                kgOptionISChecked = kgIsChecked
             }
 
             lbOption.setOnCheckedChangeListener { _, lbIsChecked ->
-                lllll = lbIsChecked
+                lbOptionISChecked = lbIsChecked
             }
 
 
@@ -286,8 +284,8 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
         }*/
 
-        saveRadioData("KG_CHECKED", kkkk)
-        saveRadioData("LB_CHECKED", lllll)
+        saveRadioData("KG_CHECKED", kgOptionISChecked)
+        saveRadioData("LB_CHECKED", lbOptionISChecked)
 
         val data = Intent(this@UserDetailsWeightTracker, HomePageWeightTracker::class.java)
         val editor = sharedPreferences.edit()
