@@ -186,6 +186,7 @@
     </LinearLayout>
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/current_goal_linear_layout"
@@ -200,7 +201,6 @@
             android:background="@drawable/radio_selector_wt"
             android:button="@android:color/transparent"
             android:gravity="center"
-            android:checked="true"
             android:text="Kg"
             android:textColor="@drawable/radio_button_text_color_wt" />
 

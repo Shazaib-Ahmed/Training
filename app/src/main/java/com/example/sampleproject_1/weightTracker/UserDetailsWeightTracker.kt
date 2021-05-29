@@ -14,11 +14,15 @@ import com.example.sampleproject_1.weightTracker.DatabaseWT.EntityWeightTracker
 import com.example.sampleproject_1.weightTracker.DatabaseWT.ViewModelWeightTracker
 import org.koin.android.ext.android.inject
 
+private lateinit var radioGroup: RadioGroup
 private lateinit var kgOption: RadioButton
 private lateinit var lbOption: RadioButton
 
 private var radioKG = true
 private var radioLB = true
+
+private var kkkk = false
+private var lllll = false
 
 private var weightInitial = 0
 private var weightGoal = 0
@@ -40,6 +44,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
     private val firstRunKey =
         sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WEIGHT_TRACKER, true)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details_weight_tracker)
@@ -48,27 +53,162 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
         viewModelWeightTracker = ViewModelProvider(this).get(ViewModelWeightTracker::class.java)
 
-        lbOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, lbIsChecked ->
 
+        if (firstRunKey) {
+            kgOption.isChecked = true
 
-            saveRadioData("LB_CHECKED", lbIsChecked)
+            if (kgOption.isChecked) {
+                //saveRadioData("KG_CHECKED", true)
+                kkkk = true
+
+            } else if (lbOption.isChecked) {
+                //saveRadioData("LB_CHECKED", true)
+
+                lllll = true
+            }
+
+            lbOption.setOnCheckedChangeListener { _, lbIsChecked ->
+
+                saveRadioData("LB_CHECKED", lbIsChecked)
+                lllll = lbIsChecked
+
+            }
+
+            kgOption.setOnCheckedChangeListener { _, kgIsChecked ->
+
+                saveRadioData("KG_CHECKED", kgIsChecked)
+
+                kkkk = kgIsChecked
+            }
+
         }
-        )
 
-        kgOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, kgIsChecked ->
 
-            saveRadioData("KG_CHECKED", kgIsChecked)
+        if (!firstRunKey) {
+
+/*
+            radioGroup.setOnCheckedChangeListener { group, checkedId ->
+
+                if (checkedId == R.id.kg_option){
+
+                    kkkk = true
+                    Toast.makeText(this, "Converted to kg checkedListener", Toast.LENGTH_SHORT).show()
+                }
+
+                if (checkedId == R.id.lb_option){
+                    Toast.makeText(this, "Converted to lb checkedListener", Toast.LENGTH_SHORT).show()
+
+                    lllll = true
+                }
+
+            }
+*/
+            kgOption.setOnCheckedChangeListener { _, kgIsChecked ->
+                kkkk = kgIsChecked
+            }
+
+            lbOption.setOnCheckedChangeListener { _, lbIsChecked ->
+                lllll = lbIsChecked
+            }
+
+
+            /*  kgOption.setOnClickListener {
+                  val weightInitial1 = currentWeightET.text.toString().toInt()
+                  val weightGoal1 = goalWeightET.text.toString().toInt()
+
+                  AppUtils.covertToKg(weightInitial1)
+                  AppUtils.covertToKg(weightGoal1)
+
+                  currentWeightET.setText("$weightInitial1")
+                  goalWeightET.setText("$weightGoal1")
+              }
+
+              lbOption.setOnClickListener {
+                  val weightInitial1 = currentWeightET.text.toString().toInt()
+                  val weightGoal1 = goalWeightET.text.toString().toInt()
+
+                  AppUtils.covertToLb(weightInitial1)
+                  AppUtils.covertToLb(weightGoal1)
+                  Toast.makeText(this, "Converted to lb", Toast.LENGTH_SHORT).show()
+                  currentWeightET.setText("$weightInitial1")
+                  goalWeightET.setText("$weightGoal1")
+
+              }*/
+
+
         }
-        )
 
-        /* if (kgOption.isChecked) {
-             currentWeightET.hint = "Enter Weight in Kg"
-             goalWeightET.hint = "Enter Weight in Kg"
-         } else if (lbOption.isChecked) {
-             currentWeightET.hint = "Enter Weight in Lbs"
-             goalWeightET.hint = "Enter Weight in Lbs"
-         }
- */
+
+/*
+        if (!firstRunKey){
+
+            if (kgCheckedd || lbCheckedd)
+
+            {
+                if (kgCheckedd){
+                    lbOption.setOnClickListener {
+                        val weightInitial1 = currentWeightET.text.toString().toInt()
+                        val weightGoal1 = goalWeightET.text.toString().toInt()
+
+                        AppUtils.covertToKg(weightInitial1)
+                        AppUtils.covertToKg(weightGoal1)
+                        Toast.makeText(this, "Converted to lb", Toast.LENGTH_SHORT).show()
+                        currentWeightET.setText("$weightInitial1")
+                        goalWeightET.setText("$weightGoal1")
+
+                    }
+
+                }
+                else if (lbCheckedd){
+                    kgOption.setOnClickListener {
+                        val weightInitial1 = currentWeightET.text.toString().toInt()
+                        val weightGoal1 = goalWeightET.text.toString().toInt()
+
+                        AppUtils.covertToLb(weightInitial1)
+                        AppUtils.covertToLb(weightGoal1)
+
+                        currentWeightET.setText("$weightInitial1")
+                        goalWeightET.setText("$weightGoal1")
+                    }
+
+                }
+            }
+
+        */
+/*     lbOption.setOnCheckedChangeListener { buttonView, isChecked ->
+                 Toast.makeText(this, "Converted to lb", Toast.LENGTH_SHORT).show()
+             }
+
+            kgOption.setOnCheckedChangeListener { buttonView, isChecked ->
+                Toast.makeText(this, "Converted to kg", Toast.LENGTH_SHORT).show()
+            }
+
+            lbOption.setOnClickListener {
+                val weightInitial1 = currentWeightET.text.toString().toInt()
+                val weightGoal1 = goalWeightET.text.toString().toInt()
+
+                AppUtils.covertToKg(weightInitial1)
+                AppUtils.covertToKg(weightGoal1)
+
+                currentWeightET.setText("$weightInitial1")
+                goalWeightET.setText("$weightGoal1")
+
+            }
+
+                kgOption.setOnClickListener {
+                    val weightInitial1 = currentWeightET.text.toString().toInt()
+                    val weightGoal1 = goalWeightET.text.toString().toInt()
+
+                    AppUtils.covertToLb(weightInitial1)
+                    AppUtils.covertToLb(weightGoal1)
+
+                    currentWeightET.setText("$weightInitial1")
+                    goalWeightET.setText("$weightGoal1")
+                }*//*
+
+        }
+*/
+
         kgOption.setOnClickListener {
 
             currentWeightET.hint = "Enter Weight in Kg"
@@ -81,6 +221,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             goalWeightET.hint = "Enter Weight in Lb"
         }
 
+
         continueBtnWt.setOnClickListener { saveUserInfo() }
         updateDetails()
     }
@@ -91,6 +232,8 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         goalWeightET = findViewById(R.id.goal_weight_ET)
         lbOption = findViewById(R.id.lb_option)
         continueBtnWt = findViewById(R.id.bottomContinueButtonWT)
+
+        radioGroup = findViewById(R.id.radioGroup)
 
     }
 
@@ -142,6 +285,9 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             return
 
         }*/
+
+        saveRadioData("KG_CHECKED", kkkk)
+        saveRadioData("LB_CHECKED", lllll)
 
         val data = Intent(this@UserDetailsWeightTracker, HomePageWeightTracker::class.java)
         val editor = sharedPreferences.edit()
