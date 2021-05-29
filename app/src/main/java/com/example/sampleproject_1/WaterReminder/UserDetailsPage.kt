@@ -37,6 +37,9 @@ class UserDetailsPage : AppCompatActivity() {
     private lateinit var maleOption: RadioButton
     private lateinit var femaleOption: RadioButton
 
+    private var maleOptionISChecked = false
+    private var femaleOptionISChecked = false
+
     private lateinit var continueTextView: TextView
     var weightEditText: EditText? = null
 
@@ -57,6 +60,8 @@ class UserDetailsPage : AppCompatActivity() {
     private var wakeHourUpdate = 0
     private var wakeMinuteUpdate = 0
 
+    private var firstRunKey = true
+
 
     private lateinit var selectedTime: String
 
@@ -73,6 +78,8 @@ class UserDetailsPage : AppCompatActivity() {
         setContentView(R.layout.activity_user_details_page)
 
         genderValue = sharedPreferences.getInt("LastPosition", 0)
+        firstRunKey = sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY, true)
+
 
         initialisationFields()
 
@@ -111,18 +118,57 @@ class UserDetailsPage : AppCompatActivity() {
 
         }
 
+        if (firstRunKey) {
+            maleOption.isChecked = true
 
-        maleOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, maleIsChecked ->
+            if (maleOption.isChecked) {
+                //saveRadioData("KG_CHECKED", true)
+                maleOptionISChecked = true
 
-            saveData("MALE_CHECKED", maleIsChecked)
+            } else if (femaleOption.isChecked) {
+                //saveRadioData("LB_CHECKED", true)
+                femaleOptionISChecked = true
+            }
+
+            femaleOption.setOnCheckedChangeListener { _, femaleIsChecked ->
+
+                saveData("FEMALE_CHECKED", femaleIsChecked)
+                maleOptionISChecked = femaleIsChecked
+
+            }
+
+            maleOption.setOnCheckedChangeListener { _, maleIsChecked ->
+
+                saveData("MALE_CHECKED", maleIsChecked)
+                maleOptionISChecked = maleIsChecked
+
+            }
+
         }
-        )
 
-        femaleOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, femaleIsChecked ->
+        if (!firstRunKey) {
 
-            saveData("FEMALE_CHECKED", femaleIsChecked)
+            maleOption.setOnCheckedChangeListener { _, maleIsChecked ->
+                maleOptionISChecked = maleIsChecked
+            }
+
+            femaleOption.setOnCheckedChangeListener { _, femaleIsChecked ->
+                femaleOptionISChecked = femaleIsChecked
+            }
         }
-        )
+
+
+        /*     maleOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, maleIsChecked ->
+
+                 saveData("MALE_CHECKED", maleIsChecked)
+             }
+             )
+
+             femaleOption.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, femaleIsChecked ->
+
+                 saveData("FEMALE_CHECKED", femaleIsChecked)
+             }
+             )*/
 
 
         continueTextView.setOnClickListener { saveUserInfo() }
@@ -133,12 +179,14 @@ class UserDetailsPage : AppCompatActivity() {
     private fun saveUserInfo() {
 
 
-        if (weightEditText!!.text.toString().isEmpty() || !maleOption.isChecked && !femaleOption.isChecked) {
+        if (weightEditText!!.text.toString()
+                .isEmpty() || !maleOption.isChecked && !femaleOption.isChecked
+        ) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
-       /* val timeBed = timePickerBedSelectTimeTV.text.toString()
-        val timeWake = timePickerWakeSelectTimeTV.text.toString()*/
+        /* val timeBed = timePickerBedSelectTimeTV.text.toString()
+         val timeWake = timePickerWakeSelectTimeTV.text.toString()*/
         weight = weightEditText!!.text.toString().toInt()
 
 
@@ -146,6 +194,10 @@ class UserDetailsPage : AppCompatActivity() {
             Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
             return
         }
+
+
+        saveData("MALE_CHECKED", maleOptionISChecked)
+        saveData("FEMALE_CHECKED", femaleOptionISChecked)
 
 
         val data = Intent(this@UserDetailsPage, HomePage::class.java)

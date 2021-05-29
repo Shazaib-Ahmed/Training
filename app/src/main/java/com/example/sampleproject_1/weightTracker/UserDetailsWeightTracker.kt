@@ -39,6 +39,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
     private val sharedPreferences: SharedPreferences by inject()
 
     //private val viewModelWeightTracker: ViewModelWeightTracker by inject()
+
     private val firstRunKey =
         sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WEIGHT_TRACKER, true)
 
@@ -75,8 +76,8 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             kgOption.setOnCheckedChangeListener { _, kgIsChecked ->
 
                 saveRadioData("KG_CHECKED", kgIsChecked)
-
                 kgOptionISChecked = kgIsChecked
+
             }
 
         }
@@ -110,7 +111,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             }
 
 
-            /*  kgOption.setOnClickListener {
+            /*kgOption.setOnClickListener {
                   val weightInitial1 = currentWeightET.text.toString().toInt()
                   val weightGoal1 = goalWeightET.text.toString().toInt()
 
@@ -132,10 +133,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
                   goalWeightET.setText("$weightGoal1")
 
               }*/
-
-
         }
-
 
 /*
         if (!firstRunKey){
@@ -219,20 +217,9 @@ class UserDetailsWeightTracker : AppCompatActivity() {
             goalWeightET.hint = "Enter Weight in Lb"
         }
 
-
         continueBtnWt.setOnClickListener { saveUserInfo() }
+
         updateDetails()
-    }
-
-    private fun initialisationFields() {
-        kgOption = findViewById(R.id.kg_option)
-        currentWeightET = findViewById(R.id.current_weight_ET)
-        goalWeightET = findViewById(R.id.goal_weight_ET)
-        lbOption = findViewById(R.id.lb_option)
-        continueBtnWt = findViewById(R.id.bottomContinueButtonWT)
-
-        radioGroup = findViewById(R.id.radioGroup)
-
     }
 
     private fun saveUserInfo() {
@@ -308,7 +295,7 @@ class UserDetailsWeightTracker : AppCompatActivity() {
         editor.apply()
     }
 
-    private fun loaData() {
+    private fun loadData() {
         radioKG = updateRadio("KG_CHECKED")
         radioLB = updateRadio("LB_CHECKED")
         currentWeightKey = sharedPreferences.getInt(AppUtils.INITIAL_WEIGHT_KEY_WT, 0)
@@ -328,14 +315,21 @@ class UserDetailsWeightTracker : AppCompatActivity() {
     }
 
     private fun updateDetails() {
-
-
         if (!firstRunKey) {
-
-            loaData()
+            loadData()
             updateView()
-
         }
+    }
+
+    private fun initialisationFields() {
+
+        kgOption = findViewById(R.id.kg_option)
+        currentWeightET = findViewById(R.id.current_weight_ET)
+        goalWeightET = findViewById(R.id.goal_weight_ET)
+        lbOption = findViewById(R.id.lb_option)
+        continueBtnWt = findViewById(R.id.bottomContinueButtonWT)
+        radioGroup = findViewById(R.id.radioGroup)
+
     }
 
 }
