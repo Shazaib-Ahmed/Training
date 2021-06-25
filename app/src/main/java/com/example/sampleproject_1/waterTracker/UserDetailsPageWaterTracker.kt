@@ -1,0 +1,270 @@
+package com.example.sampleproject_1.waterTracker
+
+import android.app.Dialog
+import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.*
+import android.widget.*
+import com.example.sampleproject_1.R
+import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
+import com.example.sampleproject_1.weightTracker.*
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import org.koin.android.ext.android.inject
+
+class UserDetailsPageWaterTracker : AppCompatActivity() {
+
+    private lateinit var genderLinearLayout: RelativeLayout
+    private lateinit var weightLinearLayout: RelativeLayout
+
+    private lateinit var genderOption: TextView
+
+    private lateinit var userWeight: TextView
+
+    private lateinit var dialog: Dialog
+
+    private lateinit var continueButton: TextView
+
+    private val sharedPreferences: SharedPreferences by inject()
+
+    private var kgOptionISChecked = false
+    private var lbOptionISChecked = false
+
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var kgRadio: RadioButton
+    private lateinit var lbRadio: RadioButton
+
+    private var gender = ""
+
+    private lateinit var lbKgUnitTv: TextView
+
+    private lateinit var weightInputEt: EditText
+
+    private var weight = 0f
+    private var w = 0f
+
+
+    private val firstRunKey =
+        sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WATER_TRACKER, true)
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user_details_page_water_tracker)
+
+        /* supportActionBar!!.title = ""
+         supportActionBar!!.setDisplayHomeAsUpEnabled(true)*/
+
+        dialog = Dialog(this)
+        openDialog()
+
+
+        val closeBtn = dialog.findViewById<ImageView>(R.id.cancel_btn)
+        lbKgUnitTv = dialog.findViewById(R.id.lb_kb_unit_tv)
+
+        weightInputEt = dialog.findViewById<EditText>(R.id.input_weight_edit_text)
+        kgRadio = dialog.findViewById(R.id.kg)
+        lbRadio = dialog.findViewById(R.id.lb)
+
+        val saveBtn = dialog.findViewById<TextView>(R.id.save_btn)
+
+        radioGroup = dialog.findViewById(R.id.radio_group_water_tracker)
+        genderLinearLayout = findViewById(R.id.gender_relative_layout)
+        weightLinearLayout = findViewById(R.id.weight_relative_layout)
+
+        continueButton = findViewById(R.id.continue_btn)
+
+        genderOption = findViewById(R.id.gender_option_water_tracker)
+        userWeight = findViewById(R.id.weight_input_water_tracker)
+
+        updateDetails()
+
+        if (firstRunKey) {
+            kgRadio.isChecked = true
+
+            if (kgRadio.isChecked) {
+                //saveRadioData("KG_CHECKED_WATER_TRACKER", true)
+                kgOptionISChecked = true
+
+            } else if (lbRadio.isChecked) {
+                //saveRadioData("LB_CHECKED_WATER_TRACKER", true)
+                lbOptionISChecked = true
+            }
+
+            lbRadio.setOnCheckedChangeListener { _, lbIsChecked ->
+                saveRadioData("LB_CHECKED_WATER_TRACKER", lbIsChecked)
+                lbOptionISChecked = lbIsChecked
+            }
+
+            kgRadio.setOnCheckedChangeListener { _, kgIsChecked ->
+                saveRadioData("KG_CHECKED_WATER_TRACKER", kgIsChecked)
+                kgOptionISChecked = kgIsChecked
+            }
+
+
+            kgRadio.setOnClickListener {
+                lbKgUnitTv.text = "kg"
+            }
+
+            lbRadio.setOnClickListener {
+                lbKgUnitTv.text = "lb"
+                /*w = weightInputEt.text.toString().toFloat()
+
+                w = (w * 2.20).toFloat()
+
+                weightInputEt.setText("$w")*/
+            }
+
+            radioGroup.setOnCheckedChangeListener { group, checkedId ->
+
+            }
+
+
+        }
+
+
+
+
+        genderLinearLayout.setOnClickListener {
+            val bottomSheetDialog = BottomSheetDialog(
+                this@UserDetailsPageWaterTracker, R.style.BottomSheetDialogTheme
+            )
+
+            val bottomSheetView = LayoutInflater.from(applicationContext).inflate(
+                R.layout.layout_bottom_sheet_water_tracker,
+                findViewById<LinearLayout>(R.id.bottomSheet)
+            )
+
+            bottomSheetView.findViewById<View>(R.id.male).setOnClickListener {
+                genderOption.text = "Male"
+                bottomSheetDialog.dismiss()
+            }
+
+            bottomSheetView.findViewById<View>(R.id.female).setOnClickListener {
+                genderOption.text = "Female"
+                bottomSheetDialog.dismiss()
+            }
+            bottomSheetDialog.setContentView(bottomSheetView)
+            bottomSheetDialog.show()
+        }
+
+        continueButton.setOnClickListener {
+            saveInformation()
+        }
+
+
+
+        weightLinearLayout.setOnClickListener {
+            dialog.show()
+
+
+
+
+            weightInputEt.setOnFocusChangeListener { v, hasFocus ->
+                dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+            }
+
+            saveBtn.setOnClickListener {
+
+                if (weightInputEt.text.toString().isEmpty()) {
+                    Toast.makeText(this, "Please enter weight", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                } else if (!kgRadio.isChecked && !lbRadio.isChecked) {
+                    Toast.makeText(this, "Please select the unit", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                weight = weightInputEt.text.toString().toFloat()
+
+
+                if (weight > 200 || weight < 20) {
+                    Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+
+                }
+
+                userWeight.text = "$weight"
+                dialog.dismiss()
+            }
+
+
+
+            closeBtn.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+    }
+
+    private fun openDialog() {
+
+        dialog.setContentView(R.layout.dialog_weight_input)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(true)
+    }
+
+    private fun saveInformation() {
+
+        if (genderOption.text.isEmpty()) {
+            Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (userWeight.text.isEmpty()) {
+            Toast.makeText(this, "Please enter weight", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        gender = genderOption.text.toString()
+
+
+        saveRadioData("KG_CHECKED_WATER_TRACKER", kgOptionISChecked)
+        saveRadioData("LB_CHECKED_WATER_TRACKER", lbOptionISChecked)
+
+        val editor = sharedPreferences.edit()
+        editor.putBoolean(AppUtils.FIRST_RUN_KEY_WATER_TRACKER, false)
+        editor.putInt(AppUtils.WEIGHT_KEY_WATER_TRACKER, weight.toInt())
+        editor.putString(AppUtils.GENDER_KEY_WATER_TRACKER, gender)
+        editor.apply()
+
+        val intent = Intent(this, HomeWaterTracker::class.java)
+        startActivity(intent)
+        finishAffinity()
+    }
+
+    private fun saveRadioData(key: String, value: Boolean) {
+        val editor = sharedPreferences.edit()
+        editor.putBoolean(key, value)
+        editor.apply()
+    }
+
+    private fun updateRadio(key: String):
+            Boolean {
+        return sharedPreferences.getBoolean(key, false)
+    }
+
+    private fun updateDetails() {
+        if (!firstRunKey) {
+            loadData()
+            updateView()
+        }
+    }
+
+    private fun loadData() {
+        kgOptionISChecked = updateRadio("KG_CHECKED_WATER_TRACKER")
+        lbOptionISChecked = updateRadio("LB_CHECKED_WATER_TRACKER")
+        // currentWeightKey = sharedPreferences.getInt(AppUtils.INITIAL_WEIGHT_KEY_WT, 0)
+
+    }
+
+    private fun updateView() {
+        kgRadio.isChecked = kgOptionISChecked
+        lbRadio.isChecked = lbOptionISChecked
+
+    }
+}

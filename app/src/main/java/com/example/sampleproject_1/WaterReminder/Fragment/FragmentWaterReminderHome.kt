@@ -8,26 +8,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.work.PeriodicWorkRequest
-import androidx.work.WorkManager
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Adapter.TodayWaterIntakeAdapter
 import com.example.sampleproject_1.WaterReminder.Database.EntityWaterReminder
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
-import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.TaskWorker
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.WaterReminder.model.WaterIntake
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import me.itangqi.waveloadingview.WaveLoadingView
-import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class FragmentWaterReminderHome : Fragment() {
     private var userWeight: TextView? = null
@@ -37,6 +31,7 @@ class FragmentWaterReminderHome : Fragment() {
 
     // private var viewModelWaterReminder: ViewModelWaterReminder? = null
     //private lateinit var sharedPreferences: SharedPreferences
+
     private var entityWaterReminder: EntityWaterReminder? = null
     private var progress = 0
     private var inTook = 0
@@ -57,23 +52,26 @@ class FragmentWaterReminderHome : Fragment() {
     private val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
     private val currentTime = simpleDateFormat.format(calendar.time)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-       // sharedPreferences = this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+        // sharedPreferences = this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+
         val v = inflater.inflate(R.layout.fragment_water_reminder_home, container, false)
         userWeight = v.findViewById(R.id.userWeightTextView)
         totalIntakeTV = v.findViewById(R.id.totalIntakeTV)
         waveLoadingView = v.findViewById(R.id.progress_bar)
 
-
         // addWater = v.findViewById(R.id.add_water)
 
         addWater = v.findViewById(R.id.add_water) as TextView
-
         remainingWater = v.findViewById(R.id.remainingWater)
         timeIntakeWaterListRV = v.findViewById(R.id.time_intake_water_list)
+
         //viewModelWaterReminder = ViewModelProvider(this).get(ViewModelWaterReminder::class.java)
+
         val w = sharedPreferences.getInt(AppUtils.WEIGHT_KEY, 0)
         val g = sharedPreferences.getString(AppUtils.GENDER_KEY, "")
         totalIntake = sharedPreferences.getInt(AppUtils.TOTAL_INTAKE, 0)
@@ -88,7 +86,6 @@ class FragmentWaterReminderHome : Fragment() {
         waveLoadingView.centerTitle = "$progress %"
         remainingWater.text = "$totalInTook/$totalIntake ml"
 
-
         addWater!!.setOnClickListener(View.OnClickListener {
             inTook = 10 * totalIntake / 100
             totalInTook += inTook
@@ -97,7 +94,11 @@ class FragmentWaterReminderHome : Fragment() {
                 updateTimeChart()
                 saveData()
             } else {
-                Toast.makeText(context!!.applicationContext, "You are done for the day", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context!!.applicationContext,
+                    "You are done for the day",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 
@@ -123,13 +124,25 @@ class FragmentWaterReminderHome : Fragment() {
         adapterTime!!.notifyItemInserted(saveDailyData!!.size)
         // entityWaterReminder = EntityWaterReminder(0,currentTime, inTook, totalIntake, totalInTook)
         // viewModelWaterReminder?.insert(entityWaterReminder!!)
-        viewModelWR.insert(entityWaterReminder = EntityWaterReminder(0, currentTime, inTook, totalIntake, totalInTook))
+        viewModelWR.insert(
+            entityWaterReminder = EntityWaterReminder(
+                0,
+                currentTime,
+                inTook,
+                totalIntake,
+                totalInTook
+            )
+        )
 
     }
 
     private fun setWaterLevel(inTook: Int, totalIntake: Int) {
         if (inTook * 100 / totalIntake > 140) {
-            Toast.makeText(context!!.applicationContext, "You are done for the day", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context!!.applicationContext,
+                "You are done for the day",
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             progress += inTook * 100 / totalIntake
             waveLoadingView!!.progressValue = progress
@@ -142,10 +155,9 @@ class FragmentWaterReminderHome : Fragment() {
         remainingWater!!.text = "$totalInTook/$totalIntake ml"
     }
 
-
-
     private fun saveData() {
-        val sharedPreferences = this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+        val sharedPreferences =
+            this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val jsonData = gson.toJson(saveDailyData)
@@ -154,7 +166,8 @@ class FragmentWaterReminderHome : Fragment() {
     }
 
     private fun loadData() {
-        val sharedPreferences = this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+        val sharedPreferences =
+            this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val gson = Gson()
         val jsonData = sharedPreferences.getString("myJson", null)
         val type = object : TypeToken<ArrayList<WaterIntake?>?>() {}.type
@@ -166,10 +179,10 @@ class FragmentWaterReminderHome : Fragment() {
 
     private fun buildRecyclerView() {
         timeIntakeWaterListRV!!.setHasFixedSize(true)
-        timeIntakeWaterListRV!!.layoutManager = LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
+        timeIntakeWaterListRV!!.layoutManager =
+            LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
         adapterTime = TodayWaterIntakeAdapter(saveDailyData!!)
         timeIntakeWaterListRV!!.adapter = adapterTime
     }
-
 
 }

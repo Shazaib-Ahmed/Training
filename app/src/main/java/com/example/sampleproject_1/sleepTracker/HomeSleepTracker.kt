@@ -18,13 +18,8 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampleproject_1.R
-import com.example.sampleproject_1.WaterReminder.Settings
-import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
-import com.example.sampleproject_1.WaterReminder.Utils.AppUtils.currentDate
-import com.example.sampleproject_1.WaterReminder.model.WaterIntake
 import com.example.sampleproject_1.sleepTracker.Adapter.TotalSleepAdapter
 import com.example.sampleproject_1.sleepTracker.Adapter.TotalSleepAdapter.TotalSleep
-import com.example.sampleproject_1.weightTracker.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.koin.android.ext.android.inject

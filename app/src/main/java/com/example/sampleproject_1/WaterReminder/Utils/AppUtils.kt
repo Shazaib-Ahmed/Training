@@ -5,27 +5,27 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object AppUtils {
-    const val USERS_SHARED_PREF = "user_pref"
-    const val PRIVATE_MODE = 0
 
+    const val USERS_SHARED_PREF              =           "user_pref"
+    const val PRIVATE_MODE                   =               0
 
     /** WATER_REMINDER **/
 
     @JvmField
-    var WEIGHT_KEY = "weight"
-    var FIRST_RUN_KEY = "firstrun"
-    var NOTIFICATION_KEY = "notificationkey"
-    var WORK_TIME_KEY = "worktime"
+    var WEIGHT_KEY                           =          "weight"
+    var FIRST_RUN_KEY                        =          "firstrun"
+    var NOTIFICATION_KEY                     =          "notificationkey"
+    var WORK_TIME_KEY                        =          "worktime"
 
     @JvmField
-    var TOTAL_INTAKE = "totalintake"
-    var SLEEPING_TIME_KEY = "sleepingtime"
+    var TOTAL_INTAKE                         =          "totalintake"
+    var SLEEPING_TIME_KEY                    =          "sleepingtime"
 
     @JvmField
-    var WAKE_UP_TIME_KEY = "wakeuptime"
+    var WAKE_UP_TIME_KEY                     =          "wakeuptime"
 
     @JvmField
-    var GENDER_KEY = "gender"
+    var GENDER_KEY                           =          "gender"
 
     fun calculateIntake(weight: Int, workTime: Int): Int {
         return weight * 100 / 3 + workTime / 6 * 7
@@ -46,7 +46,7 @@ object AppUtils {
     var FINAL_WEIGHT_KEY_WT                  =          "goal_weight_wt"
     var FIRST_RUN_KEY_WEIGHT_TRACKER         =          "firstrunWT"
     var RADIO_OPTION_KEY_WT                  =          "radioOptionKeyWt"
-    var NOTIFICATION_KEY_WT = "notificationkeyWT"
+    var NOTIFICATION_KEY_WT                  =          "notificationkeyWT"
 
     fun covertToKg(weight: Int): Double {
         val change = 2.2046226218
@@ -58,5 +58,16 @@ object AppUtils {
         val change = 2.2046226218
         return weight * change
     }
+
+    /**  WATER_TRACKER  **/
+
+    @JvmField
+    var WEIGHT_KEY_WATER_TRACKER             =          "weight"
+    var FIRST_RUN_KEY_WATER_TRACKER          =          "firstrun"
+    var NOTIFICATION_KEY_WATER_TRACKER       =          "notificationkey"
+    var WORK_TIME_KEY_WATER_TRACKER          =          "worktime"
+    var TOTAL_INTAKE_WATER_TRACKER           =          "totalintake"
+    var GENDER_KEY_WATER_TRACKER             =          "gender"
+
 
 }

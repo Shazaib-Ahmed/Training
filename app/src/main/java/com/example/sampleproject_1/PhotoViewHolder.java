@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-class PhotoViewHolder extends RecyclerView.ViewHolder {
+public class PhotoViewHolder extends RecyclerView.ViewHolder {
     ImageView url,thumbnailUrl;
     TextView idd,albumId,title;
             public PhotoViewHolder(@NonNull View itemView) {

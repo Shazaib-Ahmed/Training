@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0sp"
+    android:background="#FFFFFF"
+    tools:context=".waterTracker.UserDetailsPageWaterTracker">
+
+    <TextView
+        android:id="@+id/personal_data_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30sp"
+        android:fontFamily="@font/poppins_normal"
+        android:text="@string/personal_data"
+        android:textColor="@color/waterIntake"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personal_data_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="65sp"
+        android:layout_marginEnd="65sp"
+        android:fontFamily="@font/poppins_normal"
+        android:text="@string/details_quote"
+        android:textAlignment="center"
+        android:textColor="@color/waterIntake"
+        android:textSize="14sp" />
+
+
+    <LinearLayout
+        android:id="@+id/details_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="0sp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/gender_relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25sp"
+                android:drawablePadding="10sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Gender"
+                android:textColor="@color/waterIntake"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/noti" />
+
+            <TextView
+                android:id="@+id/gender_option_water_tracker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25sp"
+                android:layout_marginEnd="10sp"
+                android:layout_toStartOf="@+id/next"
+                android:fontFamily="@font/poppins_normal"
+                android:text=""
+                android:textColor="@color/waterIntake"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="25sp"
+                android:src="@drawable/ic_navigate_next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/weight_relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25sp"
+                android:drawablePadding="10sp"
+                android:fontFamily="@font/poppins_normal"
+                android:text="Weight"
+                android:textColor="@color/waterIntake"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/noti" />
+
+            <TextView
+                android:id="@+id/weight_input_water_tracker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25sp"
+                android:layout_marginEnd="10sp"
+                android:layout_toStartOf="@+id/next_weight"
+                android:fontFamily="@font/poppins_normal"
+                android:text=""
+                android:textColor="@color/waterIntake"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:id="@+id/next_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="25sp"
+                android:src="@drawable/ic_navigate_next" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomContinueButtonWaterTracker"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="35sp"
+        android:layout_marginStart="65sp"
+        android:layout_marginEnd="65sp"
+        android:fontFamily="@font/poppins_normal"
+        android:text="@string/privacy_text"
+        android:textAlignment="center"
+        android:textColor="@color/waterIntake"
+        android:textSize="11sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/bottomContinueButtonWaterTracker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/continue_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/save_btn_water_tracker"
+            android:fontFamily="@font/poppins_normal"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="Next"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

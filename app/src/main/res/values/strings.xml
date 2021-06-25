@@ -138,5 +138,9 @@ Gender
     </string-array>
 
     <string name="how_was_hour_sleep">How was your sleep?</string>
+    <string name="current">Current</string>
+    <string name="privacy_text">Your privacy is paramount to us. We never share your personal information with any third parties.</string>
+    <string name="details_quote">Let us know you better and speed up your results.</string>
+    <string name="personal_data">Personal Data</string>
 
 </resources>

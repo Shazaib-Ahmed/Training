@@ -1,6 +1,5 @@
 package com.example.sampleproject_1.weightTracker
 
-
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -62,26 +61,21 @@ class UserDetailsWeightTracker : AppCompatActivity() {
 
             } else if (lbOption.isChecked) {
                 //saveRadioData("LB_CHECKED", true)
-
                 lbOptionISChecked = true
             }
 
             lbOption.setOnCheckedChangeListener { _, lbIsChecked ->
-
                 saveRadioData("LB_CHECKED", lbIsChecked)
                 lbOptionISChecked = lbIsChecked
 
             }
 
             kgOption.setOnCheckedChangeListener { _, kgIsChecked ->
-
                 saveRadioData("KG_CHECKED", kgIsChecked)
                 kgOptionISChecked = kgIsChecked
 
             }
-
         }
-
 
         if (!firstRunKey) {
 

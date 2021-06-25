@@ -11,7 +11,6 @@ import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import org.koin.android.ext.android.inject
 
 class IntroductionPage : AppCompatActivity() {
-    //private lateinit var sharedPreferences: SharedPreferences
 
     private val sharedPreferences: SharedPreferences by inject()
 

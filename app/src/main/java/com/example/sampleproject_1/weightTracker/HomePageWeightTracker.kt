@@ -18,7 +18,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
-import com.example.sampleproject_1.WaterReminder.Settings
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.weightTracker.DatabaseWT.EntityWeightTracker
 import com.example.sampleproject_1.weightTracker.DatabaseWT.ViewModelWeightTracker
