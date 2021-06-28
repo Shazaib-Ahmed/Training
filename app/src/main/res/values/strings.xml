@@ -26,9 +26,7 @@
         <item>Female</item>
     </string-array>
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
-    <string name="gender">
-Gender
-</string>
+
     <string name="general_set">General Settings</string>
     <string name="notification">Notification</string>
     <string name="reminder_tone">Reminder Tone</string>
@@ -142,5 +140,7 @@ Gender
     <string name="privacy_text">Your privacy is paramount to us. We never share your personal information with any third parties.</string>
     <string name="details_quote">Let us know you better and speed up your results.</string>
     <string name="personal_data">Personal Data</string>
+    <string name="gender">Gender</string>
 
+    <string name="genderWaterTracker">Gender</string>
 </resources>

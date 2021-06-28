@@ -5,10 +5,12 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.weightTracker.*
@@ -20,8 +22,9 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
     private lateinit var genderLinearLayout: RelativeLayout
     private lateinit var weightLinearLayout: RelativeLayout
 
-    private lateinit var genderOption: TextView
+    private lateinit var coordinatorLayoutWaterTracker: CoordinatorLayout
 
+    private lateinit var genderOption: TextView
     private lateinit var userWeight: TextView
 
     private lateinit var dialog: Dialog
@@ -61,11 +64,11 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         dialog = Dialog(this)
         openDialog()
 
-
-        val closeBtn = dialog.findViewById<ImageView>(R.id.cancel_btn)
+        coordinatorLayoutWaterTracker = findViewById(R.id.coordinatorLayoutWaterTracker)
+        val closeBtn = dialog.findViewById<ImageView>(R.id.dialog_cancel_btn)
         lbKgUnitTv = dialog.findViewById(R.id.lb_kb_unit_tv)
 
-        weightInputEt = dialog.findViewById<EditText>(R.id.input_weight_edit_text)
+        weightInputEt = dialog.findViewById(R.id.input_weight_edit_text)
         kgRadio = dialog.findViewById(R.id.kg)
         lbRadio = dialog.findViewById(R.id.lb)
 
@@ -86,11 +89,9 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
             kgRadio.isChecked = true
 
             if (kgRadio.isChecked) {
-                //saveRadioData("KG_CHECKED_WATER_TRACKER", true)
                 kgOptionISChecked = true
 
             } else if (lbRadio.isChecked) {
-                //saveRadioData("LB_CHECKED_WATER_TRACKER", true)
                 lbOptionISChecked = true
             }
 
@@ -105,27 +106,39 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
             }
 
 
-            kgRadio.setOnClickListener {
-                lbKgUnitTv.text = "kg"
-            }
+            radioGroup.setOnCheckedChangeListener { _, checkedId ->
 
-            lbRadio.setOnClickListener {
-                lbKgUnitTv.text = "lb"
-                /*w = weightInputEt.text.toString().toFloat()
+                if (weightInputEt.text.isEmpty()) {
+                    return@setOnCheckedChangeListener
+                } else {
 
-                w = (w * 2.20).toFloat()
+                    if (checkedId == R.id.kg) {
+                        w = weightInputEt.text.toString().toFloat()
+                        w = (w / 2.20).toFloat()
+                        weightInputEt.setText("$w")
+                        lbKgUnitTv.text = "kg"
+                        weightInputEt.setSelectAllOnFocus(true)
+                        weightInputEt.selectAll()
 
-                weightInputEt.setText("$w")*/
-            }
+                    }
 
-            radioGroup.setOnCheckedChangeListener { group, checkedId ->
+                    if (checkedId == R.id.lb) {
+                        w = weightInputEt.text.toString().toFloat()
+                        w = (w * 2.20).toFloat()
+                        weightInputEt.setText("$w")
+                        lbKgUnitTv.text = "lb"
+                        weightInputEt.setSelectAllOnFocus(true)
+                        weightInputEt.selectAll()
+
+                    }
+
+                }
+
 
             }
 
 
         }
-
-
 
 
         genderLinearLayout.setOnClickListener {
@@ -159,39 +172,50 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
 
         weightLinearLayout.setOnClickListener {
             dialog.show()
+            weightInputEt.requestFocus()
+            weightInputEt.setSelectAllOnFocus(true)
+            weightInputEt.selectAll()
+            dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
+            dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
 
-
-
-            weightInputEt.setOnFocusChangeListener { v, hasFocus ->
-                dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-            }
-
+            
             saveBtn.setOnClickListener {
 
                 if (weightInputEt.text.toString().isEmpty()) {
+
                     Toast.makeText(this, "Please enter weight", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 } else if (!kgRadio.isChecked && !lbRadio.isChecked) {
+
                     Toast.makeText(this, "Please select the unit", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 weight = weightInputEt.text.toString().toFloat()
 
 
-                if (weight > 200 || weight < 20) {
-                    Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
+                if (kgOptionISChecked) {
+                    if (weight > 200 || weight < 20) {
+                        Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    userWeight.text = "$weight kg"
 
+                } else if (lbOptionISChecked) {
+                    if (weight > 440 || weight < 44) {
+                        Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+
+                    }
+                    userWeight.text = "$weight lb"
                 }
 
-                userWeight.text = "$weight"
                 dialog.dismiss()
             }
 
-
-
             closeBtn.setOnClickListener {
+                weightInputEt.clearFocus()
+                weightInputEt.requestFocus()
                 dialog.dismiss()
             }
         }
@@ -211,26 +235,36 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
     private fun saveInformation() {
 
         if (genderOption.text.isEmpty()) {
+
             Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (userWeight.text.isEmpty()) {
+
             Toast.makeText(this, "Please enter weight", Toast.LENGTH_SHORT).show()
             return
         }
 
         gender = genderOption.text.toString()
 
+        val finalWeight = userWeight.text.toString()
 
         saveRadioData("KG_CHECKED_WATER_TRACKER", kgOptionISChecked)
         saveRadioData("LB_CHECKED_WATER_TRACKER", lbOptionISChecked)
 
         val editor = sharedPreferences.edit()
         editor.putBoolean(AppUtils.FIRST_RUN_KEY_WATER_TRACKER, false)
-        editor.putInt(AppUtils.WEIGHT_KEY_WATER_TRACKER, weight.toInt())
+//      editor.putInt(AppUtils.WEIGHT_KEY_WATER_TRACKER, weight.toInt())
+        editor.putString(AppUtils.WEIGHT_KEY_WATER_TRACKER, finalWeight)
         editor.putString(AppUtils.GENDER_KEY_WATER_TRACKER, gender)
-        editor.apply()
+        // val totalIntake = AppUtils.calculateIntake(weight.toInt() ,180)
+
+        Log.e("kgUnit", " =========  $kgOptionISChecked")
+        Log.e("lbUnit", " =========  $lbOptionISChecked")
+        Log.e("Gender", " =========  $gender")
+        Log.e("Weight", " =========  $weight")
+        //Log.e("TotalIntake", " =========  $totalIntake")
 
         val intent = Intent(this, HomeWaterTracker::class.java)
         startActivity(intent)
@@ -258,13 +292,12 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
     private fun loadData() {
         kgOptionISChecked = updateRadio("KG_CHECKED_WATER_TRACKER")
         lbOptionISChecked = updateRadio("LB_CHECKED_WATER_TRACKER")
-        // currentWeightKey = sharedPreferences.getInt(AppUtils.INITIAL_WEIGHT_KEY_WT, 0)
-
     }
 
     private fun updateView() {
         kgRadio.isChecked = kgOptionISChecked
         lbRadio.isChecked = lbOptionISChecked
-
     }
+
+
 }

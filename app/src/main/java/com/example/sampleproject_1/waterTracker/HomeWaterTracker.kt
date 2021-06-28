@@ -16,16 +16,20 @@ class HomeWaterTracker : AppCompatActivity() {
 
     private lateinit var settingsButton: ImageView
 
+    private val counter = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_water_tracker)
 
         settingsButton = findViewById(R.id.settings_btn_water_tracker)
 
+
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsWaterTracker::class.java)
             startActivity(intent)
         }
+
 
     }
 }
