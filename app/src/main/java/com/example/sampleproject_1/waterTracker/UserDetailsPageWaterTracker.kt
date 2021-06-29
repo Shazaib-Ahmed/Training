@@ -137,6 +137,15 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
             }
         }
 
+        kgRadio.setOnClickListener {
+            selectEditTextInput()
+        }
+
+        lbRadio.setOnClickListener {
+            selectEditTextInput()
+        }
+
+
 
         genderLinearLayout.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(
@@ -228,6 +237,15 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
                 dialog.dismiss()
             }
         }
+    }
+
+    private fun selectEditTextInput() {
+        w = weightInputEt.text.toString().toFloat()
+        val dec = DecimalFormat("###.#")
+        val fWeight = dec.format(w).toFloat()
+        weightInputEt.setText("$fWeight")
+        weightInputEt.setSelectAllOnFocus(true)
+        weightInputEt.selectAll()
     }
 
     private fun openDialog() {
