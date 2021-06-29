@@ -16,6 +16,8 @@ import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.weightTracker.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.android.ext.android.inject
+import java.text.DecimalFormat
+import java.text.Format
 
 class UserDetailsPageWaterTracker : AppCompatActivity() {
 
@@ -46,7 +48,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
 
     private lateinit var weightInputEt: EditText
 
-    private var weight = 0f
+    private var weight = 48f
     private var w = 0f
 
 
@@ -112,32 +114,27 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
                     return@setOnCheckedChangeListener
                 } else {
 
+                    w = weightInputEt.text.toString().toFloat()
+                    val dec = DecimalFormat("###.#")
+
                     if (checkedId == R.id.kg) {
-                        w = weightInputEt.text.toString().toFloat()
-                        w = (w / 2.20).toFloat()
-                        weightInputEt.setText("$w")
+                        w = (w / 2.2046).toFloat()
+                        val fWeight = dec.format(w).toFloat()
+                        weightInputEt.setText("$fWeight")
                         lbKgUnitTv.text = "kg"
-                        weightInputEt.setSelectAllOnFocus(true)
-                        weightInputEt.selectAll()
 
-                    }
-
-                    if (checkedId == R.id.lb) {
-                        w = weightInputEt.text.toString().toFloat()
-                        w = (w * 2.20).toFloat()
-                        weightInputEt.setText("$w")
+                    } else if (checkedId == R.id.lb) {
+                        w = (w * 2.2046).toFloat()
+                        val fWeight = dec.format(w).toFloat()
+                        weightInputEt.setText("$fWeight")
                         lbKgUnitTv.text = "lb"
-                        weightInputEt.setSelectAllOnFocus(true)
-                        weightInputEt.selectAll()
 
                     }
-
                 }
 
-
+                weightInputEt.setSelectAllOnFocus(true)
+                weightInputEt.selectAll()
             }
-
-
         }
 
 
@@ -172,6 +169,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
 
         weightLinearLayout.setOnClickListener {
             dialog.show()
+            weightInputEt.setText("$weight")
             weightInputEt.requestFocus()
             weightInputEt.setSelectAllOnFocus(true)
             weightInputEt.selectAll()
@@ -179,7 +177,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
             dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
 
-            
+
             saveBtn.setOnClickListener {
 
                 if (weightInputEt.text.toString().isEmpty()) {
@@ -191,22 +189,33 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
                     Toast.makeText(this, "Please select the unit", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
+
+
+                if (kgOptionISChecked) {
+                    if (weightInputEt.text.toString()
+                            .toFloat() > 200 || weightInputEt.text.toString().toFloat() < 20
+                    ) {
+                        Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+
+
+                } else if (lbOptionISChecked) {
+                    if (weightInputEt.text.toString()
+                            .toFloat() > 440 || weightInputEt.text.toString().toFloat() < 44
+                    ) {
+                        Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+
+                    }
+
+                }
                 weight = weightInputEt.text.toString().toFloat()
 
 
                 if (kgOptionISChecked) {
-                    if (weight > 200 || weight < 20) {
-                        Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    }
                     userWeight.text = "$weight kg"
-
                 } else if (lbOptionISChecked) {
-                    if (weight > 440 || weight < 44) {
-                        Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-
-                    }
                     userWeight.text = "$weight lb"
                 }
 
@@ -259,6 +268,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         editor.putString(AppUtils.WEIGHT_KEY_WATER_TRACKER, finalWeight)
         editor.putString(AppUtils.GENDER_KEY_WATER_TRACKER, gender)
         // val totalIntake = AppUtils.calculateIntake(weight.toInt() ,180)
+        editor.apply()
 
         Log.e("kgUnit", " =========  $kgOptionISChecked")
         Log.e("lbUnit", " =========  $lbOptionISChecked")

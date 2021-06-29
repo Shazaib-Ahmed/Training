@@ -40,7 +40,7 @@ class SplashScreenWaterTracker : AppCompatActivity() {
 
         Timer().schedule(object : TimerTask() {
             override fun run() {
-                if (sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY, true)) {
+                if (sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WATER_TRACKER, true)) {
                     startActivity(Intent(applicationContext, IntroWaterTracker::class.java))
                 } else {
                     val intent = Intent(applicationContext, HomeWaterTracker::class.java)
