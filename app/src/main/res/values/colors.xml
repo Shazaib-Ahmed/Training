@@ -20,4 +20,8 @@
 
     //blood_sugar_level colors
     <color name="bloodTrackerColorOne">#292929</color>
+
+    //water tracker colors
+
+    <color name="waterTrackerTextColor">#163f59</color>
 </resources>

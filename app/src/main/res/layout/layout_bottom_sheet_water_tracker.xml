@@ -4,65 +4,65 @@
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="0sp"
+    android:background="@drawable/bottom_sheet_background"
     android:gravity="center"
-    android:background="@drawable/bottom_sheet_background">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15sp"
         android:layout_gravity="center"
+        android:layout_margin="15sp"
         android:gravity="center"
+        android:padding="10sp"
+
         >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="16sp"
             android:fontFamily="@font/poppins_normal"
-            android:textStyle="bold"
-            android:text="Select Gender" />
+            android:gravity="center"
+            android:text="Select Gender"
+            android:textColor="@color/waterTrackerTextColor"
+            android:textSize="16sp"
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_navigate_next"
-            android:layout_centerVertical="true"
-            />
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/waterIntake"
+        android:layout_height="0.5dp"
         android:layout_marginStart="15sp"
-        android:layout_marginEnd="15sp"/>
+        android:layout_marginEnd="15sp"
+        android:background="@color/waterIntake" />
 
     <TextView
         android:id="@+id/male"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Male"
-        android:padding="20sp"
+        android:background="@drawable/gender_selector_ripple_water_tracker"
         android:fontFamily="@font/poppins_normal"
-        android:textAlignment="center"/>
+        android:padding="25sp"
+        android:text="Male"
+        android:textAlignment="center"
+        android:textColor="@color/waterTrackerTextColor"
+
+        />
 
     <TextView
         android:id="@+id/female"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Female"
-        android:padding="20sp"
-        android:textAlignment="center"
+        android:background="@drawable/gender_selector_ripple_water_tracker"
         android:fontFamily="@font/poppins_normal"
-        android:layout_marginBottom="15sp"/>
-
-
+        android:padding="25sp"
+        android:text="Female"
+        android:textAlignment="center"
+        android:textColor="@color/waterTrackerTextColor" />
 
 
 </LinearLayout>

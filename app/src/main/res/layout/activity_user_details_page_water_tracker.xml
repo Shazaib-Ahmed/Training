@@ -20,7 +20,7 @@
             android:layout_marginTop="30sp"
             android:fontFamily="@font/poppins_normal"
             android:text="@string/personal_data"
-            android:textColor="@color/waterIntake"
+            android:textColor="@color/waterTrackerTextColor"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
             android:fontFamily="@font/poppins_normal"
             android:text="@string/details_quote"
             android:textAlignment="center"
-            android:textColor="@color/waterIntake"
+            android:textColor="#7D93A1"
             android:textSize="14sp" />
 
 
@@ -50,7 +50,9 @@
                 android:id="@+id/gender_relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20sp">
+                android:background="@drawable/gender_selector_ripple_water_tracker"
+                android:padding="15sp"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,7 +63,7 @@
                     android:fontFamily="@font/poppins_normal"
                     android:gravity="center"
                     android:text="@string/genderWaterTracker"
-                    android:textColor="@color/waterIntake"
+                    android:textColor="@color/waterTrackerTextColor"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/gender_water_tracker" />
@@ -86,14 +88,17 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="25sp"
-                    android:src="@drawable/ic_navigate_next" />
+                    android:src="@drawable/ic_navigate_next_water_tracker" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/weight_relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20sp">
+                android:padding="15sp"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/gender_selector_ripple_water_tracker"
+                >
 
 
                 <TextView
@@ -105,7 +110,7 @@
                     android:fontFamily="@font/poppins_normal"
                     android:gravity="center"
                     android:text="Weight"
-                    android:textColor="@color/waterIntake"
+                    android:textColor="@color/waterTrackerTextColor"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/body_scale" />
@@ -130,7 +135,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="25sp"
-                    android:src="@drawable/ic_navigate_next" />
+                    android:src="@drawable/ic_navigate_next_water_tracker" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -146,7 +151,7 @@
             android:fontFamily="@font/poppins_normal"
             android:text="@string/privacy_text"
             android:textAlignment="center"
-            android:textColor="@color/waterIntake"
+            android:textColor="#7D93A1"
             android:textSize="11sp" />
 
 
