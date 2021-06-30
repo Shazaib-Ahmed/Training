@@ -9,7 +9,9 @@
     tools:context=".waterTracker.UserDetailsPageWaterTracker">
 
     <RelativeLayout
+
         android:layout_width="match_parent"
+
         android:layout_height="match_parent">
 
         <TextView
@@ -37,6 +39,12 @@
             android:textColor="#7D93A1"
             android:textSize="14sp" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_behavior=".waterTracker.MoveUpwardBehavior">
 
         <LinearLayout
             android:id="@+id/details_linear_layout"
@@ -51,8 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gender_selector_ripple_water_tracker"
-                android:padding="15sp"
-                >
+                android:padding="15sp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,10 +102,9 @@
                 android:id="@+id/weight_relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15sp"
                 android:layout_marginTop="5sp"
                 android:background="@drawable/gender_selector_ripple_water_tracker"
-                >
+                android:padding="15sp">
 
 
                 <TextView
@@ -140,6 +146,7 @@
 
         </LinearLayout>
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -153,7 +160,6 @@
             android:textAlignment="center"
             android:textColor="#7D93A1"
             android:textSize="11sp" />
-
 
         <RelativeLayout
             android:id="@+id/bottomContinueButtonWaterTracker"
@@ -181,6 +187,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </RelativeLayout>
-
     </RelativeLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

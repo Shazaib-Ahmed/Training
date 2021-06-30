@@ -1,5 +1,6 @@
 package com.example.sampleproject_1.waterTracker
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,6 +16,8 @@ import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.weightTracker.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import java.text.DecimalFormat
 import java.text.Format
@@ -211,7 +214,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
 
                 } else if (lbOptionISChecked) {
                     if (weightInputEt.text.toString()
-                            .toFloat() > 440 || weightInputEt.text.toString().toFloat() < 44
+                            .toFloat() > 441 || weightInputEt.text.toString().toFloat() < 44
                     ) {
                         Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
@@ -259,17 +262,29 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         dialog.setCancelable(true)
     }
 
+    @SuppressLint("ShowToast")
     private fun saveInformation() {
 
         if (genderOption.text.isEmpty()) {
 
-            Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show()
+            Snackbar.make(
+                coordinatorLayoutWaterTracker,
+                "Please enter gender",
+                Snackbar.LENGTH_SHORT
+            )
+                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+
             return
         }
 
         if (userWeight.text.isEmpty()) {
+            Snackbar.make(
+                coordinatorLayoutWaterTracker,
+                "Please enter weight",
+                Snackbar.LENGTH_SHORT
+            )
+                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
 
-            Toast.makeText(this, "Please enter weight", Toast.LENGTH_SHORT).show()
             return
         }
 
