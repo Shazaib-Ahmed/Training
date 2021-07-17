@@ -1,6 +1,6 @@
 package com.example.sampleproject_1.waterTracker
 
-import android.annotation.SuppressLint
+
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
@@ -20,7 +20,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import java.text.DecimalFormat
-import java.text.Format
+import java.util.*
 
 class UserDetailsPageWaterTracker : AppCompatActivity() {
 
@@ -109,6 +109,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
                 saveRadioData("KG_CHECKED_WATER_TRACKER", kgIsChecked)
                 kgOptionISChecked = kgIsChecked
             }
+
 
 
             radioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -262,31 +263,35 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         dialog.setCancelable(true)
     }
 
-    @SuppressLint("ShowToast")
+
     private fun saveInformation() {
 
         if (genderOption.text.isEmpty()) {
 
-            Snackbar.make(
+            val snack = Snackbar.make(
                 coordinatorLayoutWaterTracker,
-                "Please enter gender",
+                "Please select gender",
                 Snackbar.LENGTH_SHORT
             )
-                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
+            snack.animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
+            snack.show()
 
             return
         }
 
+
         if (userWeight.text.isEmpty()) {
-            Snackbar.make(
+
+            val snack = Snackbar.make(
                 coordinatorLayoutWaterTracker,
                 "Please enter weight",
                 Snackbar.LENGTH_SHORT
             )
-                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show()
-
+            snack.animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
+            snack.show()
             return
         }
+
 
         gender = genderOption.text.toString()
 
@@ -341,6 +346,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         kgRadio.isChecked = kgOptionISChecked
         lbRadio.isChecked = lbOptionISChecked
     }
+
 
 
 }

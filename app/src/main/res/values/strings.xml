@@ -143,4 +143,30 @@
     <string name="gender">Gender</string>
 
     <string name="genderWaterTracker">Gender</string>
+
+    //SHORTCUT_WEIGHT_TRACKER
+    <string name="short_label_weightTracker">Weight T</string>
+    <string name="long_label_weightTracker">Weight Tracker</string>
+    <string name="disabled_message_weightTracker">This shortcut is disabled</string>
+
+    //SHORTCUT_WATER_REMINDER
+    <string name="short_label_waterReminder">Water R</string>
+    <string name="long_label_waterReminder">Water Reminder</string>
+    <string name="disabled_message_waterReminder">This shortcut is disabled</string>
+
+    //SHORTCUT_SLEEP_TRACKER
+    <string name="short_label_sleepTracker">Sleep T</string>
+    <string name="long_label_sleepTracker">Sleep Tracker</string>
+    <string name="disabled_message_sleepTracker">This shortcut is disabled</string>
+
+    //SHORTCUT_PEDOMETER
+    <string name="short_label_pedometer">Pedo</string>
+    <string name="long_label_pedometer">Pedometer</string>
+    <string name="disabled_message_pedometer">This shortcut is disabled</string>
+
+    //SHORTCUT_BLOOD_SUGAR_TRACKER
+    <string name="short_label_bloodSugarTracker">Blood Sugar T</string>
+    <string name="long_label_bloodSugarTracker">Blood Sugar Tracker</string>
+    <string name="disabled_message_bloodSugarTracker">This shortcut is disabled</string>
+
 </resources>
