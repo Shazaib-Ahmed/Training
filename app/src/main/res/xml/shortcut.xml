@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/disabled_message_weightTracker"
+        android:shortcutId="weightTracker"
+        android:shortcutLongLabel="@string/long_label_weightTracker"
+        android:shortcutShortLabel="@string/short_label_weightTracker">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.sampleproject_1.weightTracker.SplashScreenWeightTracker"
+            android:targetPackage="com.example.sampleproject_1" />
+        <category android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/disabled_message_waterReminder"
+        android:shortcutId="waterReminder"
+        android:shortcutLongLabel="@string/long_label_waterReminder"
+        android:shortcutShortLabel="@string/short_label_waterReminder">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.sampleproject_1.WaterReminder.SplashScreen"
+            android:targetPackage="com.example.sampleproject_1" />
+        <category android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/disabled_message_sleepTracker"
+        android:shortcutId="sleepTracker"
+        android:shortcutLongLabel="@string/long_label_sleepTracker"
+        android:shortcutShortLabel="@string/short_label_sleepTracker">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.sampleproject_1.sleepTracker.HomeSleepTracker"
+            android:targetPackage="com.example.sampleproject_1" />
+        <category android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/disabled_message_pedometer"
+        android:shortcutId="pedometer"
+        android:shortcutLongLabel="@string/long_label_pedometer"
+        android:shortcutShortLabel="@string/short_label_pedometer">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.sampleproject_1.PedometerExample.StepCounter"
+            android:targetPackage="com.example.sampleproject_1" />
+        <category android:name="android.shortcut.conversation" />
+    </shortcut>
+
+
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/disabled_message_bloodSugarTracker"
+        android:shortcutId="bloodSugarTracker"
+        android:shortcutLongLabel="@string/long_label_bloodSugarTracker"
+        android:shortcutShortLabel="@string/short_label_bloodSugarTracker">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.sampleproject_1.bloodSugarTracker.SplashScreenBloodSugarTracker"
+            android:targetPackage="com.example.sampleproject_1" />
+        <category android:name="android.shortcut.conversation" />
+    </shortcut>
+
+
+</shortcuts>
