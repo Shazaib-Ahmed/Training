@@ -10,9 +10,11 @@ import com.example.sampleproject_1.R
 import java.util.*
 
 class TotalSleepAdapter
-(private val data: ArrayList<TotalSleep>) : RecyclerView.Adapter<TotalSleepAdapter.TotalSleepViewHolder>() {
+    (private val data: ArrayList<TotalSleep>) :
+    RecyclerView.Adapter<TotalSleepAdapter.TotalSleepViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TotalSleepViewHolder {
-        val inflate = LayoutInflater.from(parent.context).inflate(R.layout.item_sleep_tracker, parent, false)
+        val inflate =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_sleep_tracker, parent, false)
         return TotalSleepViewHolder(inflate)
     }
 
@@ -37,12 +39,13 @@ class TotalSleepAdapter
 
         @SuppressLint("SetTextI18n")
         fun bindData(s: TotalSleep) {
-            totalTime.text ="Total Sleep - " + s.totalUserTime
-            todayDate.text ="Date - " + s.date
-            sleepRating.text ="Sleep rating - " + s.rating+ " Star"
+            totalTime.text = "Total Sleep - " + s.totalUserTime
+            todayDate.text = "Date - " + s.date
+            sleepRating.text = "Sleep rating - " + s.rating + " Star"
 
         }
 
     }
-    class TotalSleep(val totalUserTime: String , val date: String, val rating:String)
+
+    class TotalSleep(val totalUserTime: String, val date: String, val rating: String)
 }

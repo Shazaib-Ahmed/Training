@@ -22,8 +22,12 @@
     <color name="bloodTrackerColorOne">#292929</color>
 
     //water tracker colors
-
-
-
     <color name="waterTrackerTextColor">#163f59</color>
+
+    //weight tracker 2 colors
+    <color name="weightTracker2ColorOne">#1D85D0</color>
+    <color name="weightTracker2ColorTwo">#DFE8FB</color>
+    <color name="weightTracker2TextColorOne">#797979</color>
+    <color name="weightTracker2TextColorTwo">#3C3C3C</color>
+
 </resources>

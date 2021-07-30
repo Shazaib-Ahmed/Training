@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".weightTracker2.EnterWeight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
+            android:fontFamily="@font/poppins_normal"
+            android:gravity="center"
+            android:text="Weight"
+            android:textColor="@color/weightTracker2ColorOne"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_normal"
+            android:gravity="center"
+            android:text="Current Weight"
+            android:textColor="@color/weightTracker2TextColorTwo"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_enter_weight_back">
+
+            <com.aigestudio.wheelpicker.WheelPicker
+                android:layout_centerInParent="true"
+                android:id="@+id/sleepHourPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:wheel_atmospheric="true"
+                app:wheel_item_text_color="@color/weightTracker2TextColorTwo"
+                app:wheel_curved="true"
+                app:wheel_cyclic="true"
+                app:wheel_selected_item_position="5"
+                app:wheel_data="@array/weight_select"
+                app:wheel_indicator="true"
+                app:wheel_indicator_color="@color/weightTracker2ColorOne"
+                app:wheel_indicator_size="0.8sp"
+                app:wheel_item_space="28sp"
+                app:wheel_item_text_size="28sp"
+                app:wheel_maximum_width_text="1000"
+                app:wheel_selected_item_text_color="@color/weightTracker2ColorOne"
+                app:wheel_visible_item_count="9" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottomContinueButtonWeightTracker2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp">
+
+        <TextView
+            android:id="@+id/next_btn_enter_weight_wt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_weight_tracker_2"
+            android:fontFamily="@font/poppins_normal"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="Next"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</RelativeLayout>

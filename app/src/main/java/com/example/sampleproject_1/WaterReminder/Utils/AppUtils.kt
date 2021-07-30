@@ -69,5 +69,24 @@ object AppUtils {
     var TOTAL_INTAKE_WATER_TRACKER           =          "totalintake"
     var GENDER_KEY_WATER_TRACKER             =          "gender"
 
+    /**  WEIGHT_TRACKER_2  **/
+
+    @JvmField
+    var INITIAL_WEIGHT_KEY_WT2                =          "current_weight_wt"
+    var FINAL_WEIGHT_KEY_WT2                  =          "goal_weight_wt"
+    var FIRST_RUN_KEY_WEIGHT_TRACKER_2        =          "firstrunWT"
+    var RADIO_OPTION_KEY_WT2                  =          "radioOptionKeyWt"
+    var NOTIFICATION_KEY_WT2                 =          "notificationkeyWT"
+
+    fun covertToKgWt2(weight: Int): Double {
+        val change = 2.2046226218
+        return weight / change
+    }
+
+
+    fun covertToLbWt2(weight: Int): Double {
+        val change = 2.2046226218
+        return weight * change
+    }
 
 }

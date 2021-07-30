@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5sp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="15dp"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:gravity="center"
+    android:background="@color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/slide_images"
+        android:padding="15dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher"/>
+    <TextView
+        android:id="@+id/slide_quotes"
+        android:padding="15dp"
+        android:layout_width="wrap_content"
+        android:textColor="#3C3C3C"
+        android:fontFamily="@font/poppins_normal"
+        android:layout_height="wrap_content"
+        android:text="“I don’t stop when I’m tired,I stop when I’m DONE!”"
+        />
+</LinearLayout>
+</androidx.cardview.widget.CardView>

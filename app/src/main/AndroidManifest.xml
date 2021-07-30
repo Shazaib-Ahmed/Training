@@ -14,9 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
-        <activity android:name=".waterTracker.SettingsWaterTracker"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:parentActivityName=".waterTracker.HomeWaterTracker"/>
+        <activity
+            android:name=".weightTracker2.EnterWeight"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".weightTracker2.IntroSliderWeightTracker2"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".weightTracker2.SplashScreenWeightTracker2"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".waterTracker.SettingsWaterTracker"
+            android:parentActivityName=".waterTracker.HomeWaterTracker"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name=".waterTracker.UserDetailsPageWaterTracker"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -28,15 +46,11 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".waterTracker.SplashScreenWaterTracker"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:label="Water Tracker">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <meta-data android:name="android.app.shortcuts"
-                android:resource="@xml/shortcut"/>
+            android:label="Water Tracker"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcut" />
         </activity>
 
         <receiver
@@ -66,7 +80,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".sleepTracker.HomeSleepTracker"
-            android:label="Sleep Tracker"></activity>
+            android:label="Sleep Tracker" />
         <activity
             android:name=".PedometerExample.StepCounter"
             android:label="@string/step_counter" />
