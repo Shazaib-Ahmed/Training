@@ -23,6 +23,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1">
 
+<!--
                 <me.itangqi.waveloadingview.WaveLoadingView
                     android:id="@+id/progress_bar"
                     android:layout_width="match_parent"
@@ -41,6 +42,7 @@
                     app:wlv_triangle_direction="north"
                     app:wlv_waveAmplitude="60"
                     app:wlv_waveColor="@color/tabColor" />
+-->
             </RelativeLayout>
 
             <LinearLayout

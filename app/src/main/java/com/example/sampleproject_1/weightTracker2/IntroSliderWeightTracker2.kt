@@ -36,7 +36,7 @@ class IntroSliderWeightTracker2 : AppCompatActivity() {
     private val images: Unit
         get() {
             mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
-            mNames.add("“To change your body you must first change your mind.”")
+            mNames.add("“To change your body you must  first change your mind.”")
             mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
             mNames.add("“The only bad workout is the one that didn’t happen.”")
             mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
@@ -45,6 +45,7 @@ class IntroSliderWeightTracker2 : AppCompatActivity() {
             mNames.add("“Happiness is the highest form of health.”")
             mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
             mNames.add("“Three months from now, you will thanks yourself”")
+
 
             initRecyclerView()
         }

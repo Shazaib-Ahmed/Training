@@ -186,6 +186,7 @@
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
+<!--
                             <com.aigestudio.wheelpicker.WheelPicker
                                 android:id="@+id/sleepHourPicker"
                                 android:layout_width="wrap_content"
@@ -204,6 +205,7 @@
                                 app:wheel_maximum_width_text="500"
                                 app:wheel_selected_item_text_color="@color/tabColor"
                                 app:wheel_visible_item_count="3" />
+-->
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -214,6 +216,7 @@
                                 android:textColor="@color/tabColor"
                                 android:textSize="25sp" />
 
+<!--
                             <com.aigestudio.wheelpicker.WheelPicker
                                 android:id="@+id/sleepMinutePicker"
                                 android:layout_width="wrap_content"
@@ -232,6 +235,7 @@
                                 app:wheel_maximum_width_text="500"
                                 app:wheel_selected_item_text_color="@color/tabColor"
                                 app:wheel_visible_item_count="3" />
+-->
 
 
                            <!-- <ImageView
@@ -308,6 +312,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
+<!--
                             <com.aigestudio.wheelpicker.WheelPicker
                                 android:id="@+id/wakeHourPicker"
                                 android:layout_width="wrap_content"
@@ -326,6 +331,7 @@
                                 app:wheel_maximum_width_text="500"
                                 app:wheel_selected_item_text_color="@color/tabColor"
                                 app:wheel_visible_item_count="3" />
+-->
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -336,6 +342,7 @@
                                 android:textColor="@color/tabColor"
                                 android:textSize="25sp" />
 
+<!--
                             <com.aigestudio.wheelpicker.WheelPicker
                                 android:id="@+id/wakeMinutePicker"
                                 android:layout_width="wrap_content"
@@ -354,6 +361,7 @@
                                 app:wheel_maximum_width_text="500"
                                 app:wheel_selected_item_text_color="@color/tabColor"
                                 app:wheel_visible_item_count="3" />
+-->
 
                            <!-- <ImageView
                                 android:layout_width="match_parent"

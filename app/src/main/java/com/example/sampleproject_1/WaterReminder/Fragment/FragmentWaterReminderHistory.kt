@@ -121,7 +121,7 @@ class FragmentWaterReminderHistory : Fragment() {
 
     private fun setUpSpinner() {
         val sortBySpinnerData = resources.getStringArray(R.array.sortByspinner)
-        val ad = ArrayAdapter(context!!.applicationContext, android.R.layout.simple_dropdown_item_1line, sortBySpinnerData)
+        val ad = ArrayAdapter(requireContext().applicationContext, android.R.layout.simple_dropdown_item_1line, sortBySpinnerData)
         sortBySpinner!!.adapter = ad
     }
 

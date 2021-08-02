@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".weightTracker2.EnterWeight">
+    tools:context=".weightTracker2.GoalWeight">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_normal"
             android:gravity="center"
-            android:text="Current Weight"
+            android:text="Goal Weight"
             android:textColor="@color/weightTracker2TextColorTwo"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
 
 <!--
             <com.aigestudio.wheelpicker.WheelPicker
-                android:id="@+id/enterWeightPicker"
+                android:id="@+id/goalWeightPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -77,7 +77,7 @@
         android:layout_marginBottom="40dp">
 
         <TextView
-            android:id="@+id/next_btn_enter_weight_wt2"
+            android:id="@+id/next_btn_goal_weight_wt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -88,7 +88,7 @@
             android:background="@drawable/btn_weight_tracker_2"
             android:fontFamily="@font/poppins_normal"
             android:gravity="center"
-           android:includeFontPadding="false"
+            android:includeFontPadding="false"
             android:text="Next"
             android:textAlignment="center"
             android:textColor="@color/white"

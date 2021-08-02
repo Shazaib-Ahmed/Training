@@ -125,12 +125,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginStart="29sp"
             android:fontFamily="@font/poppins_normal"
             android:text="86 KG"
             android:textColor="@color/weightTrackerColorOne"
             android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginStart="29sp"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView

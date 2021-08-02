@@ -1,5 +1,6 @@
 package com.example.sampleproject_1.WaterReminder.Fragment
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +19,6 @@ import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
 import com.example.sampleproject_1.WaterReminder.model.WaterIntake
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import me.itangqi.waveloadingview.WaveLoadingView
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,7 +47,7 @@ class FragmentWaterReminderHome : Fragment() {
 
     //var context: Context3
 
-    private lateinit var waveLoadingView: WaveLoadingView
+    //private lateinit var waveLoadingView: WaveLoadingView
     private val calendar = Calendar.getInstance()
     private val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
     private val currentTime = simpleDateFormat.format(calendar.time)
@@ -62,7 +62,7 @@ class FragmentWaterReminderHome : Fragment() {
         val v = inflater.inflate(R.layout.fragment_water_reminder_home, container, false)
         userWeight = v.findViewById(R.id.userWeightTextView)
         totalIntakeTV = v.findViewById(R.id.totalIntakeTV)
-        waveLoadingView = v.findViewById(R.id.progress_bar)
+        //waveLoadingView = v.findViewById(R.id.progress_bar)
 
         // addWater = v.findViewById(R.id.add_water)
 
@@ -82,8 +82,8 @@ class FragmentWaterReminderHome : Fragment() {
         buildRecyclerView()
         progress = sharedPreferences.getInt("PRO", 0)
         totalInTook = sharedPreferences.getInt("TOI", 0)
-        waveLoadingView.progressValue = progress
-        waveLoadingView.centerTitle = "$progress %"
+        //waveLoadingView.progressValue = progress
+      //  waveLoadingView.centerTitle = "$progress %"
         remainingWater.text = "$totalInTook/$totalIntake ml"
 
         addWater!!.setOnClickListener(View.OnClickListener {
@@ -95,7 +95,7 @@ class FragmentWaterReminderHome : Fragment() {
                 saveData()
             } else {
                 Toast.makeText(
-                    context!!.applicationContext,
+                    requireContext().applicationContext,
                     "You are done for the day",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -139,14 +139,14 @@ class FragmentWaterReminderHome : Fragment() {
     private fun setWaterLevel(inTook: Int, totalIntake: Int) {
         if (inTook * 100 / totalIntake > 140) {
             Toast.makeText(
-                context!!.applicationContext,
+                requireContext().applicationContext,
                 "You are done for the day",
                 Toast.LENGTH_SHORT
             ).show()
         } else {
             progress += inTook * 100 / totalIntake
-            waveLoadingView!!.progressValue = progress
-            waveLoadingView!!.centerTitle = "$progress %"
+           // waveLoadingView!!.progressValue = progress
+           // waveLoadingView!!.centerTitle = "$progress %"
             val editor = sharedPreferences!!.edit()
             editor.putInt("PRO", progress)
             editor.putInt("TOI", totalInTook)
@@ -155,9 +155,10 @@ class FragmentWaterReminderHome : Fragment() {
         remainingWater!!.text = "$totalInTook/$totalIntake ml"
     }
 
+    @SuppressLint("WrongConstant")
     private fun saveData() {
         val sharedPreferences =
-            this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+            this.requireActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val jsonData = gson.toJson(saveDailyData)
@@ -165,9 +166,10 @@ class FragmentWaterReminderHome : Fragment() {
         editor.apply()
     }
 
+    @SuppressLint("WrongConstant")
     private fun loadData() {
         val sharedPreferences =
-            this.activity!!.getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
+            this.requireActivity().getSharedPreferences(AppUtils.USERS_SHARED_PREF, AppUtils.PRIVATE_MODE)
         val gson = Gson()
         val jsonData = sharedPreferences.getString("myJson", null)
         val type = object : TypeToken<ArrayList<WaterIntake?>?>() {}.type

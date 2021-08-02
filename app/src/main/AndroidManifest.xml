@@ -15,9 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
         <activity
+            android:name=".weightTracker2.HeadingWeight"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".weightTracker2.HomeWeightTracker2"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".weightTracker2.GoalWeight"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
             android:name=".weightTracker2.EnterWeight"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".weightTracker2.IntroSliderWeightTracker2"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

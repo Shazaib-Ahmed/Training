@@ -9,7 +9,6 @@ import android.util.Log
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.aigestudio.wheelpicker.WheelPicker
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Database.ViewModelWaterReminder
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
@@ -65,10 +64,10 @@ class UserDetailsPage : AppCompatActivity() {
 
     private lateinit var selectedTime: String
 
-    private lateinit var sleepHourPicker: WheelPicker
+ /*   private lateinit var sleepHourPicker: WheelPicker
     private lateinit var sleepMinutePicker: WheelPicker
     private lateinit var wakeHourPicker: WheelPicker
-    private lateinit var wakeMinutePicker: WheelPicker
+    private lateinit var wakeMinutePicker: WheelPicker*/
 
 
     @SuppressLint("SimpleDateFormat")
@@ -85,7 +84,7 @@ class UserDetailsPage : AppCompatActivity() {
 
         supportActionBar!!.title = "User Details"
 
-        sleepHourPicker.setOnItemSelectedListener { picker, data, position ->
+        /*sleepHourPicker.setOnItemSelectedListener { picker, data, position ->
             sleepHourSelect = position
             val editor = sharedPreferences.edit()
             editor.putInt("SLEEP_HOUR_KEY", sleepHourSelect)
@@ -117,7 +116,7 @@ class UserDetailsPage : AppCompatActivity() {
             Toast.makeText(this, "Selected : $wakeMinuteSelect", Toast.LENGTH_SHORT).show()
 
         }
-
+*/
         if (firstRunKey) {
             maleOption.isChecked = true
 
@@ -226,10 +225,10 @@ class UserDetailsPage : AppCompatActivity() {
         maleOption = findViewById(R.id.male_option)
         femaleOption = findViewById(R.id.female_option)
 
-        sleepHourPicker = findViewById(R.id.sleepHourPicker)
+        /*sleepHourPicker = findViewById(R.id.sleepHourPicker)
         sleepMinutePicker = findViewById(R.id.sleepMinutePicker)
         wakeHourPicker = findViewById(R.id.wakeHourPicker)
-        wakeMinutePicker = findViewById(R.id.wakeMinutePicker)
+        wakeMinutePicker = findViewById(R.id.wakeMinutePicker)*/
 
     }
 
@@ -258,10 +257,10 @@ class UserDetailsPage : AppCompatActivity() {
         maleOption.isChecked = radioM
         femaleOption.isChecked = radioF
         weightEditText?.setText("$weightKey")
-        sleepHourPicker.selectedItemPosition = sleepHourUpdate
+        /*sleepHourPicker.selectedItemPosition = sleepHourUpdate
         sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
         wakeMinutePicker.selectedItemPosition = wakeHourUpdate
-        wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
+        wakeHourPicker.selectedItemPosition = wakeMinuteUpdate*/
 
     }
 
@@ -333,10 +332,10 @@ class UserDetailsPage : AppCompatActivity() {
 
         if (!firstRunKey) {*/
 
-        sleepHourPicker.selectedItemPosition = sleepHourUpdate
+        /*sleepHourPicker.selectedItemPosition = sleepHourUpdate
         sleepMinutePicker.selectedItemPosition = sleepMinuteUpdate
         wakeMinutePicker.selectedItemPosition = wakeHourUpdate
-        wakeHourPicker.selectedItemPosition = wakeMinuteUpdate
+        wakeHourPicker.selectedItemPosition = wakeMinuteUpdate*/
 
         Log.e("MY === VALUE", " =========  $sleepHourUpdate")
         Log.e("MY === VALUE", " =========  $sleepMinuteUpdate")

@@ -32,6 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_normal"
+                    android:includeFontPadding="false"
                     android:text="Weight"
                     android:textColor="@color/black"
                     android:textSize="44sp"
@@ -41,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_normal"
+                    android:includeFontPadding="false"
                     android:text=" Loss"
                     android:textColor="@color/weightTracker2ColorOne"
                     android:textSize="46sp"
@@ -53,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:fontFamily="@font/poppins_normal"
+                android:includeFontPadding="false"
                 android:text="Can Be Easy"
                 android:textColor="@color/black"
                 android:textSize="44sp"
@@ -63,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
                 android:fontFamily="@font/poppins_normal"
+                android:includeFontPadding="false"
                 android:text="@string/welcome"
                 android:textColor="@color/weightTracker2TextColorOne"
                 android:textSize="15sp" />
@@ -71,50 +75,53 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/welcome_recycler_view"
             android:layout_width="match_parent"
-            tools:itemCount="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            tools:itemCount="1"
+
             tools:listitem="@layout/slide_1_wt2" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:layout_gravity="center">
+            android:gravity="center">
 
             <ImageView
-                android:padding="1dp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_dot_wt2"/>
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:src="@drawable/ic_dot_wt2" />
 
             <ImageView
-                android:padding="1dp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_dot_2_wt2"/>
-            <ImageView
-                android:padding="1dp"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_dot_2_wt2"/>
-            <ImageView
                 android:padding="1dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_dot_2_wt2"/>
-            <ImageView
-                android:padding="1dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_dot_2_wt2"/>
+                android:src="@drawable/ic_dot_2_wt2" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:src="@drawable/ic_dot_2_wt2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:src="@drawable/ic_dot_2_wt2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:src="@drawable/ic_dot_2_wt2" />
 
 
         </LinearLayout>
@@ -124,7 +131,8 @@
         android:id="@+id/bottomContinueButtonWeightTracker2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_gravity="bottom"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="40dp"
         android:gravity="bottom">
 
         <TextView
@@ -139,10 +147,7 @@
             android:background="@drawable/btn_weight_tracker_2"
             android:fontFamily="@font/poppins_normal"
             android:gravity="center"
-            android:paddingStart="20dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="5dp"
+            android:includeFontPadding="false"
             android:text="Start"
             android:textAlignment="center"
             android:textColor="@color/white"
