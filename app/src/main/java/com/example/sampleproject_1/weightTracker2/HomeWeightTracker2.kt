@@ -44,7 +44,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_weight_tracker2)
-     //  viewModelWeightTracker2 = ViewModelProvider(this).get(ViewModelWeightTracker2::class.java)
+        viewModelWeightTracker2 = ViewModelProvider(this).get(ViewModelWeightTracker2::class.java)
         images
 
         initialisingFields()
