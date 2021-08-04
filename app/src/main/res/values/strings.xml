@@ -14,6 +14,12 @@
         <item>Weekly</item>
     </string-array>
 
+    <string-array name="chart_spinner">
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
+
+
     <string-array name="sortByspinnerFilter">
         <item>Before Meal</item>
         <item>After Meal</item>

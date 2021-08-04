@@ -72,11 +72,12 @@ object AppUtils {
     /**  WEIGHT_TRACKER_2  **/
 
     @JvmField
-    var ENTER_WEIGHT_KEY_WT2                =          "current_weight_wt2"
+    var ENTER_WEIGHT_KEY_WT2                 =          "enter_weight_wt2"
     var GOAL_WEIGHT_KEY_WT2                  =          "goal_weight_wt2"
-    var CURRENT_WEIGHT_KEY_WT2                  =          "current_weight_wt2"
-    var FIRST_RUN_KEY_WEIGHT_TRACKER_2        =          "firstrunWT2"
-    var RADIO_OPTION_KEY_WT2                  =          "radioOptionKeyWt2"
+    var DROPPED_WEIGHT_KEY_WT2               =          "dropped_weight_wt2"
+    var CURRENT_WEIGHT_KEY_WT2               =          "current_weight_wt2"
+    var FIRST_RUN_KEY_WEIGHT_TRACKER_2       =          "firstrunWT2"
+    var RADIO_OPTION_KEY_WT2                 =          "radioOptionKeyWt2"
     var NOTIFICATION_KEY_WT2                 =          "notificationkeyWT2"
 
     fun covertToKgWt2(weight: Int): Double {

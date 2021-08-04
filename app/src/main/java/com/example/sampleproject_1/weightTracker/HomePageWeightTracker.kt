@@ -50,7 +50,7 @@ private var lb =false
 private var kg =false
 //private var lineEntries: ArrayList<Entry>? = null
 
-private lateinit var calendar: Calendar
+lateinit var calendar: Calendar
 
 
 private lateinit var lineEntries: ArrayList<Entry>

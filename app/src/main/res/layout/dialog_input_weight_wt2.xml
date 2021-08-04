@@ -13,131 +13,97 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:gravity="center"
-        android:layout_gravity="center"
-      >
-        <TextView
-            android:id="@+id/heading_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Heading"
-            android:fontFamily="@font/poppins_normal"
-            android:textStyle="bold"
-          android:layout_centerHorizontal="true"
-            android:textSize="28sp"
-            android:layout_margin="45dp"
-            android:textColor="@color/weightTracker2ColorOne"/>
-
-        <TextView
-            android:id="@+id/current_weight_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/heading_tv"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Current Weight"
-            android:textColor="@color/settingsHeadlineTextColor"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+        app:cardCornerRadius="20sp">
 
         <RelativeLayout
-            android:id="@+id/pick_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/current_weight_tv"
-            android:layout_marginTop="0dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/ic_heading_weight">
+            android:layout_margin="5sp">
 
-            <!--
-                        <com.aigestudio.wheelpicker.WheelPicker
-                            android:id="@+id/enterWeightPicker"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_gravity="center_vertical"
-                            app:wheel_atmospheric="true"
-                            app:wheel_curved="true"
-                            app:wheel_cyclic="true"
-                            app:wheel_data="@array/weight_select"
-                            app:wheel_indicator="true"
-                            app:wheel_indicator_color="@color/weightTracker2ColorOne"
-                            app:wheel_indicator_size="0.8sp"
-                            app:wheel_item_space="28sp"
-                            app:wheel_item_text_color="@color/weightTracker2TextColorTwo"
-                            app:wheel_item_text_size="28sp"
-                            app:wheel_maximum_width_text="1000"
-                            app:wheel_selected_item_position="5"
-                            app:wheel_selected_item_text_color="@color/weightTracker2ColorOne"
-                            app:wheel_visible_item_count="9" />
-            -->
+            <TextView
+                android:id="@+id/weight_dialog_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_normal"
+                android:padding="15sp"
+                android:text="Weight"
+                android:textAlignment="center"
+                android:textColor="@color/weightTracker2ColorOne"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/dialog_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:padding="10sp"
+                android:src="@drawable/ic_baseline_cancel_24" />
+
+
+            <LinearLayout
+                android:id="@+id/input_weight_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/weight_dialog_tv"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <EditText
+                    android:id="@+id/input_weight_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="45sp"
+                    android:layout_marginEnd="0sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_normal"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:backgroundTint="@color/black"
+                    android:textColor="@color/waterTrackerTextColor"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lb_kb_unit_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="45sp"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/poppins_normal"
+                    android:padding="0sp"
+                    android:text="kg"
+                    android:textAlignment="center"
+                    android:textColor="@color/weightTracker2ColorOne"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/save_btn_wt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_weight_linear_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="25sp"
+                android:layout_marginTop="25sp"
+                android:layout_marginEnd="25sp"
+                android:layout_marginBottom="25sp"
+                android:background="@drawable/btn_weight_tracker_2"
+                android:fontFamily="@font/poppins_normal"
+                android:gravity="center"
+                android:text="Save"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/goal_weight_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pick_rl"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_normal"
-            android:text="Goal Weight"
-            android:textColor="@color/settingsHeadlineTextColor"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <RelativeLayout
-            android:id="@+id/pick_rl2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/goal_weight_tv"
-            android:layout_marginTop="0dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/ic_heading_weight">
-
-            <!--
-                        <com.aigestudio.wheelpicker.WheelPicker
-                            android:id="@+id/enterWeightPicker"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_gravity="center_vertical"
-                            app:wheel_atmospheric="true"
-                            app:wheel_curved="true"
-                            app:wheel_cyclic="true"
-                            app:wheel_data="@array/weight_select"
-                            app:wheel_indicator="true"
-                            app:wheel_indicator_color="@color/weightTracker2ColorOne"
-                            app:wheel_indicator_size="0.8sp"
-                            app:wheel_item_space="28sp"
-                            app:wheel_item_text_color="@color/weightTracker2TextColorTwo"
-                            app:wheel_item_text_size="28sp"
-                            app:wheel_maximum_width_text="1000"
-                            app:wheel_selected_item_position="5"
-                            app:wheel_selected_item_text_color="@color/weightTracker2ColorOne"
-                            app:wheel_visible_item_count="9" />
-            -->
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/save_btn_wt2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pick_rl2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="25sp"
-            android:layout_marginTop="25sp"
-            android:layout_marginEnd="25sp"
-            android:layout_marginBottom="25sp"
-            android:background="@drawable/btn_weight_tracker_2"
-            android:fontFamily="@font/poppins_normal"
-            android:gravity="center"
-            android:text="Save"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-
 
     </RelativeLayout>
 

@@ -37,7 +37,7 @@ class QuotesAdapter(
         Glide.with(mContext)
             .asBitmap()
             .load(mImageUrls[position])
-            .placeholder(R.drawable.ic_male)
+            .placeholder(R.mipmap.ic_launcher)
             .into(holder.image)
         holder.name.text = mNames[position]
         /*holder.image.setOnClickListener(View.OnClickListener {
