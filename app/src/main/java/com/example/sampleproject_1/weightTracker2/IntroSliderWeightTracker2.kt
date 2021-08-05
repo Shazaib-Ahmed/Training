@@ -2,6 +2,7 @@ package com.example.sampleproject_1.weightTracker2
 
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,19 +11,24 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.sampleproject_1.R
+import com.example.sampleproject_1.WaterReminder.NotificationWaterReminder.AutoStartHelper
 import com.example.sampleproject_1.weightTracker.HomePageWeightTracker
 import com.example.sampleproject_1.weightTracker2.adapter.QuotesAdapter
+import org.koin.android.ext.android.inject
 import java.util.*
 
 
 class IntroSliderWeightTracker2 : AppCompatActivity() {
-    //vars
+
+    private val sharedPreferences: SharedPreferences by inject()
+
     private val mNames: ArrayList<String> = ArrayList()
     private val mImageUrls: ArrayList<String> = ArrayList()
     private lateinit var  startBtn:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_slider_weight_tracker2)
+        autoStartNotification()
         images
         startBtn = findViewById(R.id.start_btn_wt2)
         startBtn.setOnClickListener{
@@ -63,6 +69,13 @@ class IntroSliderWeightTracker2 : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
+    }
+
+    private fun autoStartNotification() {
+        val autoStart = sharedPreferences.getString("autoStart", "")
+        if (autoStart == "") {
+            AutoStartHelper.instance.getAutoStartPermission(this)
+        }
     }
 }
 

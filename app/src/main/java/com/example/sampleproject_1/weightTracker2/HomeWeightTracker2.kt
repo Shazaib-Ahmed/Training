@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
+import com.example.sampleproject_1.waterTracker.SettingsWaterTracker
 
 import com.example.sampleproject_1.weightTracker.calendar
 
@@ -41,6 +42,7 @@ import com.marvel999.acr.ArcProgress
 import me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
 import org.koin.android.ext.android.inject
 import java.util.*
+import javax.security.auth.login.LoginException
 
 class HomeWeightTracker2 : AppCompatActivity() {
 
@@ -60,11 +62,12 @@ class HomeWeightTracker2 : AppCompatActivity() {
     private lateinit var currentWeightTv: TextView
     private lateinit var droppedWeightTv: TextView
 
-    private lateinit var progressBar: ArcProgress
+    private lateinit var progressBar: SemiCircleArcProgressBar
 
     private lateinit var lineChartWT2: LineChart
     private lateinit var calendar: Calendar
 
+    private lateinit var settingsButtonWt2: ImageView
 
     private lateinit var lineEntriesWT2: ArrayList<Entry>
     private lateinit var labelsNamesWT2: ArrayList<String>
@@ -77,6 +80,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
     private var goalWeight = 0
     private var currentWeight = 0
     private var droppedWeight = 0
+    private var percent = 0
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -105,13 +109,16 @@ class HomeWeightTracker2 : AppCompatActivity() {
         goalWeight = sharedPreferences.getInt(AppUtils.GOAL_WEIGHT_KEY_WT2, 0)
         currentWeight = sharedPreferences.getInt(AppUtils.CURRENT_WEIGHT_KEY_WT2, 0)
         droppedWeight = sharedPreferences.getInt(AppUtils.DROPPED_WEIGHT_KEY_WT2, 0)
+        percent = sharedPreferences.getInt(AppUtils.PROGRESS_PERCENT_KEY_WT2, 0)
 
+        Log.e(TAG, "onCreate: $currentWeight", )
 
+       progressBar.setPercent(percent)
 
-        if (enterWeight < goalWeight) {
+      /*  if (enterWeight < goalWeight) {
             droppedtv.text = "Gain : "
         }
-
+*/
 
         enterWeightTv.text = "$enterWeight"
         goalWeightTv.text = "$goalWeight"
@@ -123,6 +130,12 @@ class HomeWeightTracker2 : AppCompatActivity() {
             val intent = Intent(applicationContext, EnterWeight::class.java)
             startActivity(intent)
         }
+
+        settingsButtonWt2.setOnClickListener {
+            val intent = Intent(this, SettingsWeightTracker2::class.java)
+            startActivity(intent)
+        }
+
 
         updateWeightBtn.setOnClickListener {
             dialog.show()
@@ -153,9 +166,36 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 droppedWeight = enterWeight - currentWeight
                 droppedWeightTv.text = "$droppedWeight kg"
 
+
+                val diff = enterWeight - currentWeight
+                val diffWeight = enterWeight - goalWeight
+
+                if (diffWeight==0)
+                {
+
+                }
+                percent =100 * diff/diffWeight
+
+                if (currentWeight<goalWeight){
+                    Toast.makeText(this,"Update Goal",Toast.LENGTH_SHORT).show()
+                }
+
+                if (percent<=100 ) {
+
+
+                    progressBar.setPercent(percent)
+                    Log.e(TAG, "onCreate: $diff", )
+                    Log.e(TAG, "onCreate: $percent", )
+                }
+                else if (percent>100){
+                    progressBar.setPercent(100)
+                    Toast.makeText(this,"Goal Completed",Toast.LENGTH_SHORT).show()
+                }
+
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putInt(AppUtils.CURRENT_WEIGHT_KEY_WT2, currentWeight)
                 editor.putInt(AppUtils.DROPPED_WEIGHT_KEY_WT2, droppedWeight)
+                editor.putInt(AppUtils.PROGRESS_PERCENT_KEY_WT2, percent)
                 editor.apply()
 
                 viewModelWeightTracker2.insert(entityWeightTracker2 = EntityWeightTracker2(0, enterWeight, goalWeight, currentWeight, currentDate))
@@ -195,7 +235,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 val userInitialWeight = weightTracker2[i].key_initial_weight
                 val currentDateKey = weightTracker2[i].key_current_date
 
-                Log.e("data", "$userFinalWeight  ===DATA===  $userCurrentWeight  ===DATA===  $currentDateKey")
+               // Log.e("data", "$userFinalWeight  ===DATA===  $userCurrentWeight  ===DATA===  $currentDateKey")
 
                 lineEntriesWT2.add(Entry(i.toFloat(), userCurrentWeight))
                 labelsNamesWT2.add(currentDateKey)
@@ -295,6 +335,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
         droppedtv = findViewById(R.id.dropped_tv)
         lineChartWT2 = findViewById(R.id.MPLineChartWT2)
         progressBar = findViewById(R.id.arc_progressbar)
+        settingsButtonWt2 = findViewById(R.id.settings_btn_weight_tracker2)
 
 
     }

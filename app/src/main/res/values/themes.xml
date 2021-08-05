@@ -20,7 +20,9 @@
     <style name="switchThemeWT">
         <item name="android:colorControlActivated"> #23033C  </item>
     </style>
-
+    <style name="switchThemeWT2">
+        <item name="android:colorControlActivated"> @color/weightTracker2ColorOne  </item>
+    </style>
 
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle"> @style/BottomSheetStyle  </item>

@@ -7,6 +7,7 @@ import android.os.Build
 import com.example.sampleproject_1.WaterReminder.appModule
 import com.example.sampleproject_1.WaterReminder.viewModelModule
 import com.example.sampleproject_1.WaterReminder.viewModelModuleWT
+import com.example.sampleproject_1.WaterReminder.viewModelModuleWT2
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -18,7 +19,7 @@ class NotifyApplicationWaterReminder : Application() {
 
         startKoin {
             androidContext(this@NotifyApplicationWaterReminder)
-            modules(listOf(appModule, viewModelModule, viewModelModuleWT))
+            modules(listOf(appModule, viewModelModule, viewModelModuleWT, viewModelModuleWT2))
         }
 
 
@@ -46,6 +47,15 @@ class NotifyApplicationWaterReminder : Application() {
             val managerWT = getSystemService(NotificationManager::class.java)
             managerWT.createNotificationChannel(notificationChannelWT)
 
+            val notificationChannelWT2 = NotificationChannel(
+                    CHANNEL__ID_WT2,
+                    "Channel Weight Tracker 2",
+                    NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationChannelWT2.description = "This is weight tracker 2 application channel"
+            val managerWT2 = getSystemService(NotificationManager::class.java)
+            managerWT2.createNotificationChannel(notificationChannelWT2)
+
         }
     }
 
@@ -53,6 +63,7 @@ class NotifyApplicationWaterReminder : Application() {
     companion object {
         const val CHANNEL__ID = "channel_WR"
         const val CHANNEL__ID_WT = "channel_WT"
+        const val CHANNEL__ID_WT2 = "channel_WT2"
 
     }
 }

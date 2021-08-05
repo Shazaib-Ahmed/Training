@@ -47,7 +47,7 @@ class EnterWeight : AppCompatActivity() {
 
 
         enterWeightPicker.setOnItemSelectedListener { picker, data, position ->
-            var d = data.toString()
+            val d = data.toString()
             enterWeight = d.toInt()
             currentWeight =d.toInt()
 
@@ -63,7 +63,7 @@ class EnterWeight : AppCompatActivity() {
 
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putInt(AppUtils.ENTER_WEIGHT_KEY_WT2, enterWeight)
-            editor.putInt(AppUtils.CURRENT_WEIGHT_KEY_WT2, currentWeight)
+            editor.putInt(AppUtils.CURRENT_WEIGHT_KEY_WT2, enterWeight)
             editor.putInt("ENTER_WEIGHT_KEY_POSITION", enterWeightPosition)
             editor.apply()
 

@@ -6,6 +6,7 @@ import java.util.*
 
 object AppUtils {
 
+
     const val USERS_SHARED_PREF              =           "user_pref"
     const val PRIVATE_MODE                   =               0
 
@@ -79,6 +80,7 @@ object AppUtils {
     var FIRST_RUN_KEY_WEIGHT_TRACKER_2       =          "firstrunWT2"
     var RADIO_OPTION_KEY_WT2                 =          "radioOptionKeyWt2"
     var NOTIFICATION_KEY_WT2                 =          "notificationkeyWT2"
+    var PROGRESS_PERCENT_KEY_WT2             =          "progresspercentWT2"
 
     fun covertToKgWt2(weight: Int): Double {
         val change = 2.2046226218

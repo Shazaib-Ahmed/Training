@@ -15,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleProject1">
         <activity
+            android:name=".weightTracker2.SettingsWeightTracker2"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
             android:name=".weightTracker2.HeadingWeight"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".weightTracker2.HomeWeightTracker2"
             android:exported="true"
