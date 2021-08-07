@@ -7,6 +7,13 @@
     android:background="@color/white"
     tools:context=".weightTracker2.SettingsWeightTracker2">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/general_relativeLayout"
         android:layout_width="wrap_content"
@@ -261,5 +268,5 @@
                 app:drawableStartCompat="@drawable/ic_more_apps" />
         </LinearLayout>
     </RelativeLayout>
-
+    </RelativeLayout></ScrollView>
 </RelativeLayout>

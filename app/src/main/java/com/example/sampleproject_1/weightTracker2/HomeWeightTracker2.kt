@@ -16,20 +16,13 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
-import com.example.sampleproject_1.waterTracker.SettingsWaterTracker
-
-import com.example.sampleproject_1.weightTracker.calendar
-
+import com.example.sampleproject_1.weightTracker2.adapter.Quotes
 import com.example.sampleproject_1.weightTracker2.adapter.QuotesAdapter
 import com.example.sampleproject_1.weightTracker2.databaseWt2.EntityWeightTracker2
 import com.example.sampleproject_1.weightTracker2.databaseWt2.ViewModelWeightTracker2
+import com.github.islamkhsh.CardSliderViewPager
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -38,19 +31,15 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.marvel999.acr.ArcProgress
 import me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
 import org.koin.android.ext.android.inject
 import java.util.*
-import javax.security.auth.login.LoginException
+
 
 class HomeWeightTracker2 : AppCompatActivity() {
 
     private val sharedPreferences: SharedPreferences by inject()
     private lateinit var viewModelWeightTracker2: ViewModelWeightTracker2
-
-    private val mNames: ArrayList<String> = ArrayList()
-    private val mImageUrls: ArrayList<String> = ArrayList()
 
     private lateinit var spinnerWeightTracker2: Spinner
     private lateinit var editWeightBtn: RelativeLayout
@@ -75,6 +64,8 @@ class HomeWeightTracker2 : AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var weightInputEditText: EditText
 
+    private lateinit var sliderViewPager: CardSliderViewPager
+
 
     private var enterWeight = 0
     private var goalWeight = 0
@@ -90,7 +81,10 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
         initialisingFields()
         viewModelWeightTracker2 = ViewModelProvider(this).get(ViewModelWeightTracker2::class.java)
-        images
+        //images
+
+
+
 
         calendar = Calendar.getInstance()
         dialog = Dialog(this)
@@ -104,6 +98,27 @@ class HomeWeightTracker2 : AppCompatActivity() {
         val closeBtn = dialog.findViewById<ImageView>(R.id.dialog_cancel_btn)
         val saveBtn = dialog.findViewById<TextView>(R.id.save_btn_wt2)
 
+
+
+
+
+
+
+
+
+        val quotes = arrayListOf<Quotes>()
+        val posters = resources.obtainTypedArray(R.array.images)
+        for (i in resources.getStringArray(R.array.quotes).indices) {
+            quotes.add(
+                    Quotes(
+                            posters.getResourceId(i, -1),
+                            resources.getStringArray(R.array.quotes)[i],
+
+                            )
+            )
+        }
+        posters.recycle()
+        sliderViewPager.adapter = QuotesAdapter(quotes)
 
         enterWeight = sharedPreferences.getInt(AppUtils.ENTER_WEIGHT_KEY_WT2, 0)
         goalWeight = sharedPreferences.getInt(AppUtils.GOAL_WEIGHT_KEY_WT2, 0)
@@ -170,11 +185,15 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 val diff = enterWeight - currentWeight
                 val diffWeight = enterWeight - goalWeight
 
-                if (diffWeight==0)
-                {
-
+                if (diff!=0){
+                    percent =100 * diff/diffWeight
                 }
-                percent =100 * diff/diffWeight
+
+
+
+                if (currentWeight==goalWeight){
+                    Toast.makeText(this,"Goal Completed",Toast.LENGTH_SHORT).show()
+                }
 
                 if (currentWeight<goalWeight){
                     Toast.makeText(this,"Update Goal",Toast.LENGTH_SHORT).show()
@@ -187,7 +206,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
                     Log.e(TAG, "onCreate: $diff", )
                     Log.e(TAG, "onCreate: $percent", )
                 }
-                else if (percent>100){
+                else if (percent>=100){
                     progressBar.setPercent(100)
                     Toast.makeText(this,"Goal Completed",Toast.LENGTH_SHORT).show()
                 }
@@ -281,16 +300,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
     }
 
-    private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        //val recyclerView = findViewById<RecyclerView>(R.id.home_recycler_view)
-        // recyclerView.layoutManager = layoutManager
-        val adapter = QuotesAdapter(this, mNames, mImageUrls)
-        // recyclerView.adapter = adapter
 
-        /*  val snapHelper: SnapHelper = LinearSnapHelper()
-          snapHelper.attachToRecyclerView(recyclerView)*/
-    }
 
     companion object {
         private const val TAG = "MainActivity"
@@ -308,20 +318,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
         spinnerWeightTracker2.adapter = ad
     }
 
-    private val images: Unit
-        get() {
-            mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
-            mNames.add("“To change your body you must first change your mind.”")
-            mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
-            mNames.add("“The only bad workout is the one that didn’t happen.”")
-            mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
-            mNames.add("“I don’t stop when I’m tired,I stop when I’m DONE!”")
-            mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
-            mNames.add("“Happiness is the highest form of health.”")
-            mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg")
-            mNames.add("“Three months from now, you will thanks yourself”")
-            initRecyclerView()
-        }
 
     private fun initialisingFields() {
 
@@ -336,6 +332,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
         lineChartWT2 = findViewById(R.id.MPLineChartWT2)
         progressBar = findViewById(R.id.arc_progressbar)
         settingsButtonWt2 = findViewById(R.id.settings_btn_weight_tracker2)
+        sliderViewPager =  findViewById(R.id.viewPager)
 
 
     }

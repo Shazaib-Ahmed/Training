@@ -114,7 +114,7 @@ dependencies {
 
     implementation 'com.github.hadibtf:SemiCircleArcProgressBar:1.1.1'
 
-
+    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
     implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.3'
 }
 
