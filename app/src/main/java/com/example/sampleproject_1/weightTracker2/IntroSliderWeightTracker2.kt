@@ -1,6 +1,5 @@
 package com.example.sampleproject_1.weightTracker2
 
-
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -13,14 +12,10 @@ import com.example.sampleproject_1.weightTracker2.adapter.QuotesAdapter
 import com.github.islamkhsh.CardSliderViewPager
 import org.koin.android.ext.android.inject
 
-
 class IntroSliderWeightTracker2 : AppCompatActivity() {
 
     private val sharedPreferences: SharedPreferences by inject()
-
-
     private lateinit var startBtn: TextView
-
     private lateinit var sliderViewPager: CardSliderViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +24,7 @@ class IntroSliderWeightTracker2 : AppCompatActivity() {
         autoStartNotification()
 
         startBtn = findViewById(R.id.start_btn_wt2)
-        sliderViewPager =  findViewById(R.id.viewPagerIntro)
+        sliderViewPager = findViewById(R.id.viewPagerIntro)
 
         val quotes = arrayListOf<Quotes>()
         val posters = resources.obtainTypedArray(R.array.images)
@@ -52,7 +47,7 @@ class IntroSliderWeightTracker2 : AppCompatActivity() {
             finishAffinity()
         }
     }
-    
+
 
     companion object {
         private const val TAG = "MainActivity"

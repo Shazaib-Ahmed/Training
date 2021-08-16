@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
-import com.example.sampleproject_1.weightTracker.HomePageWeightTracker
-import com.example.sampleproject_1.weightTracker.UserDetailsWeightTracker
 import org.koin.android.ext.android.inject
 import java.util.*
 
 class SplashScreenWeightTracker2 : AppCompatActivity() {
-    private val sharedPreferences: SharedPreferences by inject()
 
+    private val sharedPreferences: SharedPreferences by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

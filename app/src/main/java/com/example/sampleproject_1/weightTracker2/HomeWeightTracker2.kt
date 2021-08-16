@@ -66,7 +66,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
     private lateinit var sliderViewPager: CardSliderViewPager
 
-
     private var enterWeight = 0
     private var goalWeight = 0
     private var currentWeight = 0
@@ -81,10 +80,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
         initialisingFields()
         viewModelWeightTracker2 = ViewModelProvider(this).get(ViewModelWeightTracker2::class.java)
-        //images
-
-
-
 
         calendar = Calendar.getInstance()
         dialog = Dialog(this)
@@ -97,14 +92,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
         val closeBtn = dialog.findViewById<ImageView>(R.id.dialog_cancel_btn)
         val saveBtn = dialog.findViewById<TextView>(R.id.save_btn_wt2)
-
-
-
-
-
-
-
-
 
         val quotes = arrayListOf<Quotes>()
         val posters = resources.obtainTypedArray(R.array.images)
@@ -126,20 +113,14 @@ class HomeWeightTracker2 : AppCompatActivity() {
         droppedWeight = sharedPreferences.getInt(AppUtils.DROPPED_WEIGHT_KEY_WT2, 0)
         percent = sharedPreferences.getInt(AppUtils.PROGRESS_PERCENT_KEY_WT2, 0)
 
-        Log.e(TAG, "onCreate: $currentWeight", )
+        // Log.e(TAG, "onCreate: $currentWeight")
 
-       progressBar.setPercent(percent)
-
-      /*  if (enterWeight < goalWeight) {
-            droppedtv.text = "Gain : "
-        }
-*/
+        progressBar.setPercent(percent)
 
         enterWeightTv.text = "$enterWeight"
         goalWeightTv.text = "$goalWeight"
         currentWeightTv.text = "$currentWeight kg"
         droppedWeightTv.text = "$droppedWeight kg"
-
 
         editWeightBtn.setOnClickListener {
             val intent = Intent(applicationContext, EnterWeight::class.java)
@@ -150,7 +131,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
             val intent = Intent(this, SettingsWeightTracker2::class.java)
             startActivity(intent)
         }
-
 
         updateWeightBtn.setOnClickListener {
             dialog.show()
@@ -175,8 +155,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
                 currentWeight = weight.toInt()
 
-
-
                 currentWeightTv.text = "$currentWeight kg"
                 droppedWeight = enterWeight - currentWeight
                 droppedWeightTv.text = "$droppedWeight kg"
@@ -185,30 +163,25 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 val diff = enterWeight - currentWeight
                 val diffWeight = enterWeight - goalWeight
 
-                if (diff!=0){
-                    percent =100 * diff/diffWeight
+                if (diff != 0) {
+                    percent = 100 * diff / diffWeight
                 }
 
-
-
-                if (currentWeight==goalWeight){
-                    Toast.makeText(this,"Goal Completed",Toast.LENGTH_SHORT).show()
+                if (currentWeight == goalWeight) {
+                    Toast.makeText(this, "Goal Completed", Toast.LENGTH_SHORT).show()
                 }
 
-                if (currentWeight<goalWeight){
-                    Toast.makeText(this,"Update Goal",Toast.LENGTH_SHORT).show()
+                if (currentWeight < goalWeight) {
+                    Toast.makeText(this, "Update Goal", Toast.LENGTH_SHORT).show()
                 }
 
-                if (percent<=100 ) {
-
-
+                if (percent <= 100) {
                     progressBar.setPercent(percent)
-                    Log.e(TAG, "onCreate: $diff", )
-                    Log.e(TAG, "onCreate: $percent", )
-                }
-                else if (percent>=100){
+                    Log.e(TAG, "onCreate: $diff")
+                    Log.e(TAG, "onCreate: $percent")
+                } else if (percent >= 100) {
                     progressBar.setPercent(100)
-                    Toast.makeText(this,"Goal Completed",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Goal Completed", Toast.LENGTH_SHORT).show()
                 }
 
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
@@ -218,12 +191,8 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 editor.apply()
 
                 viewModelWeightTracker2.insert(entityWeightTracker2 = EntityWeightTracker2(0, enterWeight, goalWeight, currentWeight, currentDate))
-
-
                 dialog.dismiss()
             }
-
-
 
             closeBtn.setOnClickListener {
                 weightInputEditText.clearFocus()
@@ -231,7 +200,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 dialog.dismiss()
             }
         }
-
 
         val xAxis = lineChartWT2.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -247,29 +215,21 @@ class HomeWeightTracker2 : AppCompatActivity() {
             lineEntriesWT2 = ArrayList()
             labelsNamesWT2 = ArrayList()
 
-
             for (i in weightTracker2!!.indices) {
                 val userCurrentWeight = weightTracker2[i].key_current_weight.toFloat()
                 val userFinalWeight = weightTracker2[i].key_final_weight.toFloat()
                 val userInitialWeight = weightTracker2[i].key_initial_weight
                 val currentDateKey = weightTracker2[i].key_current_date
-
-               // Log.e("data", "$userFinalWeight  ===DATA===  $userCurrentWeight  ===DATA===  $currentDateKey")
-
+                // Log.e("data", "$userFinalWeight  ===DATA===  $userCurrentWeight  ===DATA===  $currentDateKey")
                 lineEntriesWT2.add(Entry(i.toFloat(), userCurrentWeight))
                 labelsNamesWT2.add(currentDateKey)
-
             }
-
             val lineDataSet = LineDataSet(lineEntriesWT2, "WEIGHT")
             val dataSets = ArrayList<ILineDataSet>()
             dataSets.add(lineDataSet)
-
-
             val data = LineData(dataSets)
             lineChartWT2.data = data
             lineChartWT2.invalidate()
-
             lineDataSet.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
             lineDataSet.cubicIntensity = 0.2f
             lineDataSet.lineWidth = 1f
@@ -277,7 +237,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
             lineDataSet.fillAlpha = 10
             lineDataSet.setCircleColor(Color.DKGRAY)
             lineDataSet.circleHoleColor = Color.BLACK
-
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setDrawGridLines(false)
             xAxis.setDrawAxisLine(false)
@@ -285,32 +244,20 @@ class HomeWeightTracker2 : AppCompatActivity() {
             xAxis.labelCount = labelsNamesWT2.size
             xAxis.valueFormatter = IndexAxisValueFormatter(labelsNamesWT2)
             xAxis.labelRotationAngle = 270f
-
             val description = Description()
             description.text = "user_weight"
             description.textSize = 1f
             lineChartWT2.description = description
             lineChartWT2.setPinchZoom(false)
-
-
         }
-
         )
-
-
     }
-
-
 
     companion object {
         private const val TAG = "MainActivity"
     }
 
     private fun setUpSpinner() {
-        /*  val sortBySpinnerData = resources.getStringArray(R.array.sortByspinner)
-          / val ad = ArrayAdapter(this.applicationContext, android.R.layout.simple_dropdown_item_1line, sortBySpinnerData)
-            spinnerWeightTracker2.adapter = ad
-  */
         val ad = ArrayAdapter.createFromResource(
                 this, R.array.chart_spinner, R.layout.spinner_layout
         )
@@ -318,9 +265,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
         spinnerWeightTracker2.adapter = ad
     }
 
-
     private fun initialisingFields() {
-
         enterWeightTv = findViewById(R.id.enter_weight_tv)
         goalWeightTv = findViewById(R.id.goal_weight_tv)
         currentWeightTv = findViewById(R.id.current_weight_tv)
@@ -332,13 +277,10 @@ class HomeWeightTracker2 : AppCompatActivity() {
         lineChartWT2 = findViewById(R.id.MPLineChartWT2)
         progressBar = findViewById(R.id.arc_progressbar)
         settingsButtonWt2 = findViewById(R.id.settings_btn_weight_tracker2)
-        sliderViewPager =  findViewById(R.id.viewPager)
-
-
+        sliderViewPager = findViewById(R.id.viewPager)
     }
 
     private fun openDialog() {
-
         dialog.setContentView(R.layout.dialog_input_weight_wt2)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.setLayout(
@@ -347,8 +289,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
         )
         dialog.setCancelable(true)
     }
-
-
 }
 
 
