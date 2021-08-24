@@ -60,8 +60,7 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/demo_photo"
-             />
+            android:src="@drawable/demo_photo" />
     </RelativeLayout>
 
     <ScrollView
