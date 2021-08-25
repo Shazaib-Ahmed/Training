@@ -7,344 +7,349 @@
     android:background="@color/white"
     tools:context=".weightTracker2.HomeWeightTracker2">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/settings_btn_weight_tracker2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:padding="5dp"
-            android:src="@drawable/ic_settings_weight_tracker2" />
-    </RelativeLayout>
-
 
     <RelativeLayout
-        android:id="@+id/overview_rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="28dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomContinueButtonWeightTracker2">
 
-        <TextView
-            android:id="@+id/overview_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_normal"
-            android:includeFontPadding="false"
-            android:text="Overview"
-            android:textColor="@color/weightTracker2ColorOne"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/home_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/overview_tv"
-            android:layout_marginTop="-7dp"
-            android:fontFamily="@font/poppins_normal"
-            android:includeFontPadding="false"
-            android:text="Home"
-            android:textColor="@color/weightTracker2TextColorTwo"
-            android:textSize="42sp"
-            android:textStyle="bold" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/demo_photo" />
-    </RelativeLayout>
-
-    <ScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomContinueButtonWeightTracker2"
-        android:layout_below="@+id/overview_rl">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <LinearLayout
-                android:id="@+id/ll_slider"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <com.github.islamkhsh.CardSliderViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:auto_slide_time="3"
-                    app:cardSlider_indicator="@id/indicator"
-                    app:cardSlider_otherPagesWidth="24dp"
-                    app:cardSlider_pageMargin="12dp"
-                    app:cardSlider_smallAlphaFactor="1"
-                    app:cardSlider_smallScaleFactor="0.9" />
-
-
-                <com.github.islamkhsh.CardSliderIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="12dp"
-                    app:indicatorsToShow="5" />
-
-
-            </LinearLayout>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/progress_card_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_slider"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="35dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="5sp">
+                android:layout_height="wrap_content">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/settings_btn_weight_tracker2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_settings_weight_tracker2" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/overview_rl"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white">
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginEnd="28dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
+                        android:id="@+id/overview_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="15dp"
                         android:fontFamily="@font/poppins_normal"
                         android:includeFontPadding="false"
-                        android:text="Goal Progress"
-                        android:textColor="@color/weightTracker2TextColorTwo"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:text="Overview"
+                        android:textColor="@color/weightTracker2ColorOne"
+                        android:textSize="24sp" />
 
-                    <RelativeLayout
-                        android:id="@+id/edit_weight_rl"
+                    <TextView
+                        android:id="@+id/home_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/overview_tv"
+                        android:layout_marginTop="-7dp"
+                        android:fontFamily="@font/poppins_normal"
+                        android:includeFontPadding="false"
+                        android:text="Home"
+                        android:textColor="@color/weightTracker2TextColorTwo"
+                        android:textSize="42sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/ic_edit_btn_back">
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        android:src="@drawable/demo_photo" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/overview_rl"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <com.github.islamkhsh.CardSliderViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:auto_slide_time="3"
+                        app:cardSlider_indicator="@id/indicator"
+                        app:cardSlider_otherPagesWidth="24dp"
+                        app:cardSlider_pageMargin="12dp"
+                        app:cardSlider_smallAlphaFactor="1"
+                        app:cardSlider_smallScaleFactor="0.9" />
+
+
+                    <com.github.islamkhsh.CardSliderIndicator
+                        android:id="@+id/indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp"
+                        app:indicatorsToShow="5" />
+
+
+                </LinearLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/progress_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_slider"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="35dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5sp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="15dp"
                             android:fontFamily="@font/poppins_normal"
                             android:includeFontPadding="false"
-                            android:text="Edit"
-                            android:textColor="@color/white"
-                            android:textSize="16sp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/edit_weight_rl"
-                        android:padding="5dp">
-
+                            android:text="Goal Progress"
+                            android:textColor="@color/weightTracker2TextColorTwo"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <RelativeLayout
-                            android:id="@+id/arc_progress_rl"
+                            android:id="@+id/edit_weight_rl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="0dp">
-
-
-                            <me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
-                                android:id="@+id/arc_progressbar"
-                                android:layout_width="175dp"
-                                android:layout_height="100dp"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginEnd="4dp"
-                                android:layout_marginBottom="4dp"
-                                app:percent="0"
-                                app:progressBarColor="@color/weightTracker2ColorOne"
-                                app:progressBarWidth="20"
-                                app:progressPlaceHolderColor="#EDEDED"
-                                app:progressPlaceHolderWidth="15" />
-
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/ic_edit_btn_back">
 
                             <TextView
-                                android:id="@+id/now_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/poppins_normal"
+                                android:includeFontPadding="false"
+                                android:text="Edit"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/edit_weight_rl"
+                            android:padding="5dp">
+
+
+                            <RelativeLayout
+                                android:id="@+id/arc_progress_rl"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginTop="45dp"
-                                android:fontFamily="@font/poppins_normal"
-                                android:includeFontPadding="false"
-                                android:text="Now"
-                                android:textColor="@color/weightTracker2TextColorOne"
-                                android:textSize="14sp" />
+                                android:layout_marginTop="0dp">
 
-                            <TextView
-                                android:id="@+id/current_weight_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/now_tv"
-                                android:layout_centerHorizontal="true"
-                                android:fontFamily="@font/poppins_normal"
-                                android:includeFontPadding="false"
-                                android:text="74.5 Kg"
-                                android:textColor="@color/weightTracker2ColorOne"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/current_weight_tv"
-                                android:layout_centerHorizontal="true">
+                                <me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
+                                    android:id="@+id/arc_progressbar"
+                                    android:layout_width="175dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginEnd="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    app:percent="0"
+                                    app:progressBarColor="@color/weightTracker2ColorOne"
+                                    app:progressBarWidth="20"
+                                    app:progressPlaceHolderColor="#EDEDED"
+                                    app:progressPlaceHolderWidth="15" />
+
 
                                 <TextView
-                                    android:id="@+id/dropped_tv"
+                                    android:id="@+id/now_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="45dp"
                                     android:fontFamily="@font/poppins_normal"
                                     android:includeFontPadding="false"
-                                    android:text="Dropped - "
+                                    android:text="Now"
                                     android:textColor="@color/weightTracker2TextColorOne"
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/dropped_weight_tv"
+                                    android:id="@+id/current_weight_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_below="@+id/now_tv"
+                                    android:layout_centerHorizontal="true"
+                                    android:fontFamily="@font/poppins_normal"
                                     android:includeFontPadding="false"
-                                    android:text="4Kg"
-                                    android:textColor="@color/weightTracker2TextColorOne" />
+                                    android:text="74.5 Kg"
+                                    android:textColor="@color/weightTracker2ColorOne"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/current_weight_tv"
+                                    android:layout_centerHorizontal="true">
+
+                                    <TextView
+                                        android:id="@+id/dropped_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_normal"
+                                        android:includeFontPadding="false"
+                                        android:text="Dropped - "
+                                        android:textColor="@color/weightTracker2TextColorOne"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/dropped_weight_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:includeFontPadding="false"
+                                        android:text="4Kg"
+                                        android:textColor="@color/weightTracker2TextColorOne" />
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/arc_progress_rl"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/enter_weight_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/poppins_normal"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:text="78"
+                                    android:textColor="@color/weightTracker2TextColorOne"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/goal_weight_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/poppins_normal"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:text="72"
+                                    android:textColor="@color/weightTracker2TextColorOne"
+                                    android:textSize="14sp" />
                             </LinearLayout>
-
                         </RelativeLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/arc_progress_rl"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="10dp"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/enter_weight_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/poppins_normal"
-                                android:gravity="center"
-                                android:includeFontPadding="false"
-                                android:text="78"
-                                android:textColor="@color/weightTracker2TextColorOne"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/goal_weight_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/poppins_normal"
-                                android:gravity="center"
-                                android:includeFontPadding="false"
-                                android:text="72"
-                                android:textColor="@color/weightTracker2TextColorOne"
-                                android:textSize="14sp" />
-                        </LinearLayout>
                     </RelativeLayout>
-                </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/chart_cardv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/progress_card_view"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="5sp">
-
-                <RelativeLayout
-                    android:id="@+id/chart_rl"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/chart_cardv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:fontFamily="@font/poppins_normal"
-                        android:text="Statistics"
-                        android:textColor="@color/weightTracker2TextColorTwo"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                    android:layout_below="@+id/progress_card_view"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5sp">
 
                     <RelativeLayout
-                        android:id="@+id/week_rl"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/chart_rl"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="15dp"
-                        android:background="@drawable/ic_edit_btn_back"
-                        android:padding="3dp">
+                        android:background="@color/white">
 
-                        <Spinner
-                            android:id="@+id/spinner_wt2"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginEnd="0dp"
-                            android:padding="0dp"
-                            android:popupBackground="@color/weightTracker2ColorOne"
-                            android:popupTheme="@style/Theme.AppCompat"
-                            android:spinnerMode="dropdown"
-                            tools:listitem="@layout/spinner_layout" />
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:fontFamily="@font/poppins_normal"
+                            android:text="Statistics"
+                            android:textColor="@color/weightTracker2TextColorTwo"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/week_rl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/ic_edit_btn_back"
+                            android:padding="3dp">
+
+                            <Spinner
+                                android:id="@+id/spinner_wt2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginEnd="0dp"
+                                android:padding="0dp"
+                                android:popupBackground="@color/weightTracker2ColorOne"
+                                android:popupTheme="@style/Theme.AppCompat"
+                                android:spinnerMode="dropdown"
+                                tools:listitem="@layout/spinner_layout" />
+                        </RelativeLayout>
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/MPLineChartWT2"
+                            android:layout_width="match_parent"
+                            android:layout_height="280dp"
+                            android:layout_below="@+id/week_rl" />
                     </RelativeLayout>
 
-                    <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/MPLineChartWT2"
-                        android:layout_width="match_parent"
-                        android:layout_height="220dp"
-                        android:layout_below="@+id/week_rl" />
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </RelativeLayout>
-    </ScrollView>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/bottomContinueButtonWeightTracker2"

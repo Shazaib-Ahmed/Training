@@ -5,12 +5,14 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.Color.green
 import android.graphics.drawable.ColorDrawable
 import android.icu.text.DateFormat
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
@@ -26,11 +28,13 @@ import com.github.islamkhsh.CardSliderViewPager
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
 import me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
 import org.koin.android.ext.android.inject
 import java.util.*
@@ -88,7 +92,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
         setUpSpinner()
 
-        val currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.time)
+        val currentDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.time)
 
         val closeBtn = dialog.findViewById<ImageView>(R.id.dialog_cancel_btn)
         val saveBtn = dialog.findViewById<TextView>(R.id.save_btn_wt2)
@@ -202,7 +206,32 @@ class HomeWeightTracker2 : AppCompatActivity() {
         }
 
         val xAxis = lineChartWT2.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        spinnerWeightTracker2.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+
+                if (position == 0) {
+                    xAxis.labelCount = 7
+                    lineChartWT2.setVisibleXRangeMaximum(6f)
+                    Toast.makeText(this@HomeWeightTracker2, "WEEKLY", Toast.LENGTH_SHORT).show()
+
+                } else if (position == 1) {
+                    xAxis.labelCount = 30
+                    lineChartWT2.setVisibleXRangeMaximum(29f)
+                    Toast.makeText(this@HomeWeightTracker2, "MONTHLY", Toast.LENGTH_SHORT).show()
+
+
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
         lineChartWT2.isDragEnabled = true
         lineChartWT2.setScaleEnabled(false)
         lineChartWT2.axisRight.isEnabled = false
@@ -211,37 +240,40 @@ class HomeWeightTracker2 : AppCompatActivity() {
         lineChartWT2.setVisibleXRangeMaximum(10f)
         lineChartWT2.animateXY(3000, 3000)
 
+
         viewModelWeightTracker2.getAllUserWT2.observe(this, androidx.lifecycle.Observer { weightTracker2 ->
             lineEntriesWT2 = ArrayList()
             labelsNamesWT2 = ArrayList()
 
             for (i in weightTracker2!!.indices) {
                 val userCurrentWeight = weightTracker2[i].key_current_weight.toFloat()
-                val userFinalWeight = weightTracker2[i].key_final_weight.toFloat()
-                val userInitialWeight = weightTracker2[i].key_initial_weight
                 val currentDateKey = weightTracker2[i].key_current_date
                 // Log.e("data", "$userFinalWeight  ===DATA===  $userCurrentWeight  ===DATA===  $currentDateKey")
                 lineEntriesWT2.add(Entry(i.toFloat(), userCurrentWeight))
                 labelsNamesWT2.add(currentDateKey)
             }
+
             val lineDataSet = LineDataSet(lineEntriesWT2, "WEIGHT")
             val dataSets = ArrayList<ILineDataSet>()
             dataSets.add(lineDataSet)
             val data = LineData(dataSets)
             lineChartWT2.data = data
             lineChartWT2.invalidate()
-            lineDataSet.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
+            lineDataSet.mode = LineDataSet.Mode.LINEAR
             lineDataSet.cubicIntensity = 0.2f
             lineDataSet.lineWidth = 1f
             lineDataSet.color = Color.GRAY
+            lineDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
             lineDataSet.fillAlpha = 10
             lineDataSet.setCircleColor(Color.DKGRAY)
             lineDataSet.circleHoleColor = Color.BLACK
+
+
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setDrawGridLines(false)
             xAxis.setDrawAxisLine(false)
             xAxis.granularity = 1f
-            xAxis.labelCount = labelsNamesWT2.size
+            //xAxis.setAvoidFirstLastClipping(false)
             xAxis.valueFormatter = IndexAxisValueFormatter(labelsNamesWT2)
             xAxis.labelRotationAngle = 270f
             val description = Description()

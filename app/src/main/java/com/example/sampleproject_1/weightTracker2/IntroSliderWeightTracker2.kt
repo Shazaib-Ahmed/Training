@@ -44,7 +44,7 @@ class IntroSliderWeightTracker2 : AppCompatActivity() {
             val intent = Intent(applicationContext, EnterWeight::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
-            finishAffinity()
+
         }
     }
 

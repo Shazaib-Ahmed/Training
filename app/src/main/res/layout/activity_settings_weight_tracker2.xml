@@ -8,12 +8,12 @@
     tools:context=".weightTracker2.SettingsWeightTracker2">
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/general_relativeLayout"
         android:layout_width="wrap_content"
@@ -83,17 +83,16 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="#AFAFAF" />
-
             <TextView
+                android:id="@+id/clear_user_data_wt2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:drawablePadding="8sp"
                 android:fontFamily="@font/poppins_normal"
-                android:text="@string/reminder_schedule"
+                android:text="@string/clear_data"
                 android:textColor="@color/settingsSubTextColor"
-                app:drawableEndCompat="@drawable/ic_arrow_forward_more"
-                app:drawableStartCompat="@drawable/ic_notification" />
+                app:drawableStartCompat="@drawable/ic_clear_data" />
 
             <View
                 android:layout_width="wrap_content"
@@ -103,18 +102,20 @@
                 android:background="#AFAFAF" />
 
             <TextView
+                android:id="@+id/update_user_data_wt2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:drawablePadding="8sp"
                 android:fontFamily="@font/poppins_normal"
-                android:text="@string/reminder_tone"
+                android:text="@string/update_data"
                 android:textColor="@color/settingsSubTextColor"
                 app:drawableEndCompat="@drawable/ic_arrow_forward_more"
-                app:drawableStartCompat="@drawable/ic_tone" />
+                app:drawableStartCompat="@drawable/ic_update_data" />
         </LinearLayout>
     </RelativeLayout>
 
+<!--
     <RelativeLayout
         android:id="@+id/personal_in_Relative_Layout"
         android:layout_width="wrap_content"
@@ -174,12 +175,13 @@
 
         </LinearLayout>
     </RelativeLayout>
+-->
 
     <RelativeLayout
         android:id="@+id/developer_Relative_Layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/personal_in_Relative_Layout"
+        android:layout_below="@id/general_relativeLayout"
         android:layout_margin="10dp">
 
         <TextView
