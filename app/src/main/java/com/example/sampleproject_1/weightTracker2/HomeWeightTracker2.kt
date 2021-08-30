@@ -21,6 +21,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
@@ -107,8 +109,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
         val sdf = SimpleDateFormat("MMM dd").format(calendar.time)
 
-       // val currentDate = DateFormat.getDateInstance(sdf).format(calendar.time)
-
+        // val currentDate = DateFormat.getDateInstance(sdf).format(calendar.time)
 
 
         val closeBtn = dialog.findViewById<ImageView>(R.id.dialog_cancel_btn)
@@ -152,6 +153,30 @@ class HomeWeightTracker2 : AppCompatActivity() {
             val intent = Intent(this, SettingsWeightTracker2::class.java)
             startActivity(intent)
         }
+
+        spinnerWeightTracker2.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+
+                if (position == 0) {
+
+                    Toast.makeText(this@HomeWeightTracker2, "WEEKLY", Toast.LENGTH_SHORT).show()
+
+                } else if (position == 1) {
+
+                    Toast.makeText(this@HomeWeightTracker2, "MONTHLY", Toast.LENGTH_SHORT).show()
+
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
 
         updateWeightBtn.setOnClickListener {
             dialog.show()
@@ -212,6 +237,9 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 editor.apply()
 
                 viewModelWeightTracker2.insert(entityWeightTracker2 = EntityWeightTracker2(0, enterWeight, goalWeight, currentWeight, sdf))
+
+
+
                 dialog.dismiss()
             }
 
@@ -223,85 +251,61 @@ class HomeWeightTracker2 : AppCompatActivity() {
         }
 
         val xAxis = lineChartWT2.xAxis
-        spinnerWeightTracker2.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-
-                if (position == 0) {
-                    xAxis.labelCount = 7
-                    lineChartWT2.setVisibleXRangeMaximum(6f)
-                    Toast.makeText(this@HomeWeightTracker2, "WEEKLY", Toast.LENGTH_SHORT).show()
-
-                } else if (position == 1) {
-                    xAxis.labelCount = 30
-                    lineChartWT2.setVisibleXRangeMaximum(29f)
-                    Toast.makeText(this@HomeWeightTracker2, "MONTHLY", Toast.LENGTH_SHORT).show()
-
-
-                }
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
-        }
 
         lineChartWT2.isDragEnabled = true
         lineChartWT2.setScaleEnabled(false)
         lineChartWT2.axisRight.isEnabled = false
         lineChartWT2.setBackgroundColor(Color.WHITE)
-        lineChartWT2.description.text = "Time"
+       // lineChartWT2.description.text = "Time"
         lineChartWT2.setVisibleXRangeMaximum(10f)
         lineChartWT2.animateXY(3000, 3000)
+        lineChartWT2.extraBottomOffset = 15F
+        lineChartWT2.extraLeftOffset = 2F
+        lineChartWT2.extraRightOffset = 2F
 
 
         xAxis.labelRotationAngle = 270f
         xAxis.enableGridDashedLine(10f, 10f, 0f);
         val description = Description()
-        description.text = "user_weight"
-        description.textSize = 1f
-        lineChartWT2.description = description
+       // description.text = "user_weight"
+       // description.textSize = 1f
+        lineChartWT2.description.isEnabled = false
         lineChartWT2.setPinchZoom(false)
+        lineChartWT2.legend.isEnabled = false
 
 
-        val yAxis =lineChartWT2.axisLeft;
+        val yAxis = lineChartWT2.axisLeft;
         yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
-       // yAxis.textColor = Color.rgb(255, 192, 56);
+        // yAxis.textColor = Color.rgb(255, 192, 56);
 
-       // yAxis.axisMinimum = goalWeight.toFloat();
-        //yAxis.axisMaximum = 170f;
+        yAxis.axisMaximum = enterWeight.toFloat() + 2f
+        yAxis.axisMinimum = currentWeight.toFloat() - 3f
 
         yAxis.textColor = ColorTemplate.getHoloBlue();
-        yAxis.setDrawGridLines(true);
+        //yAxis.labelCount = 1
+        yAxis.setDrawGridLines(false);
         yAxis.isGranularityEnabled = true;
-        yAxis.yOffset = -15f;
+        yAxis.yOffset =-5f;
         yAxis.setDrawLimitLinesBehindData(true)
+
         xAxis.setDrawLimitLinesBehindData(true)
-
-
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setDrawGridLines(false)
+        xAxis.setDrawGridLines(true)
         xAxis.setDrawAxisLine(false)
         xAxis.granularity = 1f
 
 
+        /*      var formatter: ValueFormatter = object : ValueFormatter() {
 
-  /*      var formatter: ValueFormatter = object : ValueFormatter() {
-
-            // we don't draw numbers, so no decimal digits needed
-         //   var sdff = SimpleDateFormat("MMM dd", Locale.ENGLISH)
-            private val mFormat = SimpleDateFormat("MMM dd", Locale.ENGLISH)
-            override fun getFormattedValue(value: Float, axis: AxisBase): String {
-                val millis: Long = java.util.concurrent.TimeUnit.HOURS.toMillis(value.toLong())
-                return mFormat.format(Date(millis))
-            }
-        }
-*/
-
-
+                  // we don't draw numbers, so no decimal digits needed
+               //   var sdff = SimpleDateFormat("MMM dd", Locale.ENGLISH)
+                  private val mFormat = SimpleDateFormat("MMM dd", Locale.ENGLISH)
+                  override fun getFormattedValue(value: Float, axis: AxisBase): String {
+                      val millis: Long = java.util.concurrent.TimeUnit.HOURS.toMillis(value.toLong())
+                      return mFormat.format(Date(millis))
+                  }
+              }
+      */
 
         viewModelWeightTracker2.getAllUserWT2.observe(this, androidx.lifecycle.Observer { weightTracker2 ->
             lineEntriesWT2 = ArrayList()
@@ -315,8 +319,8 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 labelsNamesWT2.add(currentDateKey)
             }
 
-            val lineDataSet = LineDataSet(lineEntriesWT2, "WEIGHT")
-            lineDataSet.mode = LineDataSet.Mode.LINEAR
+            val lineDataSet = LineDataSet(lineEntriesWT2, "")
+            lineDataSet.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
             lineDataSet.cubicIntensity = 0.2f
             lineDataSet.lineWidth = 1f
             lineDataSet.color = Color.GRAY
@@ -331,9 +335,13 @@ class HomeWeightTracker2 : AppCompatActivity() {
             val data = LineData(dataSets)
             //xAxis.setAvoidFirstLastClipping(false)
             xAxis.valueFormatter = IndexAxisValueFormatter(labelsNamesWT2)
-           // xAxis.valueFormatter = formatter
+            // xAxis.valueFormatter = formatter
             lineChartWT2.data = data
             lineChartWT2.invalidate()
+
+            lineDataSet.setDrawFilled(true)
+            val fillGradient = ContextCompat.getDrawable(this, R.drawable.red_gradient)
+            lineDataSet.fillDrawable = fillGradient
         }
         )
     }
