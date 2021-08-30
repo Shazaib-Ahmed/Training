@@ -1,20 +1,25 @@
 package com.example.sampleproject_1.weightTracker2
 
 
+import android.R.attr
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Color.green
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.icu.text.DateFormat
 import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar.HOUR
+import android.icu.util.MeasureUnit.HOUR
 import android.icu.util.TimeUnit
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.Time.HOUR
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +28,8 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.os.ConfigurationCompat
+import androidx.core.util.TimeUtils
 import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
@@ -52,6 +59,23 @@ import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import javax.xml.datatype.DatatypeConstants.HOURS
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.charts.BarLineChartBase
+import com.github.mikephil.charting.utils.Utils
+import android.widget.TextView
+import android.R.attr.textSize
+
+import android.util.DisplayMetrics
+import android.view.Gravity
+
+
+
+
+
+
+
+
+
 
 
 class HomeWeightTracker2 : AppCompatActivity() {
@@ -84,6 +108,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
     private lateinit var sliderViewPager: CardSliderViewPager
 
+
     private var enterWeight = 0
     private var goalWeight = 0
     private var currentWeight = 0
@@ -108,9 +133,6 @@ class HomeWeightTracker2 : AppCompatActivity() {
         setUpSpinner()
 
         val sdf = SimpleDateFormat("MMM dd").format(calendar.time)
-
-        // val currentDate = DateFormat.getDateInstance(sdf).format(calendar.time)
-
 
         val closeBtn = dialog.findViewById<ImageView>(R.id.dialog_cancel_btn)
         val saveBtn = dialog.findViewById<TextView>(R.id.save_btn_wt2)
@@ -238,8 +260,9 @@ class HomeWeightTracker2 : AppCompatActivity() {
 
                 viewModelWeightTracker2.insert(entityWeightTracker2 = EntityWeightTracker2(0, enterWeight, goalWeight, currentWeight, sdf))
 
-
-
+                val yAxis = lineChartWT2.axisLeft;
+                yAxis.axisMaximum = enterWeight.toFloat() + 2f
+                yAxis.axisMinimum = currentWeight.toFloat() - 3f
                 dialog.dismiss()
             }
 
@@ -256,7 +279,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
         lineChartWT2.setScaleEnabled(false)
         lineChartWT2.axisRight.isEnabled = false
         lineChartWT2.setBackgroundColor(Color.WHITE)
-       // lineChartWT2.description.text = "Time"
+        // lineChartWT2.description.text = "Time"
         lineChartWT2.setVisibleXRangeMaximum(10f)
         lineChartWT2.animateXY(3000, 3000)
         lineChartWT2.extraBottomOffset = 15F
@@ -267,8 +290,8 @@ class HomeWeightTracker2 : AppCompatActivity() {
         xAxis.labelRotationAngle = 270f
         xAxis.enableGridDashedLine(10f, 10f, 0f);
         val description = Description()
-       // description.text = "user_weight"
-       // description.textSize = 1f
+        // description.text = "user_weight"
+        // description.textSize = 1f
         lineChartWT2.description.isEnabled = false
         lineChartWT2.setPinchZoom(false)
         lineChartWT2.legend.isEnabled = false
@@ -285,7 +308,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
         //yAxis.labelCount = 1
         yAxis.setDrawGridLines(false);
         yAxis.isGranularityEnabled = true;
-        yAxis.yOffset =-5f;
+        yAxis.yOffset = -5f;
         yAxis.setDrawLimitLinesBehindData(true)
 
         xAxis.setDrawLimitLinesBehindData(true)
@@ -295,17 +318,31 @@ class HomeWeightTracker2 : AppCompatActivity() {
         xAxis.granularity = 1f
 
 
-        /*      var formatter: ValueFormatter = object : ValueFormatter() {
+        //xAxis.axisMinimum = currentWeight.toFloat() - 3f
+       // xAxis.valueFormatter = DayAxisValueFormatter(lineChartWT2)
 
-                  // we don't draw numbers, so no decimal digits needed
-               //   var sdff = SimpleDateFormat("MMM dd", Locale.ENGLISH)
-                  private val mFormat = SimpleDateFormat("MMM dd", Locale.ENGLISH)
-                  override fun getFormattedValue(value: Float, axis: AxisBase): String {
-                      val millis: Long = java.util.concurrent.TimeUnit.HOURS.toMillis(value.toLong())
-                      return mFormat.format(Date(millis))
-                  }
-              }
-      */
+
+        /*  val l: Legend = lineChartWT2.legend
+          l.isWordWrapEnabled = true
+          l.textSize = 14f
+          l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+          l.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+          l.orientation = Legend.LegendOrientation.HORIZONTAL
+          l.setDrawInside(false)
+          l.form = Legend.LegendForm.CIRCLE*/
+
+
+        /*   var formatter: ValueFormatter = object : ValueFormatter() {
+
+               // we don't draw numbers, so no decimal digits needed
+            //   var sdff = SimpleDateFormat("MMM dd", Locale.ENGLISH)
+               private val mFormat = SimpleDateFormat("MMM dd", Locale.ENGLISH).format(calendar.time)
+               override fun getFormattedValue(value: Float, axis: AxisBase): String {
+               //    val millis = java.util.concurrent.TimeUnit.HOURS.toMillis(value.toLong())
+                   val millis = TimeUnit.HOUR(value.toLong())
+                   return mFormat.format(Date(millis))
+               }
+           }*/
 
         viewModelWeightTracker2.getAllUserWT2.observe(this, androidx.lifecycle.Observer { weightTracker2 ->
             lineEntriesWT2 = ArrayList()
@@ -316,7 +353,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 val currentDateKey = weightTracker2[i].key_current_date
                 // Log.e("data", "$userFinalWeight  ===DATA===  $userCurrentWeight  ===DATA===  $currentDateKey")
                 lineEntriesWT2.add(Entry(i.toFloat(), userCurrentWeight))
-                labelsNamesWT2.add(currentDateKey)
+                labelsNamesWT2.add(i, sdf)
             }
 
             val lineDataSet = LineDataSet(lineEntriesWT2, "")
@@ -329,21 +366,39 @@ class HomeWeightTracker2 : AppCompatActivity() {
             lineDataSet.setCircleColor(Color.DKGRAY)
             lineDataSet.circleHoleColor = Color.BLACK
 
+            lineDataSet.valueTextSize = 8f
+
             val dataSets = ArrayList<ILineDataSet>()
             dataSets.add(lineDataSet)
 
             val data = LineData(dataSets)
             //xAxis.setAvoidFirstLastClipping(false)
+
+
+
+            //xAxis.valueFormatter = DayAxisValueFormatter(lineChartWT2)
             xAxis.valueFormatter = IndexAxisValueFormatter(labelsNamesWT2)
+            xAxis.labelRotationAngle = 360f
+
+
+
+
+
             // xAxis.valueFormatter = formatter
-            lineChartWT2.data = data
-            lineChartWT2.invalidate()
+
 
             lineDataSet.setDrawFilled(true)
             val fillGradient = ContextCompat.getDrawable(this, R.drawable.red_gradient)
             lineDataSet.fillDrawable = fillGradient
+            lineChartWT2.data = data
+            lineChartWT2.invalidate()
+
+
+
+
         }
         )
+
     }
 
     companion object {
@@ -371,6 +426,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
         progressBar = findViewById(R.id.arc_progressbar)
         settingsButtonWt2 = findViewById(R.id.settings_btn_weight_tracker2)
         sliderViewPager = findViewById(R.id.viewPager)
+
     }
 
     private fun openDialog() {
@@ -382,6 +438,10 @@ class HomeWeightTracker2 : AppCompatActivity() {
         )
         dialog.setCancelable(true)
     }
+
+
+
+
 }
 
 
