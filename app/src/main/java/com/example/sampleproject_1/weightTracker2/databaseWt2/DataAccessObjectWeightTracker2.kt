@@ -20,4 +20,6 @@ interface DataAccessObjectWeightTracker2 {
 
     @Query("DELETE from weight_tracker_2_user_stats")
     suspend fun deleteAllData()
+
+
 }

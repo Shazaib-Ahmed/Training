@@ -1,35 +1,23 @@
 package com.example.sampleproject_1.weightTracker2
 
 
-import android.R.attr
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.Color.green
-import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
-import android.icu.text.DateFormat
 import android.icu.text.SimpleDateFormat
-import android.icu.util.Calendar.HOUR
-import android.icu.util.MeasureUnit.HOUR
-import android.icu.util.TimeUnit
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.format.Time.HOUR
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.core.os.ConfigurationCompat
-import androidx.core.util.TimeUtils
 import androidx.lifecycle.ViewModelProvider
 import com.example.sampleproject_1.R
 import com.example.sampleproject_1.WaterReminder.Utils.AppUtils
@@ -51,30 +39,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
 import org.koin.android.ext.android.inject
 import java.util.*
-import com.github.mikephil.charting.components.LimitLine.LimitLabelPosition
-
-import com.github.mikephil.charting.components.LimitLine
-import com.github.mikephil.charting.components.AxisBase
-
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
-import javax.xml.datatype.DatatypeConstants.HOURS
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.charts.BarLineChartBase
-import com.github.mikephil.charting.utils.Utils
 import android.widget.TextView
-import android.R.attr.textSize
-
-import android.util.DisplayMetrics
-import android.view.Gravity
-
-
-
-
-
-
-
-
 
 
 
@@ -301,8 +266,10 @@ class HomeWeightTracker2 : AppCompatActivity() {
         yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         // yAxis.textColor = Color.rgb(255, 192, 56);
 
-        yAxis.axisMaximum = enterWeight.toFloat() + 2f
+     /*   yAxis.axisMaximum = enterWeight.toFloat() + 2f
         yAxis.axisMinimum = currentWeight.toFloat() - 3f
+*/        yAxis.spaceTop = 30f
+        yAxis.spaceBottom = 30f
 
         yAxis.textColor = ColorTemplate.getHoloBlue();
         //yAxis.labelCount = 1
@@ -316,9 +283,9 @@ class HomeWeightTracker2 : AppCompatActivity() {
         xAxis.setDrawGridLines(true)
         xAxis.setDrawAxisLine(false)
         xAxis.granularity = 1f
+       // xAxis.axisMinimum = -0.3f;
 
 
-        //xAxis.axisMinimum = currentWeight.toFloat() - 3f
        // xAxis.valueFormatter = DayAxisValueFormatter(lineChartWT2)
 
 
@@ -353,7 +320,7 @@ class HomeWeightTracker2 : AppCompatActivity() {
                 val currentDateKey = weightTracker2[i].key_current_date
                 // Log.e("data", "$userFinalWeight  ===DATA===  $userCurrentWeight  ===DATA===  $currentDateKey")
                 lineEntriesWT2.add(Entry(i.toFloat(), userCurrentWeight))
-                labelsNamesWT2.add(i, sdf)
+                labelsNamesWT2.add(currentDateKey)
             }
 
             val lineDataSet = LineDataSet(lineEntriesWT2, "")
@@ -374,18 +341,11 @@ class HomeWeightTracker2 : AppCompatActivity() {
             val data = LineData(dataSets)
             //xAxis.setAvoidFirstLastClipping(false)
 
-
-
             //xAxis.valueFormatter = DayAxisValueFormatter(lineChartWT2)
             xAxis.valueFormatter = IndexAxisValueFormatter(labelsNamesWT2)
             xAxis.labelRotationAngle = 360f
 
-
-
-
-
             // xAxis.valueFormatter = formatter
-
 
             lineDataSet.setDrawFilled(true)
             val fillGradient = ContextCompat.getDrawable(this, R.drawable.red_gradient)
@@ -393,11 +353,9 @@ class HomeWeightTracker2 : AppCompatActivity() {
             lineChartWT2.data = data
             lineChartWT2.invalidate()
 
-
-
-
         }
         )
+
 
     }
 
