@@ -56,7 +56,7 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
 
 
     private val firstRunKey =
-        sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WATER_TRACKER, true)
+            sharedPreferences.getBoolean(AppUtils.FIRST_RUN_KEY_WATER_TRACKER, true)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,8 +110,6 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
                 kgOptionISChecked = kgIsChecked
             }
 
-
-
             radioGroup.setOnCheckedChangeListener { _, checkedId ->
 
                 if (weightInputEt.text.isEmpty()) {
@@ -149,16 +147,14 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
             selectEditTextInput()
         }
 
-
-
         genderLinearLayout.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(
-                this@UserDetailsPageWaterTracker, R.style.BottomSheetDialogTheme
+                    this@UserDetailsPageWaterTracker, R.style.BottomSheetDialogTheme
             )
 
             val bottomSheetView = LayoutInflater.from(applicationContext).inflate(
-                R.layout.layout_bottom_sheet_water_tracker,
-                findViewById<LinearLayout>(R.id.bottomSheet)
+                    R.layout.layout_bottom_sheet_water_tracker,
+                    findViewById<LinearLayout>(R.id.bottomSheet)
             )
 
             bottomSheetView.findViewById<View>(R.id.male).setOnClickListener {
@@ -178,8 +174,6 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
             saveInformation()
         }
 
-
-
         weightLinearLayout.setOnClickListener {
             dialog.show()
             weightInputEt.setText("$weight")
@@ -188,8 +182,6 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
             weightInputEt.selectAll()
             dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
             dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-
-
 
             saveBtn.setOnClickListener {
 
@@ -203,19 +195,17 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-
                 if (kgOptionISChecked) {
                     if (weightInputEt.text.toString()
-                            .toFloat() > 200 || weightInputEt.text.toString().toFloat() < 20
+                                    .toFloat() > 200 || weightInputEt.text.toString().toFloat() < 20
                     ) {
                         Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
                     }
 
-
                 } else if (lbOptionISChecked) {
                     if (weightInputEt.text.toString()
-                            .toFloat() > 441 || weightInputEt.text.toString().toFloat() < 44
+                                    .toFloat() > 441 || weightInputEt.text.toString().toFloat() < 44
                     ) {
                         Toast.makeText(this, "Please enter valid weight", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
@@ -224,7 +214,6 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
 
                 }
                 weight = weightInputEt.text.toString().toFloat()
-
 
                 if (kgOptionISChecked) {
                     userWeight.text = "$weight kg"
@@ -257,8 +246,8 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         dialog.setContentView(R.layout.dialog_weight_input)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
         )
         dialog.setCancelable(true)
     }
@@ -269,9 +258,9 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         if (genderOption.text.isEmpty()) {
 
             val snack = Snackbar.make(
-                coordinatorLayoutWaterTracker,
-                "Please select gender",
-                Snackbar.LENGTH_SHORT
+                    coordinatorLayoutWaterTracker,
+                    "Please select gender",
+                    Snackbar.LENGTH_SHORT
             )
             snack.animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
             snack.show()
@@ -283,9 +272,9 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         if (userWeight.text.isEmpty()) {
 
             val snack = Snackbar.make(
-                coordinatorLayoutWaterTracker,
-                "Please enter weight",
-                Snackbar.LENGTH_SHORT
+                    coordinatorLayoutWaterTracker,
+                    "Please enter weight",
+                    Snackbar.LENGTH_SHORT
             )
             snack.animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
             snack.show()
@@ -346,7 +335,6 @@ class UserDetailsPageWaterTracker : AppCompatActivity() {
         kgRadio.isChecked = kgOptionISChecked
         lbRadio.isChecked = lbOptionISChecked
     }
-
 
 
 }

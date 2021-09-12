@@ -37,10 +37,9 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".waterTracker.SettingsWaterTracker"
@@ -128,7 +127,14 @@
         <activity
             android:name=".AddEditUserInfo"
             android:parentActivityName=".RoomDatabaseExample" />
-        <activity android:name=".RoomDatabaseExample" />
+        <activity android:name=".RoomDatabaseExample" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".JsonPlaceHolderApi" />
         <activity
             android:name=".WaterIntakeAct"

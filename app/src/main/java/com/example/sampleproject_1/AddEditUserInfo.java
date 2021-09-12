@@ -60,7 +60,9 @@ public class AddEditUserInfo extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String mobileNumber = editTextMobileNumber.getText().toString();
 
-        if (name.trim().isEmpty() || age.trim().isEmpty() || email.trim().isEmpty() || mobileNumber.trim().isEmpty()) {
+       int a = Integer.parseInt(age);
+
+        if (name.trim().isEmpty() || email.trim().isEmpty() || mobileNumber.trim().isEmpty()) {
             Toast.makeText(this, "Please fill all information", Toast.LENGTH_SHORT).show();
             return;
         } else if (editTextAge.getText().toString().equals("0") || editTextAge.getText().toString().equals("00")) {
@@ -77,7 +79,7 @@ public class AddEditUserInfo extends AppCompatActivity {
 
         Intent data = new Intent();
         data.putExtra(EXTRA_NAME, name);
-        data.putExtra(EXTRA_AGE, age);
+        data.putExtra(EXTRA_AGE, a);
         data.putExtra(EXTRA_EMAIL, email);
         data.putExtra(EXTRA_MOBILE, mobileNumber);
 

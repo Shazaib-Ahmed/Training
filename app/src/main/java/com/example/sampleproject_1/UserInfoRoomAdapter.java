@@ -44,7 +44,7 @@ public class UserInfoRoomAdapter extends RecyclerView.Adapter<UserInfoRoomAdapte
 
         UserInfo currentUser = userInfo.get(position);
         userInfoViewModel = new UserInfoViewModel(application);
-        holder.textViewId.setText("ID: " + (currentUser.getId()));
+       // holder.textViewId.setText("ID: " + (currentUser.getId()));
         holder.textViewName.setText("NAME: " + currentUser.getName());
         holder.textViewAge.setText("AGE: " + (currentUser.getAge()));
         holder.textViewEmail.setText("EMAIL: " + currentUser.getEmail());
@@ -99,7 +99,7 @@ public class UserInfoRoomAdapter extends RecyclerView.Adapter<UserInfoRoomAdapte
 
     class UserInfoRoomHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewId;
+       // private TextView textViewId;
         private TextView textViewName;
         private TextView textViewAge;
         private TextView textViewEmail;
@@ -108,7 +108,7 @@ public class UserInfoRoomAdapter extends RecyclerView.Adapter<UserInfoRoomAdapte
 
         public UserInfoRoomHolder(@NonNull View itemView) {
             super(itemView);
-            textViewId = itemView.findViewById(R.id.textView_id);
+           // textViewId = itemView.findViewById(R.id.textView_id);
             textViewName = itemView.findViewById(R.id.textView_name);
             textViewAge = itemView.findViewById(R.id.textView_age);
             textViewEmail = itemView.findViewById(R.id.textView_email);

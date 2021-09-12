@@ -18,17 +18,16 @@
         android:background="@drawable/border_design_card_view_2"
         >
 
-        <TextView
+      <!--  <TextView
             android:id="@+id/textView_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01"
             android:layout_alignParentStart="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:text="01"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />-->
 
         <TextView
             android:id="@+id/textView_name"
-            android:layout_below="@+id/textView_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"

@@ -10,19 +10,20 @@
         android:id="@+id/rv_room_database"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_user_info_room"
         android:layout_above="@+id/add_userInfo_button"
-        />
+        tools:listitem="@layout/item_user_info_room" />
+
     <Button
         android:id="@+id/add_userInfo_button"
-        android:text="Add User Info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-
         android:layout_alignParentBottom="true"
-        />
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/white"
+        android:text="Add User Info"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 </RelativeLayout>
